@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/loginbackimage"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+    <ImageView
+        android:id="@+id/ivSplashScreenAppLogo"
+        android:layout_width="500dp"
+        android:layout_height="150dp"
+        android:src="@drawable/applogo" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        app:cardCornerRadius="12sp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log In"
+                android:textSize="28sp"
+                android:layout_marginTop="16sp"
+                android:textColor="@color/goldcolor"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shin Bright with exclusive Jewellers"
+                android:textSize="14sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5sp"
+                android:textColor="@color/black"
+                android:fontFamily="cursive"
+                android:id="@+id/tvslogen"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone Number"
+                android:layout_marginStart="16sp"
+                android:layout_marginTop="20sp"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3sp"
+                android:layout_marginEnd="16sp"
+                android:layout_marginStart="16sp"
+                android:background="@drawable/edittextbackground"
+                android:hint="+91"
+                android:padding="12sp"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:id="@+id/etLoginActivityPhonenumber"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter OTP"
+                android:layout_marginTop="12sp"
+                android:layout_marginStart="16sp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etOTPLoginActivityotp1"
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+
+                    />
+
+                <EditText
+                    android:id="@+id/etOTPLoginActivityotp2"
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+
+                    />
+
+                <EditText
+                    android:id="@+id/etOTPLoginActivityotp3"
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+
+                    />
+
+                <EditText
+                    android:id="@+id/etOTPLoginActivityotp4"
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+
+                    />
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Get OTP"
+                android:layout_marginTop="12sp"
+                android:layout_marginStart="16sp"
+                android:textSize="16sp"
+                android:textColor="@color/blue"
+                android:id="@+id/tvLoginActivityGenerateotp"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="16sp"
+                android:layout_marginEnd="16sp"
+                android:id="@+id/acbtnLoginActivityLogin"
+                android:text="Log In"
+                android:textColor="@color/white"
+                android:background="@color/goldcolor"
+                /> <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
+            android:layout_marginStart="16sp"
+            android:layout_marginEnd="16sp"
+            android:id="@+id/acbtnLoginActivityCancleLogin"
+            android:text="Cancle"
+            android:textColor="@color/black"
+            android:background="@drawable/buttonbackground"
+            android:layout_marginBottom="16sp"
+            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Didn't have accout? | Click here"
+                android:textSize="16sp"
+                android:layout_marginBottom="20sp"
+                android:textColor="@color/blue"
+                android:layout_gravity="center"
+                android:id="@+id/tvLoginActivityNewuser"
+                />
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
