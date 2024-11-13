@@ -54,6 +54,44 @@
                 />
 
         </LinearLayout>
+        <com.denzcoskun.imageslider.ImageSlider
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:iss_auto_cycle="false"
+            android:id="@+id/isUserHomeFragmentOfferImageslider2"
+            app:iss_delay="2000"
+            app:iss_period="2000"
+            app:iss_no_dots="false"
+            android:layout_margin="20dp"
+            />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/maroon"
+        android:layout_marginBottom="20sp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image1"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="70dp"
+            android:src="@drawable/image2"
+            android:layout_weight="2"
+            />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:src="@drawable/image3"
+            android:layout_weight="3"
+            />
+    </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,12 +145,12 @@
             />
         <com.denzcoskun.imageslider.ImageSlider
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="200dp"
             app:iss_auto_cycle="true"
             android:id="@+id/isUserHomeFragmentOfferImageslider"
             app:iss_delay="2000"
             app:iss_period="2000"
-            app:iss_no_dots="true"
+            app:iss_no_dots="false"
             android:layout_margin="20dp"
             />
         <TextView
@@ -125,96 +163,176 @@
             android:drawableRight="@drawable/ic_arrow"
             android:drawablePadding="5sp"
             />
-        <androidx.recyclerview.widget.RecyclerView
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16sp"
+
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="16sp"
+        android:id="@+id/cvUserFragmentGold"
+        >
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rvUserHomeFragmentCategoryList"
-            android:layout_marginTop="16sp"
+            android:layout_height="match_parent"
+            android:src="@drawable/gold"
             />
-        <com.denzcoskun.imageslider.ImageSlider
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GOLD"
+        android:layout_below="@+id/cvUserFragmentGold"
+        android:layout_marginStart="75sp"
+        android:layout_marginTop="8sp"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="196sp"
+        android:id="@+id/cvUserFragmentCoins"
+        >
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="270dp"
-            app:iss_auto_cycle="true"
-            android:id="@+id/isUserHomeFragmentOfferImageslider2"
-            app:iss_delay="2000"
-            app:iss_period="2000"
-            app:iss_no_dots="true"
-            android:layout_margin="20dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/barse"
             />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="COINS,BARS"
+        android:layout_below="@+id/cvUserFragmentCoins"
+        android:layout_marginStart="228sp"
+        android:layout_marginTop="8sp"
+        />
+     <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="370sp"
+        android:id="@+id/cvUserFragmentloosestone"
+        >
+        <ImageView
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:src="@drawable/stone"
+            />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOOSE STONE"
+        android:layout_below="@+id/cvUserFragmentloosestone"
+        android:layout_marginStart="400sp"
+        android:layout_marginTop="8sp"
+        />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="About Company"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/ic_arrow"
-            android:drawablePadding="5sp"
-            android:layout_marginTop="16sp"
-            />
-        <TextView
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16sp"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="16sp"
+        android:id="@+id/cvUserFragmentLooseDiamond"
+        >
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="about company"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-           android:id="@+id/tvHomeFragmentAboutCompany"
-            android:drawablePadding="5sp"
-            android:layout_marginTop="16sp"
+            android:layout_height="match_parent"
+            android:src="@drawable/diamond"
             />
-
- <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Customer Experence"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/ic_arrow"
-            android:drawablePadding="5sp"
-            android:layout_marginTop="16sp"
-            />
-        <TextView
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOOSE DIAMOND"
+        android:layout_below="@+id/cvUserFragmentLooseDiamond"
+        android:layout_marginStart="28sp"
+        android:layout_marginTop="8sp"
+        />
+    <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="196sp"
+        android:id="@+id/cvUserFragmentPlatinum"
+        >
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Customer Experence"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:id="@+id/tvHomeFragmentCustomerExperence"
-            android:drawablePadding="5sp"
-            android:layout_marginTop="16sp"
+            android:layout_height="match_parent"
+            android:src="@drawable/pltinum"
             />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Director Vision"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:drawableRight="@drawable/ic_arrow"
-            android:drawablePadding="5sp"
-            android:layout_marginTop="16sp"
-            />
-        <TextView
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PLATINUM"
+        android:layout_below="@+id/cvUserFragmentPlatinum"
+        android:layout_marginStart="228sp"
+        android:layout_marginTop="8sp"
+        />
+     <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="370sp"
+        android:id="@+id/cvUserFragmentsliver"
+        >
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Customer Experence"
-            android:textSize="16sp"
-            android:textColor="@color/black"
-            android:id="@+id/tvHomeFragmentDirectorVision"
-            android:drawablePadding="5sp"
-            android:layout_marginTop="16sp"
+            android:layout_height="match_parent"
+            android:src="@drawable/sliver"
             />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SLIVER"
+        android:layout_below="@+id/cvUserFragmentsliver"
+        android:layout_marginStart="400sp"
+        android:layout_marginTop="8sp"
+        />
+
+</RelativeLayout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16sp"
+    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:cardCornerRadius="10sp"
+        android:layout_marginStart="16sp"
+        android:id="@+id/cvUserFragmentGoldjewellary"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/goldjewl"
+            />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GOLD JEWELLARY"
+        android:layout_below="@+id/cvUserFragmentGoldjewellary"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="8sp"
+        />
 
 
-
-
-
-
-
+</RelativeLayout>
 
     </LinearLayout>
 
