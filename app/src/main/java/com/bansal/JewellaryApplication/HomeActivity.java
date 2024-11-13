@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         // Set status bar and navigation bar colors
-        getWindow().setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.goldcolor));
+        getWindow().setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(HomeActivity.this, R.color.white));
 
         // Setup Toolbar (Optional)

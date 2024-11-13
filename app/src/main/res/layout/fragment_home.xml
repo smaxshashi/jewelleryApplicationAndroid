@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="Hi!"
                 android:layout_marginTop="16sp"
-                android:textColor="@color/goldcolor"
+                android:textColor="@color/maroon"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 />
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:text="Username"
                 android:layout_marginTop="16sp"
-                android:textColor="@color/goldcolor"
+                android:textColor="@color/maroon"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginStart="5sp"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Greetings of the day"
                 android:layout_marginTop="16sp"
-                android:textColor="@color/goldcolor"
+                android:textColor="@color/maroon"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:layout_marginStart="5sp"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="4"
-            android:background="@color/goldcolor"
+            android:background="@color/maroon"
             android:padding="10dp"
             android:gravity="center_vertical">
 
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:text="Category"
             android:textSize="22sp"
-            android:textColor="@color/goldcolor"
+            android:textColor="@color/maroon"
             android:textStyle="bold"
             android:drawableRight="@drawable/ic_arrow"
             android:drawablePadding="5sp"
@@ -145,7 +145,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gold"
+            android:text="About Company"
             android:textSize="22sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -153,16 +153,21 @@
             android:drawablePadding="5sp"
             android:layout_marginTop="16sp"
             />
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rvUserHomeFragmentGoldProduct"
+            android:text="about company"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+           android:id="@+id/tvHomeFragmentAboutCompany"
+            android:drawablePadding="5sp"
             android:layout_marginTop="16sp"
             />
+
  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sliver"
+            android:text="Customer Experence"
             android:textSize="22sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -170,16 +175,22 @@
             android:drawablePadding="5sp"
             android:layout_marginTop="16sp"
             />
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rvUserHomeFragmentSliverProduct"
+            android:text="Customer Experence"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:id="@+id/tvHomeFragmentCustomerExperence"
+            android:drawablePadding="5sp"
             android:layout_marginTop="16sp"
             />
- <TextView
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Platinum"
+            android:text="Director Vision"
             android:textSize="22sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -187,12 +198,17 @@
             android:drawablePadding="5sp"
             android:layout_marginTop="16sp"
             />
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rvUserHomeFragmentPlatinumProduct"
+            android:text="Customer Experence"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:id="@+id/tvHomeFragmentDirectorVision"
+            android:drawablePadding="5sp"
             android:layout_marginTop="16sp"
             />
+
 
 
 

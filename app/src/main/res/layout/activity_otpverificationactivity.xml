@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
             android:text="OTP Verification"
-            android:textColor="@color/goldcolor"
+            android:textColor="@color/maroon"
             android:textSize="30sp"
             android:layout_gravity="center"
             android:textStyle="bold" />
