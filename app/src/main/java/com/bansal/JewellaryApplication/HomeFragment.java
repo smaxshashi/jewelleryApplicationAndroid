@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-ImageSlider Imageslider,Imagesliver2;
+ImageSlider Imagesliver2;
 CardView cvgold,cvcoinsorbar,cvloosedtone,cvloosediamond,cvplatinum,cvslivery,cvgoldjewellary;
 
     @Override
@@ -28,7 +28,7 @@ CardView cvgold,cvcoinsorbar,cvloosedtone,cvloosediamond,cvplatinum,cvslivery,cv
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
-        Imageslider = view.findViewById(R.id.isUserHomeFragmentOfferImageslider);
+
         Imagesliver2 = view.findViewById(R.id.isUserHomeFragmentOfferImageslider2);
         cvgold=view.findViewById(R.id.cvUserFragmentGold);
         cvcoinsorbar=view.findViewById(R.id.cvUserFragmentCoins);
@@ -90,13 +90,6 @@ CardView cvgold,cvcoinsorbar,cvloosedtone,cvloosediamond,cvplatinum,cvslivery,cv
             }
         });
 
-        ArrayList<SlideModel> slideModelsArrayList = new ArrayList<>();
-        slideModelsArrayList.add(new SlideModel(R.drawable.off1, ScaleTypes.CENTER_CROP));
-        slideModelsArrayList.add(new SlideModel(R.drawable.off2, ScaleTypes.CENTER_CROP));
-        slideModelsArrayList.add(new SlideModel(R.drawable.off3, ScaleTypes.CENTER_CROP));
-        slideModelsArrayList.add(new SlideModel(R.drawable.off4, ScaleTypes.CENTER_CROP));
-        Imageslider.setImageList(slideModelsArrayList);
-        Imageslider.setSlideAnimation(AnimationTypes.ZOOM_IN);
         ArrayList<SlideModel> slideModelsArrayList2 = new ArrayList<>();
         slideModelsArrayList2.add(new SlideModel(R.drawable.off1, ScaleTypes.CENTER_CROP));
         slideModelsArrayList2.add(new SlideModel(R.drawable.off2, ScaleTypes.CENTER_CROP));
