@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="maroon">#800000</color>
+    <color name="lightmaroon">#A65555</color>
     <color name="blue">#2196F3</color>
     <color name="gray">#969393</color>
     <color name="lightgold">#F5E380</color>

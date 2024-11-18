@@ -9,64 +9,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <ImageView
-                android:layout_width="150sp"
-                android:layout_height="100sp"
-                android:layout_marginTop="16sp"
-                android:src="@drawable/applogo"
-                android:layout_marginStart="-16sp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hi!"
-                android:layout_marginTop="16sp"
-                android:textColor="@color/maroon"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:layout_marginTop="16sp"
-                android:textColor="@color/maroon"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginStart="5sp"
-                android:id="@+id/tvUserHomeFragmentNameofuser"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Greetings of the day"
-                android:layout_marginTop="16sp"
-                android:textColor="@color/maroon"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_marginStart="5sp"
-                />
-
-
-
-        </LinearLayout>
         <com.denzcoskun.imageslider.ImageSlider
-            android:layout_width="250dp"
-            android:layout_height="90dp"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
             app:iss_auto_cycle="false"
             android:id="@+id/isUserHomeFragmentOfferImageslider2"
             app:iss_delay="2000"
             app:iss_period="2000"
             app:iss_no_dots="false"
-            android:layout_marginTop="-60dp"
-            android:layout_marginStart="136sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16sp"
             android:layout_marginEnd="16sp"
             android:layout_marginBottom="20sp"
 
@@ -105,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="4"
+            android:weightSum="5"
             android:background="@color/maroon"
             android:padding="10dp"
             android:gravity="center_vertical">
@@ -123,7 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Bid"
+                android:text="24k"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:gravity="center"/>
@@ -132,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ask"
+                android:text="22k"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:gravity="center"/>
@@ -141,7 +93,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="H/L"
+                android:text="18k"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="14k"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:gravity="center"/>
@@ -160,12 +120,414 @@
             android:textStyle="bold"
             android:drawableRight="@drawable/ic_arrow"
             android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+            android:layout_marginBottom="16sp"
             />
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rvUserHomeFragmentcategorylist"
+
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gifting Guide"
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvUserHomeFragmentGiftingguidelist"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Social Media "
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+            />
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center">
+
+                <!-- Item 1 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivinstgarm"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/instagram"
+                         />
+
+                    <TextView
+                        android:id="@+id/tvInstgarm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <!-- Item 2 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivFacebookk"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/facebook"
+                         />
+
+                    <TextView
+                        android:id="@+id/tvFacebook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <!-- Item 3 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivYoutube"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/youtube"
+                        />
+
+                    <TextView
+                        android:id="@+id/name3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Youtube"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+                <!-- Item 4 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivPrintrest"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/pinterest"
+                         />
+
+                    <TextView
+                        android:id="@+id/name4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pinterest"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shop For Soulmates "
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+            />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="1"
+            android:padding="16dp"
+            android:layout_margin="16dp">
+
+            <!-- Item 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/image1"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/menimage"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/name1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Him"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/maroon" />
+            </LinearLayout>
+
+            <!-- Item 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="8dp">
+
+                <ImageView
+                    android:id="@+id/image2"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/womenimage"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Her"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/maroon" />
+            </LinearLayout>
+
+        </GridLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Our Promises"
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+
+            />
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:gravity="center">
+
+            <!-- Item 1 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/ivhallmarket"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/hallmarket"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/tvhallmarket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HUID HALLMARK"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="11sp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Item 2 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/iv100"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/full"
+                     />
+
+                <TextView
+                    android:id="@+id/tv100buybacl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Buy Back"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="11sp"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Item 3 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="12dp">
+
+                <ImageView
+                    android:id="@+id/image3"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/insurence"
+                    />
+
+                <TextView
+                    android:id="@+id/insurence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Insureance"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="11sp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+            <!-- Item 4 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginEnd="12sp">
+
+                <ImageView
+                    android:id="@+id/ivcertified"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/certified"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/tvcertified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Certified Jewellary"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="11sp"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ivassured"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/assured"
+                    />
+
+                <TextView
+                    android:id="@+id/assured"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Assured Gift"
+                    android:gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:textSize="11sp"
+                    android:layout_gravity="center"
+                    android:textColor="@android:color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shop By Occasion"
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+
+            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvHomefargemtshopbyoccusion"
+            />
+
+
+
+
+
+
+
 
 
 
