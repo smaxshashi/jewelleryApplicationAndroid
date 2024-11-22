@@ -4,25 +4,19 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-        <com.denzcoskun.imageslider.ImageSlider
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            app:iss_auto_cycle="false"
-            android:id="@+id/isUserHomeFragmentOfferImageslider2"
-            app:iss_delay="2000"
-            app:iss_period="2000"
-            app:iss_no_dots="false"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16sp"
-            android:layout_marginEnd="16sp"
-            android:layout_marginBottom="20sp"
+            android:layout_margin="16sp" />
 
-            />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -183,7 +177,7 @@
                         android:id="@+id/ivinstgarm"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/instagram"
+                        android:src="@drawable/insta"
                          />
 
                     <TextView
@@ -191,6 +185,29 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Instagram"
+                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/black" />
+                </LinearLayout> <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="8dp">
+
+                    <ImageView
+                        android:id="@+id/ivwhatsapp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/whhatapp"
+                         />
+
+                    <TextView
+                        android:id="@+id/tvwhatsapp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WhatsApp"
                         android:gravity="center"
                         android:layout_marginTop="4dp"
                         android:textSize="14sp"
@@ -235,7 +252,7 @@
                         android:id="@+id/ivYoutube"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/youtube"
+                        android:src="@drawable/you"
                         />
 
                     <TextView
@@ -261,7 +278,7 @@
                         android:id="@+id/ivPrintrest"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/pinterest"
+                        android:src="@drawable/print"
                          />
 
                     <TextView
@@ -522,6 +539,32 @@
             android:id="@+id/rvHomefargemtshopbyoccusion"
             />
 
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <!-- Left Half: Image Slider -->
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSlider"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <!-- Right Half: TextView -->
+            <TextView
+                android:id="@+id/tvSocialMedia"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Social Media"
+                android:textSize="24sp"
+                android:textColor="@color/maroon"
+                android:textStyle="bold" />
+        </LinearLayout>
 
 
 

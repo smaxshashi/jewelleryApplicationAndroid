@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,46 +16,56 @@ import com.bansal.JewellaryApplication.pojoclasses.POJOgetPrice;
 import java.util.List;
 
 public class AdpterGetPrice extends RecyclerView.Adapter<AdpterGetPrice.ViewHolder> {
-    List<POJOgetPrice> pojOgetPrices;
-    Activity activity;
 
-    public AdpterGetPrice(List<POJOgetPrice> pojOgetPrices, Activity activity) {
-        this.pojOgetPrices = pojOgetPrices;
-        this.activity = activity;
+    private List<POJOgetPrice> prices;
+    private Context context;
+
+    // Constructor to initialize the list of prices and the context
+    public AdpterGetPrice(List<POJOgetPrice> prices, Context context) {
+        this.prices = prices;
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public AdpterGetPrice.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.rvmarketlist, parent, false);
-        return new ViewHolder(view);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflate the layout for each item
+        View view = LayoutInflater.from(context).inflate(R.layout.rvmarketlist, parent, false);
+        return new ViewHolder(view); // Return the ViewHolder object
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdpterGetPrice.ViewHolder holder, int position) {
-        POJOgetPrice obj = pojOgetPrices.get(position);
-        holder.tvmetalname.setText(obj.getMetal());
-        holder.k24.setText(obj.getK24());
-        holder.k22.setText(obj.getK22());
-        holder.k18.setText(obj.getK18());
-        holder.k14.setText(obj.getK14());
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // Get the price data for the current position
+        POJOgetPrice price = prices.get(position);
+
+        // Bind the data to the corresponding views (using the original IDs)
+        holder.metalName.setText(price.getMetalName());
+        holder.price24K.setText(price.getPrice24K());
+        holder.price22K.setText(price.getPrice22K());
+        holder.price18K.setText(price.getPrice18K());
+        holder.price14K.setText(price.getPrice14K());
     }
 
     @Override
     public int getItemCount() {
-        return pojOgetPrices.size();
+        // Return the number of items in the list
+        return prices.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvmetalname, k24, k22, k18, k14;
+    // ViewHolder class to hold the views for each item
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        TextView metalName, price24K, price22K, price18K, price14K;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            tvmetalname = itemView.findViewById(R.id.tvmetalname);
-            k24 = itemView.findViewById(R.id.tv24k);
-            k22 = itemView.findViewById(R.id.tv22k);
-            k18 = itemView.findViewById(R.id.tv18k);
-            k14 = itemView.findViewById(R.id.tv14k);
+
+            // Initialize the TextViews for the views (using the original IDs from the XML layout)
+            metalName = itemView.findViewById(R.id.tvmetalname);
+            price24K = itemView.findViewById(R.id.tv24k);
+            price22K = itemView.findViewById(R.id.tv22k);
+            price18K = itemView.findViewById(R.id.tv18k);
+            price14K = itemView.findViewById(R.id.tv14k);
         }
     }
 }
