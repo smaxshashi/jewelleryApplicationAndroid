@@ -31,10 +31,12 @@ import com.bansal.JewellaryApplication.Adapterclasses.AdpterGetALLcategory;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterGetPrice;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterGifting;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterOccusion;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterSoulmate;
 import com.bansal.JewellaryApplication.Adapterclasses.ImageSliderAdapter;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGetallcategory;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGifting;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOccusion;
+import com.bansal.JewellaryApplication.pojoclasses.POJOSokumate;
 import com.bansal.JewellaryApplication.pojoclasses.POJOgetPrice;
 
 import org.json.JSONArray;
@@ -48,11 +50,12 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
 
-RecyclerView rvlistofcategory,rvMakrketpricelist,rvgiftGuid,rvoccusion;
+RecyclerView rvlistofcategory,rvMakrketpricelist,rvgiftGuid,rvoccusion,rvsolematelist;
 List<POJOGetallcategory> pojoGetallcategories;
 List<POJOgetPrice> pojOgetPrices;
 List<POJOGifting> pojoGiftings;
 List<POJOOccusion> pojoOccusions;
+List<POJOSokumate> pojoSokumates;
 AdpterGetPrice adpterGetPrice;
 
 
@@ -85,6 +88,9 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         pojoOccusions = new ArrayList<>();
         viewPager2 = view.findViewById(R.id.viewPager);
         rvoccusion=view.findViewById(R.id.rvHomefargemtshopbyoccusion);
+        rvsolematelist=view.findViewById(R.id.rvSolemetlist);
+        pojoSokumates = new ArrayList<>();
+
 
 
 
@@ -98,6 +104,8 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
         rvgiftGuid.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
         rvMakrketpricelist.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.VERTICAL,false));
+        rvsolematelist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
 
         // Instagram Button
         
@@ -122,11 +130,13 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         fetchGiftingData();
         fetchBannerImages();
         fetchoccuction();
+        fetchsoulmate();
 
 
         return view;
 
     }
+
 
 
     private void fetchGiftingData() {
@@ -412,6 +422,48 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
 
 
+    private void fetchsoulmate()
+    {
+        String url = "http://3.110.34.172:8080/api/soulmate";
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject categoryObj = response.getJSONObject(i);
+                                String name = categoryObj.getString("giftingName");
+                                String code = categoryObj.getString("giftingCode");
+                                String image = categoryObj.getString("exfield1");
+                                pojoSokumates.add(new POJOSokumate(name,code,image));
+
+
+
+
+                            }
+                            AdpterSoulmate adpterSoulmate = new AdpterSoulmate(pojoSokumates,getActivity());
+                            rvsolematelist.setAdapter(adpterSoulmate);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(jsonArrayRequest);
+
+    }
 
 
 

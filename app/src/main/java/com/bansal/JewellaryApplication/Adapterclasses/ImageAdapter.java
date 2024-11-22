@@ -31,7 +31,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
     public void onBindViewHolder(ImageViewHolder holder, int position) {
         // Get the URL of the image and load it into the ImageView
         String imageUrl = imageUrls.get(position);
-        Glide.with(holder.itemView.getContext()).load(imageUrl).into(holder.imageView);
+        Glide.with(holder.itemView.getContext()).load(imageUrl)
+                .centerInside()
+                .into(holder.imageView);
     }
 
     @Override
