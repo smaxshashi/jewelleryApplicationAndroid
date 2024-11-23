@@ -54,7 +54,7 @@ public class AdpterGetcategorygenderproduct extends RecyclerView.Adapter<AdpterG
             super(itemView);
             cvcard=itemView.findViewById(R.id.cvcard);
             tvname=itemView.findViewById(R.id.tvnamecategory);
-            cvimage=itemView.findViewById(R.id.ivImageofproduct);
+
         }
     }
 }

@@ -39,8 +39,7 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
         }
 
         // Initialize views by referencing their IDs
-        ivmen = findViewById(R.id.ivMenImage);
-        ivwomen = findViewById(R.id.ivWomenImage);
+
 
         // Ensure that the ImageViews are correctly initialized
         if (ivmen == null || ivwomen == null) {

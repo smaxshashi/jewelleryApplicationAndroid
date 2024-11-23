@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     HomeFragment homeFragment = new HomeFragment();
     ChatFragment chatFragment = new ChatFragment();
     WishlistFragment wishlistFragment = new WishlistFragment();
-    MyprofilFragment myprofilFragment = new MyprofilFragment();
+    MyProfileFragment myprofilFragment = new MyProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

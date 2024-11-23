@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetCtegoryProduct extends AppCompatActivity {
-    TextView tvtext;
+
     RecyclerView rvlsitofproduct;
     String categorycode,gendercode;
     List<POJOgetCTaegorygenderwiseproduct> pojOgetCTaegorygenderwiseproducts;
@@ -55,13 +55,13 @@ public class GetCtegoryProduct extends AppCompatActivity {
         categorycode=getIntent().getStringExtra("categorycode");
         gendercode=getIntent().getStringExtra("gendercode");
 
-        tvtext = findViewById(R.id.svProductlistsearchViewproduct);
+
         rvlsitofproduct = findViewById(R.id.recyclerViewlistofproduct);
 
         rvlsitofproduct.setLayoutManager(new GridLayoutManager(GetCtegoryProduct.this,1,GridLayoutManager.VERTICAL,false));
         pojOgetCTaegorygenderwiseproducts = new ArrayList<>();
 
-        tvtext.setText(categorycode);
+
 
 
         getProduct();

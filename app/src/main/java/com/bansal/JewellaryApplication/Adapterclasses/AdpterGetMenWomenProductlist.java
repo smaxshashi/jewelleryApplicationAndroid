@@ -48,7 +48,7 @@ public class AdpterGetMenWomenProductlist extends RecyclerView.Adapter<AdpterGet
         TextView tvnameproduct;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            ivproductimage=itemView.findViewById(R.id.ivImageofproduct);
+
             tvnameproduct=itemView.findViewById(R.id.tvnamecategory);
         }
     }
