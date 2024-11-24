@@ -26,6 +26,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterGetALLcategory;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterGetPrice;
@@ -38,6 +39,11 @@ import com.bansal.JewellaryApplication.pojoclasses.POJOGifting;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOccusion;
 import com.bansal.JewellaryApplication.pojoclasses.POJOSokumate;
 import com.bansal.JewellaryApplication.pojoclasses.POJOgetPrice;
+import com.bumptech.glide.Glide;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.AnimationTypes;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,6 +63,9 @@ List<POJOGifting> pojoGiftings;
 List<POJOOccusion> pojoOccusions;
 List<POJOSokumate> pojoSokumates;
 AdpterGetPrice adpterGetPrice;
+ImageView ivtestinomialimage;
+    ImageSlider imageSlider;
+
 
 
 
@@ -90,6 +99,19 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         rvoccusion=view.findViewById(R.id.rvHomefargemtshopbyoccusion);
         rvsolematelist=view.findViewById(R.id.rvSolemetlist);
         pojoSokumates = new ArrayList<>();
+        ivtestinomialimage=view.findViewById(R.id.ivtestinomialimage);
+        imageSlider = view.findViewById(R.id.imagesliderwelcome);
+
+        ArrayList<SlideModel> slideModelArrayList = new ArrayList<>();
+        slideModelArrayList.add(new SlideModel(R.drawable.img1, ScaleTypes.CENTER_CROP));
+        slideModelArrayList.add(new SlideModel(R.drawable.img3, ScaleTypes.CENTER_CROP));
+        slideModelArrayList.add(new SlideModel(R.drawable.img4, ScaleTypes.CENTER_CROP));
+        slideModelArrayList.add(new SlideModel(R.drawable.img5, ScaleTypes.CENTER_CROP));
+        slideModelArrayList.add(new SlideModel(R.drawable.img6, ScaleTypes.CENTER_CROP));
+        slideModelArrayList.add(new SlideModel(R.drawable.img7, ScaleTypes.CENTER_CROP));
+        slideModelArrayList.add(new SlideModel(R.drawable.img8, ScaleTypes.CENTER_CROP));
+        imageSlider.setImageList(slideModelArrayList);
+        imageSlider.setSlideAnimation(AnimationTypes.ZOOM_IN);
 
 
 
@@ -131,6 +153,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         fetchBannerImages();
         fetchoccuction();
         fetchsoulmate();
+        fetchTestimonial();
 
 
         return view;
@@ -465,6 +488,46 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
     }
 
+
+    private void fetchTestimonial() {
+        String url = "http://3.110.34.172:8080/api/testimonial";
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            // Assuming you are displaying only one image for now
+                            if (response.length() > 0) {
+                                JSONObject categoryObj = response.getJSONObject(0); // Fetch the first object
+                                String image = categoryObj.getString("imageUrl");
+
+                                // Load the image using Glide
+                                Glide.with(getActivity())
+                                        .load(image)
+                                        .error(R.drawable.noimage) // Error placeholder
+                                        .into(ivtestinomialimage); // Your ImageView
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        // Add the request to the queue
+        requestQueue.add(jsonArrayRequest);
+    }
 
 
 

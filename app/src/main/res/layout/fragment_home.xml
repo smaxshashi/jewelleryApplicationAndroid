@@ -486,33 +486,163 @@
             android:layout_height="wrap_content"
             android:id="@+id/rvHomefargemtshopbyoccusion"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Director's Vision"
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
 
-        <LinearLayout
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="At Bansal and Son's Jewellers, our vision is to be the most trusted and beloved jewelry destination, renowned for our exquisite designs, exceptional craftsmanship, and unwavering commitment to customer delight.
 
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="2">
+We strive to create an unforgettable shopping experience, where every individual feels valued, inspired, and empowered to celebrate life's precious moments. Our mission is to help you find the perfect piece of jewelry that speaks to your unique style, personality, and love story.
 
-            <!-- Left Half: Image Slider -->
-            <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/imageSlider"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+Our aim to make Bansal and Son's Jewellers a nationwide stores and then after worldwide store. We believe that jewelry is not just a possession, but a symbol of love, connection, and heritage.
 
-            <!-- Right Half: TextView -->
-            <TextView
-                android:id="@+id/tvSocialMedia"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Social Media"
-                android:textSize="24sp"
-                android:textColor="@color/maroon"
-                android:textStyle="bold" />
-        </LinearLayout>
+Thank you for choosing Bansal and Son's Jewellers. We are honored to be a part of your journey and look forward to helping you shine brighter"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+
+            />
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300sp"
+            android:id="@+id/ivtestinomialimage"
+            android:layout_marginTop="10sp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About company"
+            android:textSize="22sp"
+            android:textColor="@color/maroon"
+            android:textStyle="bold"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="5sp"
+            android:layout_marginTop="16sp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to bansal and sons jewellers
+"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="16sp"
+            android:layout_marginStart="5sp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A legacy of trust, quality and excellence
+
+
+Bansal and sons jewellers has been a trust worthy name in the world of jewellery since many years. Our family owned business watch founded by Mr. Rakesh bansal
+"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:layout_marginStart="5sp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Our mission at bansal and sons jewellers, we are committed to:
+
+"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="8sp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. Creating trending jewellery designs that exceeds our customers expectations.
+
+
+
+
+2. Providing exceptional customer service that build trust and loyalty.
+
+
+
+
+
+
+
+
+
+
+3. Our Aim to make bansal and sons jewellers a nation wide and then after world while jewellery store.
+
+"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:layout_marginStart="5sp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Awards by celebrity:
+"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="10sp"
+            android:layout_marginStart="5sp"
+            android:layout_marginEnd="8sp"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We are proud to  receive national and international awards a testament to our commitment to excellence."
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16sp"
+            android:layout_marginStart="5sp"
+
+            />
+
+        <com.denzcoskun.imageslider.ImageSlider
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        app:iss_auto_cycle="true"
+        android:id="@+id/imagesliderwelcome"
+        app:iss_delay="2000"
+        app:iss_period="2000"
+        app:iss_no_dots="true"
+            android:layout_margin="20sp"
+
+        />
+
+
+
 
 
 
