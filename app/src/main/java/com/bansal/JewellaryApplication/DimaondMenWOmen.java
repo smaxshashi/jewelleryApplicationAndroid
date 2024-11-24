@@ -5,24 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class GetMenOrWomenProduct extends AppCompatActivity {
-
+public class DimaondMenWOmen extends AppCompatActivity {
     TextView tvmen,tvwomen;
     String categorycode;
     String men="1",womem="2";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_get_men_or_women_product);
-
-
-        getWindow().setStatusBarColor(ContextCompat.getColor(GetMenOrWomenProduct.this, R.color.maroon));
-        getWindow().setNavigationBarColor(ContextCompat.getColor(GetMenOrWomenProduct.this, R.color.white));
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_dimaond_men_women);
+        getWindow().setStatusBarColor(ContextCompat.getColor(DimaondMenWOmen.this, R.color.maroon));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(DimaondMenWOmen.this, R.color.white));
 
         categorycode=getIntent().getStringExtra("CategoryCode");
 
@@ -45,13 +46,15 @@ public class GetMenOrWomenProduct extends AppCompatActivity {
 
 
 
+
     }
 
-    private void Movetonextmen(String categorycode, String gendercode) {
-        Intent i = new Intent(GetMenOrWomenProduct.this, WomenMenGoldProduct.class);
+    private void Movetonextmen(String categorycode, String gendercode){
+        Intent i = new Intent(DimaondMenWOmen.this, DiamondProductLIst.class);
         i.putExtra("categorycode",categorycode);
         i.putExtra("gendercode",gendercode);
         startActivity(i);
+
     }
 
 

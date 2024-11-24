@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.DimaondMenWOmen;
 import com.bansal.JewellaryApplication.GetCategoryWiseProduct;
 import com.bansal.JewellaryApplication.GetMenOrWomenProduct;
 import com.bansal.JewellaryApplication.R;
@@ -69,8 +70,12 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
 
                 Intent intent;
                 // Use .equals() to compare strings
-                if (categoryCode.equals("4001") || categoryCode.equals("4002")) {
+                if (categoryCode.equals("4001") ) {
                     intent = new Intent(activity, GetMenOrWomenProduct.class);
+
+                } else if ( categoryCode.equals("4002")) {
+                    intent = new Intent(activity, DimaondMenWOmen.class);
+
                 } else if (categoryCode.equals("4003") || categoryCode.equals("4004") ||
                         categoryCode.equals("4005") || categoryCode.equals("4006")) {
                     intent = new Intent(activity, GetCategoryWiseProduct.class);
