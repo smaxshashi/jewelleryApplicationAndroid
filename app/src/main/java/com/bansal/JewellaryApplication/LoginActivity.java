@@ -28,8 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getWindow().setNavigationBarColor(ContextCompat.getColor(
-                LoginActivity.this,R.color.lightgold));
-        getWindow().setStatusBarColor(ContextCompat.getColor(LoginActivity.this,R.color.lightgold));
+                LoginActivity.this,R.color.maroon));
+        getWindow().setStatusBarColor(ContextCompat.getColor(LoginActivity.this,R.color.maroon));
 
 
         etPhonenumber =  findViewById(R.id.etLoginActivityPhonenumber);

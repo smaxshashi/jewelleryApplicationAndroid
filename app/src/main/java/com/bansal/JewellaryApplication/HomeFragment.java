@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,6 +79,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
     private ViewPager2 viewPager2;
     private ImageSliderAdapter adapter;
     private List<String> imageUrls = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -131,11 +133,11 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
         // Instagram Button
         
-        ivinstgarm.setOnClickListener(v -> openUrl("https://www.instagram.com/parth_pd11/"));
+        ivinstgarm.setOnClickListener(v -> openUrl("https://www.instagram.com/bansal_and_sons_jewellers?igsh=MWQ5MWJ3dXNmZWlyeA=="));
 
         // Facebook Button
         
-        ivfacebook.setOnClickListener(v -> openUrl("https://www.facebook.com/"));
+        ivfacebook.setOnClickListener(v -> openUrl("https://www.facebook.com/bansalandsonsjewellerspvtltd?mibextid=ZbWKwL"));
 
         // Pinterest Button
         
@@ -144,7 +146,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         // YouTube Button
         
         ivprintrest.setOnClickListener(v ->
-                openUrl("https://in.pinterest.com/"));
+                openUrl("https://pin.it/2ACtK6wm"));
 
 
         GetCategoryofProduct();

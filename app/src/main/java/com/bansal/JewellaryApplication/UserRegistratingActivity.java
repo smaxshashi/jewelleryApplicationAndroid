@@ -24,8 +24,8 @@ public class UserRegistratingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registrating);
         getWindow().setNavigationBarColor(ContextCompat.getColor(
-                UserRegistratingActivity.this,R.color.lightgold));
-        getWindow().setStatusBarColor(ContextCompat.getColor(UserRegistratingActivity.this,R.color.lightgold));
+                UserRegistratingActivity.this,R.color.maroon));
+        getWindow().setStatusBarColor(ContextCompat.getColor(UserRegistratingActivity.this,R.color.maroon));
 
         etName = findViewById(R.id.etRegistrationActivityName);
         etMobileno = findViewById(R.id.etRegistrationActivityMobileNo);
