@@ -23,6 +23,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcategory.ViewHolder> {
 
     List<POJOGetallcategory> pojoGetallcategories;

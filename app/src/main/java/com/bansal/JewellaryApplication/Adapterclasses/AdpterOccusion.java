@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.OccusionProduct;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOccusion;
 import com.bumptech.glide.Glide;
@@ -42,6 +44,15 @@ public class AdpterOccusion extends RecyclerView.Adapter<AdpterOccusion.ViewHold
                 .skipMemoryCache(true)
                 .error(R.drawable.noimage)
                 .into(holder.ivimage);
+
+        holder.ivimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity, OccusionProduct.class);
+                i.putExtra("occusionname",obj.getName());
+                activity.startActivity(i);
+            }
+        });
 
 
     }
