@@ -32,7 +32,7 @@ public class AdpterGifting extends RecyclerView.Adapter<AdpterGifting.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.rvcategorydesgin, parent, false);
+        View view = LayoutInflater.from(activity).inflate(R.layout.giftingguiddesgin, parent, false);
         return new ViewHolder(view);
     }
 

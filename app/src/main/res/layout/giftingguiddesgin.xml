@@ -1,0 +1,48 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:gravity="center_horizontal"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <!-- Image centered inside CardView -->
+            <ImageView
+                android:id="@+id/categoryImage"
+                android:layout_width="130dp"
+                android:layout_height="180dp"
+                android:layout_centerHorizontal="true"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true" />
+
+            <!-- Text below the Image, centered horizontally -->
+            <TextView
+                android:id="@+id/categoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/categoryImage"
+                android:layout_centerHorizontal="true"
+                android:text="Category Name"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/backshpe"
+                android:layout_marginTop="-42sp"
+                android:padding="10sp"
+                 />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
