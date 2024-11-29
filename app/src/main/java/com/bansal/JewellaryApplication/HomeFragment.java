@@ -2,10 +2,12 @@ package com.bansal.JewellaryApplication;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -66,6 +69,7 @@ List<POJOSokumate> pojoSokumates;
 AdpterGetPrice adpterGetPrice;
 ImageView ivtestinomialimage;
     ImageSlider imageSlider;
+    ImageSlider ivsta;
 
 
 
@@ -79,6 +83,9 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
     private ViewPager2 viewPager2;
     private ImageSliderAdapter adapter;
     private List<String> imageUrls = new ArrayList<>();
+
+    CardView cvShoplocation;
+    Button btnrateus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,11 +110,73 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         pojoSokumates = new ArrayList<>();
         ivtestinomialimage=view.findViewById(R.id.ivtestinomialimage);
         imageSlider = view.findViewById(R.id.imagesliderwelcome);
+        ivsta=view.findViewById(R.id.isPromisiMgae);
+        cvShoplocation=view.findViewById(R.id.cvShopLocation);
+        btnrateus=view.findViewById(R.id.btnHomeFragmentrateus);
+
+
+
+
+        cvShoplocation.setOnClickListener(v -> {
+            // Google Maps URL
+            String googleMapsUrl = "https://www.google.com/maps/place/Bansal+%26+sons+Jewellers/@28.6574758,77.2288831,17z/data=!3m1!4b1!4m6!3m5!1s0x390cfd2a28dbc9ef:0x30322c1d46e4709!8m2!3d28.6574758!4d77.2288831!16s%2Fg%2F1pzr0nf9x?entry=ttu";
+
+            // Intent to open Google Maps
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsUrl));
+            intent.setPackage("com.google.android.apps.maps"); // Ensure it opens in Google Maps
+
+            // Start the intent
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                // Fallback if Google Maps isn't installed
+                Intent fallbackIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(googleMapsUrl));
+                startActivity(fallbackIntent);
+            }
+        });
+
+
+
+
+        btnrateus.setOnClickListener(v -> {
+            // Direct link to Google Maps review section
+            String reviewUrl = "https://www.google.com/maps/place/Bansal+%26+sons+Jewellers/@28.6574758,77.2288831,17z/data=!4m8!3m7!1s0x390cfd2a28dbc9ef:0x30322c1d46e4709!8m2!3d28.6574758!4d77.2288831!9m1!1b1!16s%2Fg%2F1pzr0nf9x?entry=ttu";
+
+            // Intent to open the review section in Google Maps
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(reviewUrl));
+            intent.setPackage("com.google.android.apps.maps"); // Open specifically in Google Maps
+
+            // Try to start the activity
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                // Fallback if Google Maps isn't installed
+                Intent fallbackIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reviewUrl));
+                startActivity(fallbackIntent);
+            }
+        });
+
+
+
+
+
+
+        ArrayList<SlideModel> slideModels=new ArrayList<>();
+        slideModels.add(new SlideModel(R.drawable.promis0,ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.promis1,ScaleTypes.CENTER_CROP));
+        ivsta.setImageList(slideModels);
+        ivsta.setSlideAnimation(AnimationTypes.ZOOM_IN);
+
+
+
+
+
+
+
 
         ArrayList<SlideModel> slideModelArrayList = new ArrayList<>();
         slideModelArrayList.add(new SlideModel(R.drawable.img1, ScaleTypes.CENTER_CROP));
         slideModelArrayList.add(new SlideModel(R.drawable.img3, ScaleTypes.CENTER_CROP));
-        slideModelArrayList.add(new SlideModel(R.drawable.img4, ScaleTypes.CENTER_CROP));
         slideModelArrayList.add(new SlideModel(R.drawable.img5, ScaleTypes.CENTER_CROP));
         slideModelArrayList.add(new SlideModel(R.drawable.img6, ScaleTypes.CENTER_CROP));
         slideModelArrayList.add(new SlideModel(R.drawable.img7, ScaleTypes.CENTER_CROP));
@@ -124,7 +193,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
 
 
-        rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
+        rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         rvgiftGuid.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         rvMakrketpricelist.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.VERTICAL,false));
@@ -214,6 +283,9 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
         requestQueue.add(jsonArrayRequest);
     }
+
+
+
 
 
     private void fetchPrices() {
