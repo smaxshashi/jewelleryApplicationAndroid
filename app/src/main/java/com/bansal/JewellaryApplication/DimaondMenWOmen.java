@@ -7,13 +7,14 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class DimaondMenWOmen extends AppCompatActivity {
-    TextView tvmen,tvwomen;
+    CardView cvmen,cvwomen;
     String categorycode;
     String men="1",womem="2";
 
@@ -27,15 +28,15 @@ public class DimaondMenWOmen extends AppCompatActivity {
 
         categorycode=getIntent().getStringExtra("CategoryCode");
 
-        tvmen=findViewById(R.id.tvmen);
-        tvwomen=findViewById(R.id.tvwomen);
+        cvmen=findViewById(R.id.cvHomeFragmentHIM);
+        cvwomen=findViewById(R.id.cvHomeFragmentHER);
 
-        tvmen.setOnClickListener(new View.OnClickListener() {
+        cvmen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Movetonextmen(categorycode,men);
             }
-        });   tvwomen.setOnClickListener(new View.OnClickListener() {
+        });   cvwomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Movetonextmen(categorycode,womem);
