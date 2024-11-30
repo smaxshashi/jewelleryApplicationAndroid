@@ -288,7 +288,7 @@
                         android:text="Instagram"
                         android:gravity="center"
                         android:layout_marginTop="4dp"
-                        android:textSize="14sp"
+                        android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout> <LinearLayout
                     android:layout_width="wrap_content"
@@ -311,7 +311,7 @@
                         android:text="WhatsApp"
                         android:gravity="center"
                         android:layout_marginTop="4dp"
-                        android:textSize="14sp"
+                        android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -337,7 +337,7 @@
                         android:text="Facebook"
                         android:gravity="center"
                         android:layout_marginTop="4dp"
-                        android:textSize="14sp"
+                        android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -363,7 +363,7 @@
                         android:text="Youtube"
                         android:gravity="center"
                         android:layout_marginTop="4dp"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -378,7 +378,7 @@
                     <ImageView
 
                         android:id="@+id/ivPrintrest"
-                        android:layout_width="40dp"
+                        android:layout_width="30dp"
                         android:layout_height="40dp"
                         android:src="@drawable/print"
                          />
@@ -390,7 +390,7 @@
                         android:text="Pinterest"
                         android:gravity="center"
                         android:layout_marginTop="4dp"
-                        android:textSize="14sp"
+                        android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 

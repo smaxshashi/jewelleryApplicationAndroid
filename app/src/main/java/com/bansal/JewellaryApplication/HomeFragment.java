@@ -224,12 +224,12 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
         // Pinterest Button
         
-        ivyoutube.setOnClickListener(v -> openUrl("https://www.youtube.com/watch?v=buSdqtdn_4I"));
+        ivyoutube.setOnClickListener(v -> openUrl("https://www.youtube.com/@bansalsonsjewellers6387"));
 
         // YouTube Button
         
         ivprintrest.setOnClickListener(v ->
-                openUrl("https://pin.it/2ACtK6wm"));
+                openUrl("https://pin.it/2ACtK6wmi"));
 
 
         GetCategoryofProduct();
