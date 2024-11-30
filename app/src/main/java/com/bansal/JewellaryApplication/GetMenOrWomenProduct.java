@@ -3,16 +3,18 @@ package com.bansal.JewellaryApplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 public class GetMenOrWomenProduct extends AppCompatActivity {
 
-    TextView tvmen,tvwomen;
-    String categorycode;
+   CardView ivmen,ivwomen;
     String men="1",womem="2";
+    String categorycode;
 
 
     @Override
@@ -26,15 +28,14 @@ public class GetMenOrWomenProduct extends AppCompatActivity {
 
         categorycode=getIntent().getStringExtra("CategoryCode");
 
-        tvmen=findViewById(R.id.tvmen);
-        tvwomen=findViewById(R.id.tvwomen);
-
-        tvmen.setOnClickListener(new View.OnClickListener() {
+       ivmen=findViewById(R.id.cvHomeFragmentHIM);
+       ivwomen=findViewById(R.id.cvHomeFragmentHER);
+        ivmen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Movetonextmen(categorycode,men);
             }
-        });   tvwomen.setOnClickListener(new View.OnClickListener() {
+        });   ivwomen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Movetonextmen(categorycode,womem);

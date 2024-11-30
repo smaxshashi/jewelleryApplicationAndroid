@@ -56,7 +56,7 @@ public class AdpterGetcategorygenderproduct extends RecyclerView.Adapter<AdpterG
         CardView cvcard;
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            cvcard=itemView.findViewById(R.id.cvcard);
+            cvcard=itemView.findViewById(R.id.cvProductcard);
             tvname=itemView.findViewById(R.id.tvnamecategory);
 
         }
