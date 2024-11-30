@@ -72,6 +72,7 @@ AdpterGetPrice adpterGetPrice;
 ImageView ivtestinomialimage;
     ImageSlider imageSlider;
     ImageSlider ivsta;
+CardView cvHIM,cvHER;
 
 
 
@@ -90,6 +91,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
     Button btnrateus;
      AdpterGifting adpterGifting;
     ProgressBar progressBar;
+    String Him="Him",Her="Her";
 
 
     @Override
@@ -120,6 +122,25 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         btnrateus=view.findViewById(R.id.btnHomeFragmentrateus);
          progressBar = view.findViewById(R.id.progressBar);
         adpterGifting = new AdpterGifting(pojoGiftings, getActivity());
+        cvHIM=view.findViewById(R.id.cvHomeFragmentHIM);
+        cvHER=view.findViewById(R.id.cvHomeFragmentHER);
+
+        cvHIM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),HimORHerproduct.class);
+                i.putExtra("gender",Him);
+                startActivity(i);
+            }
+        });
+        cvHER.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),HimORHerproduct.class);
+                i.putExtra("gender",Her);
+                startActivity(i);
+            }
+        });
 
 
 
