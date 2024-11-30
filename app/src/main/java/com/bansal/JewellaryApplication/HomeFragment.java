@@ -106,7 +106,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         pojoOccusions = new ArrayList<>();
         viewPager2 = view.findViewById(R.id.viewPager);
         rvoccusion=view.findViewById(R.id.rvHomefargemtshopbyoccusion);
-        rvsolematelist=view.findViewById(R.id.rvSolemetlist);
+       // rvsolematelist=view.findViewById(R.id.rvSolemetlist);
         pojoSokumates = new ArrayList<>();
         ivtestinomialimage=view.findViewById(R.id.ivtestinomialimage);
         imageSlider = view.findViewById(R.id.imagesliderwelcome);
@@ -197,7 +197,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         rvgiftGuid.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         rvMakrketpricelist.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.VERTICAL,false));
-        rvsolematelist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+       // rvsolematelist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
 
         // Instagram Button
@@ -223,7 +223,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         fetchGiftingData();
         fetchBannerImages();
         fetchoccuction();
-        fetchsoulmate();
+       // fetchsoulmate();
         fetchTestimonial();
 
 
