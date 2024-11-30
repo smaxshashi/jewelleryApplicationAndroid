@@ -276,8 +276,8 @@
 
                     <ImageView
                         android:id="@+id/ivinstgarm"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/insta"
                          />
 
@@ -299,8 +299,8 @@
 
                     <ImageView
                         android:id="@+id/ivwhatsapp"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/whhatapp"
                          />
 
@@ -325,8 +325,8 @@
 
                     <ImageView
                         android:id="@+id/ivFacebookk"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:src="@drawable/facebook"
                          />
 
