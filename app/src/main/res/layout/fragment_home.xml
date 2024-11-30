@@ -205,8 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rvUserHomeFragmentGiftingguidelist"
-            android:background="@drawable/marronback"
-            android:padding="20sp"
+
             />
 
         <LinearLayout
