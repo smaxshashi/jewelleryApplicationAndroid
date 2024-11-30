@@ -1,6 +1,5 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bansal.JewellaryApplication.R;
@@ -22,7 +20,7 @@ import java.util.List;
 public class AdpterGifting extends RecyclerView.Adapter<AdpterGifting.ViewHolder> {
 
     private List<POJOGifting> giftingList;
-    Activity activity;
+    private Activity activity;
 
     public AdpterGifting(List<POJOGifting> giftingList, Activity activity) {
         this.giftingList = giftingList;
@@ -39,14 +37,17 @@ public class AdpterGifting extends RecyclerView.Adapter<AdpterGifting.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         POJOGifting gifting = giftingList.get(position);
+
+        // Bind data to views
         holder.giftingName.setText(gifting.getGiftingName());
+
+        // Load image using Glide
         Glide.with(activity)
-                .load(gifting.getExfield1())
+                .load(gifting.getExfield1()) // Load image URL from POJO
+                .override(200, 200)  // Resize images
                 .skipMemoryCache(true)
-                .error(R.drawable.noimage)// Resize the image to 800x800 pixels
+                .error(R.drawable.noimage) // Error image if loading fails
                 .into(holder.giftingImage);
-
-
     }
 
     @Override
@@ -55,13 +56,13 @@ public class AdpterGifting extends RecyclerView.Adapter<AdpterGifting.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView giftingName, giftingCode;
+        TextView giftingName;
         ImageView giftingImage;
 
         public ViewHolder(View itemView) {
             super(itemView);
             giftingName = itemView.findViewById(R.id.categoryName);
-            giftingImage = itemView.findViewById(R.id.categoryImage); // Make sure you have an ImageView for exfield1
+            giftingImage = itemView.findViewById(R.id.categoryImage); // ImageView for exfield1
         }
     }
 }

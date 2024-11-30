@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -86,6 +88,9 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
     CardView cvShoplocation;
     Button btnrateus;
+     AdpterGifting adpterGifting;
+    ProgressBar progressBar;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -113,6 +118,8 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         ivsta=view.findViewById(R.id.isPromisiMgae);
         cvShoplocation=view.findViewById(R.id.cvShopLocation);
         btnrateus=view.findViewById(R.id.btnHomeFragmentrateus);
+         progressBar = view.findViewById(R.id.progressBar);
+        adpterGifting = new AdpterGifting(pojoGiftings, getActivity());
 
 
 
@@ -195,8 +202,15 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
         rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
-        rvgiftGuid.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
-        rvMakrketpricelist.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.VERTICAL,false));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+        rvgiftGuid.setLayoutManager(layoutManager);
+        rvgiftGuid.setAdapter(adpterGifting);
+
+
+
+        rvMakrketpricelist.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
+
+
        // rvsolematelist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
 
@@ -234,19 +248,30 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
 
     private void fetchGiftingData() {
-        String url = "http://3.110.34.172:8080/api/gifting";
+        String Giftingurl = "http://3.110.34.172:8080/api/gifting";
+
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
 
-        // Initialize the list
+        // Log the start time
+        long startTime = System.currentTimeMillis();
+        Log.d("API_CALL", "API call started at: " + startTime);
 
         // Create JsonArrayRequest for fetching data
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
-                url,
+                Giftingurl,
                 null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
+                        // Log the end time
+                        long endTime = System.currentTimeMillis();
+                        Log.d("API_CALL", "API call completed at: " + endTime);
+
+                        // Calculate the time taken for the API call
+                        long timeTaken = endTime - startTime;
+                        Log.d("API_CALL", "Time taken for API call: " + timeTaken + " ms");
+
                         try {
                             pojoGiftings.clear(); // Clear the list to prevent duplicate data
 
@@ -263,9 +288,8 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
                                 pojoGiftings.add(new POJOGifting(giftingName, giftingCode, exfield1));
                             }
 
-                            // Update adapter
-                            AdpterGifting adpterGifting = new AdpterGifting(pojoGiftings, getActivity());
-                            rvgiftGuid.setAdapter(adpterGifting);
+                            // Notify the adapter that the data set has changed
+                            adpterGifting.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -284,15 +308,14 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         requestQueue.add(jsonArrayRequest);
     }
 
-
-
-
-
     private void fetchPrices() {
         String url = "http://3.110.34.172:8080/api/prices";
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity()); // Initialize the request queue
 
         pojOgetPrices = new ArrayList<>(); // Initialize the list that will hold your data
+
+        // Set the RecyclerView LayoutManager to a vertical LinearLayoutManager
+        rvMakrketpricelist.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
 
         // JSON Array request to fetch the data
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -324,12 +347,10 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
                             }
 
                             // Update the adapter with the new list of prices
-                            if (adpterGetPrice == null) {
+
                                 adpterGetPrice = new AdpterGetPrice(pojOgetPrices, requireActivity());
                                 rvMakrketpricelist.setAdapter(adpterGetPrice); // Set the RecyclerView adapter
-                            } else {
-                                adpterGetPrice.notifyDataSetChanged(); // Notify the adapter to update the UI
-                            }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -352,6 +373,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
 
 
+
     private void openUrl(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
@@ -360,6 +382,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
     private void GetCategoryofProduct() {
         String url = "http://3.110.34.172:8080/api/categories";
+
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -462,7 +485,36 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         // Set up the image slider (ViewPager2)
         ImageSliderAdapter adapter = new ImageSliderAdapter(getActivity(), imageUrls);
         viewPager2.setAdapter(adapter);
+
+        autoScrollViewPager();
     }
+
+    private void autoScrollViewPager() {
+        // Runnable to change pages
+        final Runnable autoScrollRunnable = new Runnable() {
+            @Override
+            public void run() {
+                int nextItem = viewPager2.getCurrentItem() + 1;
+                if (nextItem >= imageUrls.size()) {
+                    nextItem = 0; // Loop back to the first image if we've reached the end
+                }
+                viewPager2.setCurrentItem(nextItem, true); // Scroll to the next item
+            }
+        };
+
+        // Create a handler to run the auto-scrolling every 3 seconds
+        Handler handler = new Handler();
+        handler.postDelayed(autoScrollRunnable, 3000); // Delay in milliseconds (3000ms = 3 seconds)
+
+        // Optional: Loop the handler to keep it running indefinitely
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                autoScrollViewPager(); // Repeat the auto-scrolling process
+            }
+        }, 3000);
+    }
+
 
     // Method to set up ViewPager2 with the adapter
     private void fetchoccuction() {
@@ -540,8 +592,6 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
                                 pojoSokumates.add(new POJOSokumate(name,code,image));
 
 
-
-
                             }
                             AdpterSoulmate adpterSoulmate = new AdpterSoulmate(pojoSokumates,getActivity());
                             rvsolematelist.setAdapter(adpterSoulmate);
@@ -602,13 +652,6 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         // Add the request to the queue
         requestQueue.add(jsonArrayRequest);
     }
-
-
-
-
-
-
-
 
 
 
