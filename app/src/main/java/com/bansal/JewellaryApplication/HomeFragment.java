@@ -92,7 +92,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
      AdpterGifting adpterGifting;
     ProgressBar progressBar;
     String Him="Him",Her="Her";
-
+ImageView ivWhatsapp;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -124,6 +124,33 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
         adpterGifting = new AdpterGifting(pojoGiftings, getActivity());
         cvHIM=view.findViewById(R.id.cvHomeFragmentHIM);
         cvHER=view.findViewById(R.id.cvHomeFragmentHER);
+        ivWhatsapp=view.findViewById(R.id.ivwhatsapp);
+
+        ivWhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = "+917982031621"; // Indian phone number format
+                String message = "Hello, I have a question regarding the product from our app.";
+
+
+                String url = "https://api.whatsapp.com/send?phone=" + phoneNumber + "&text=" + Uri.encode(message);
+
+                Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+                whatsappIntent.setData(Uri.parse(url));
+
+                try {
+
+                    startActivity(whatsappIntent);
+                } catch (ActivityNotFoundException e) {
+
+                    Toast.makeText(getActivity(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+
+
 
         cvHIM.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,13 +13,32 @@ import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGETCATEGORYPRODUCT2;
+import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGetHimORHerProduct;
+import com.bansal.JewellaryApplication.pojoclasses.POJOGETCategoryproduct2;
+import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GetCategoryWiseProduct extends AppCompatActivity {
 
-    ImageView ivmen, ivwomen;
-    String categorycode;
-    String mencode, womencode;
+ RecyclerView rvList;
+ List<POJOGETCategoryproduct2> pojogetCategoryproduct2s;
 
+ ADPTERGETCATEGORYPRODUCT2 adptergetcategoryproduct2;
+    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?category=4001&subCategory=10002";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,41 +48,63 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.white));
 
+     rvList=findViewById(R.id.rvcategoryproduct);
+
+        rvList.setLayoutManager(new GridLayoutManager(GetCategoryWiseProduct.this,2,GridLayoutManager.VERTICAL,false));
+        pojogetCategoryproduct2s = new ArrayList<>();
+        
+        
+        fetchproductdata();
+
         // Get category code from Intent
-        categorycode = getIntent().getStringExtra("CategoryCode");
+    }
 
-        if (categorycode == null || categorycode.isEmpty()) {
-            Toast.makeText(this, "Category code is missing!", Toast.LENGTH_SHORT).show();
-            finish(); // Close the activity if no category code is provided
-            return;
-        }
+    private void fetchproductdata() {
+        String url = API_URL;
 
-        // Initialize views by referencing their IDs
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getInt("status") == 0) {
+                                // Parse the product data
+                                JSONArray productsArray = response.getJSONArray("products");
+                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
 
+                                for (int i = 0; i < productsArray.length(); i++) {
+                                    JSONObject productObj = productsArray.getJSONObject(i);
 
-        // Ensure that the ImageViews are correctly initialized
-        if (ivmen == null || ivwomen == null) {
-            Log.e("GetCategoryWiseProduct", "ImageView initialization failed");
-            return;
-        }
+                                    int productId = productObj.getInt("productId");
+                                    String productName = productObj.getString("productName");
+                                    String weight = productObj.getString("weight");
+                                    String karat = productObj.getString("karat");
 
-        // Gender codes
-        womencode = "1";
-        mencode = "2";
+                                    // Fetch the image URL (assuming the first image is related to the product)
+                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
 
-        // Set click listeners for ImageViews
-        ivmen.setOnClickListener(v -> {
-            Intent intent = new Intent(GetCategoryWiseProduct.this, GetCtegoryProduct.class);
-            intent.putExtra("categorycode", categorycode);
-            intent.putExtra("gendercode", mencode);
-            startActivity(intent);
-        });
+                                    // Create a Product object and add it to the list
+                                    pojogetCategoryproduct2s.add(new POJOGETCategoryproduct2(productId,productName,weight,karat,imageUrl));
+                                }
 
-        ivwomen.setOnClickListener(v -> {
-            Intent intent = new Intent(GetCategoryWiseProduct.this, GetCtegoryProduct.class);
-            intent.putExtra("categorycode", categorycode);
-            intent.putExtra("gendercode", womencode);
-            startActivity(intent);
-        });
+                                // Set the adapter
+                                adptergetcategoryproduct2 = new ADPTERGETCATEGORYPRODUCT2(pojogetCategoryproduct2s,GetCategoryWiseProduct.this);
+                                rvList.setAdapter(adptergetcategoryproduct2);
+                            }
+                        } catch (Exception e) {
+                            Log.e("Error", "Error parsing data: " + e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error", "Error in Volley request: " + error.getMessage());
+                    }
+                });
+
+        // Add the request to the Volley queue
+        Volley.newRequestQueue(this).add(jsonObjectRequest);
+
     }
 }

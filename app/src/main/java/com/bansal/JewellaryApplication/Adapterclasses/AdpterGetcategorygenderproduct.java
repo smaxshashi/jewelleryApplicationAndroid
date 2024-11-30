@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.GETCtegorySubCategoryProduct;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOgetCTaegorygenderwiseproduct;
 
 import java.util.List;
+import java.util.zip.Inflater;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -38,6 +41,7 @@ public class AdpterGetcategorygenderproduct extends RecyclerView.Adapter<AdpterG
     public void onBindViewHolder(@NonNull AdpterGetcategorygenderproduct.Viewholder holder, int position) {
         POJOgetCTaegorygenderwiseproduct obj=pojOgetCTaegorygenderwiseproducts.get(position);
         holder.tvname.setText(obj.getName());
+
 
     }
 
