@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -36,6 +37,8 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
 
  RecyclerView rvList;
  List<POJOGETCategoryproduct2> pojogetCategoryproduct2s;
+ TextView tvcategory;
+ String  categoryname;
 
  ADPTERGETCATEGORYPRODUCT2 adptergetcategoryproduct2;
     private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?category=4001&subCategory=10002";
@@ -47,8 +50,12 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
         // Set status bar and navigation bar colors
         getWindow().setStatusBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.white));
+        categoryname=getIntent().getStringExtra("categoryname");
 
      rvList=findViewById(R.id.rvcategoryproduct);
+     tvcategory=findViewById(R.id.tvcategory);
+
+     tvcategory.setText(categoryname);
 
         rvList.setLayoutManager(new GridLayoutManager(GetCategoryWiseProduct.this,2,GridLayoutManager.VERTICAL,false));
         pojogetCategoryproduct2s = new ArrayList<>();

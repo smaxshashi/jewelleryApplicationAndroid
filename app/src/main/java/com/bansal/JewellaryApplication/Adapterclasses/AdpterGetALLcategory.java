@@ -81,6 +81,7 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
                 } else if (categoryCode.equals("4003") || categoryCode.equals("4004") ||
                         categoryCode.equals("4005") || categoryCode.equals("4006")) {
                     intent = new Intent(activity, GetCategoryWiseProduct.class);
+
                 } else {
                     // Handle any other unexpected codes
                     Toast.makeText(activity, "Unknown category code: " + categoryCode, Toast.LENGTH_SHORT).show();
@@ -88,6 +89,7 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
                 }
 
                 intent.putExtra("CategoryCode", categoryCode);
+                intent.putExtra("categoryname",obj.getCategoryname());
                 activity.startActivity(intent);
             }
         });
