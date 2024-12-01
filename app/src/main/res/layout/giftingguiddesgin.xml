@@ -25,7 +25,7 @@
                 android:layout_width="150dp"
                 android:layout_height="200dp"
                 android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
+                android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
 
             <!-- Text below the Image, centered horizontally -->
