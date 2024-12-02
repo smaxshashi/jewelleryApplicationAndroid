@@ -254,7 +254,7 @@ ImageView ivWhatsapp;
 
 
         rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
-        rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
+        rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvgiftGuid.setLayoutManager(layoutManager);
         rvgiftGuid.setAdapter(adpterGifting);
@@ -557,7 +557,7 @@ ImageView ivWhatsapp;
 
         // Create a handler to run the auto-scrolling every 3 seconds
         Handler handler = new Handler();
-        handler.postDelayed(autoScrollRunnable, 3000); // Delay in milliseconds (3000ms = 3 seconds)
+        handler.postDelayed(autoScrollRunnable, 6000); // Delay in milliseconds (3000ms = 3 seconds)
 
         // Optional: Loop the handler to keep it running indefinitely
         handler.postDelayed(new Runnable() {
@@ -565,7 +565,7 @@ ImageView ivWhatsapp;
             public void run() {
                 autoScrollViewPager(); // Repeat the auto-scrolling process
             }
-        }, 3000);
+        }, 6000);
     }
 
 
