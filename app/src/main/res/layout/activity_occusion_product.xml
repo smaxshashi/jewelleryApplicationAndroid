@@ -7,27 +7,52 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".OccusionProduct">
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Jewellery"
-        android:textSize="22sp"
-        android:textColor="@color/maroon"
-        android:id="@+id/tvoccusion"
-        android:textStyle="bold"
-        android:drawableRight="@drawable/ic_arrow"
-        android:drawablePadding="5sp"
-        android:layout_marginTop="60sp"
-        android:layout_marginBottom="16sp"
-        android:layout_marginStart="10sp"
-        />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="50sp"
+        android:padding="10dp">
+
+        <!-- Left Line -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#B4B2B2" />
+
+        <!-- Text in the Middle -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gifting Guide"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#800000"
+
+            android:id="@+id/tvoccusion"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp" />
+
+        <!-- Right Line -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#B4B2B2" />
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rvUserExplorList"
         android:layout_marginStart="10sp"
-        android:layout_marginEnd="10sp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="10sp"
         />
 
 

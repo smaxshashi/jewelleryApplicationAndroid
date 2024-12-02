@@ -16,9 +16,9 @@
         android:layout_height="match_parent"
       >
       <androidx.cardview.widget.CardView
-          android:layout_width="250sp"
-          android:layout_height="250sp"
-          app:cardCornerRadius="10sp"
+          android:layout_width="@dimen/_250sdp"
+          android:layout_height="@dimen/_250sdp"
+          app:cardCornerRadius="@dimen/_10sdp"
           android:id="@+id/card1"
           >
 
@@ -32,7 +32,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
-              android:layout_marginTop="8sp"
+              android:layout_marginTop="@dimen/_8sdp"
               >
           <TextView
               android:layout_width="wrap_content"
@@ -40,10 +40,10 @@
               android:text="22k"
               android:textColor="@color/black"
               android:textSize="18sp"
-              android:layout_marginStart="16sp"
+              android:layout_marginStart="@dimen/_16sdp"
               android:id="@+id/rvUserFragmentCategoryProductkaret"
               android:background="@drawable/back"
-              android:padding="8sp"
+              android:padding="@dimen/_8sdp"
 
               />
             <!-- Second TextView, positioned at the end -->
@@ -56,8 +56,8 @@
 
                 android:id="@+id/rvUserFragmentCategoryProductWeight"
                 android:background="@drawable/back2"
-                android:padding="8sp"
-                android:layout_marginStart="120sp"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_130sdp"
 
             />
           </LinearLayout>
@@ -68,8 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/card1"
             android:text="Name"
-            android:layout_marginStart="5sp"
-            android:layout_marginTop="10sp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textSize="18sp"
             android:textStyle="bold"
             android:id="@+id/rvUserFragmentCategoryProductName"
@@ -79,11 +79,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/rvUserFragmentCategoryProductName"
             android:text="@string/text"
-            android:layout_marginStart="5sp"
-            android:layout_marginTop="10sp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textSize="14sp"
             android:drawableLeft="@drawable/baseline_verified_24"
-            android:drawablePadding="3sp"
+            android:drawablePadding="@dimen/_4sdp"
             android:id="@+id/tv1"
 
             />
@@ -92,10 +92,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv1"
             android:text="5%"
-            android:layout_marginStart="5sp"
-            android:layout_marginTop="10sp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:textSize="18sp"
-            android:layout_marginBottom="6sp"
+            android:layout_marginBottom="@dimen/_6sdp"
             android:textStyle="bold"
             android:id="@+id/rvUserFragmentCategoryProductPrice"
 

@@ -14,9 +14,9 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:clipChildren="false"
             android:clipToPadding="false"
            />
@@ -27,38 +27,38 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@color/maroon"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/image1"
                 android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/image2"
                 android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="@dimen/_40sdp"
                 android:src="@drawable/image3"
                 android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv100return"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/_30sdp"
                 android:src="@drawable/full"
                 android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/ivinsurecce"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="@dimen/_30sdp"
                 android:src="@drawable/insurence"
                 android:layout_weight="1" />
         </LinearLayout>
@@ -70,7 +70,7 @@
             android:orientation="horizontal"
             android:weightSum="5"
             android:background="@color/maroon"
-            android:padding="10dp"
+            android:padding="@dimen/_10sdp"
             android:gravity="center_vertical">
 
             <TextView
@@ -142,12 +142,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="10dp">
+            android:padding="@dimen/_10sdp">
 
             <!-- Left Line -->
             <View
                 android:layout_width="0dp"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/_1sdp"
                 android:layout_weight="1"
                 android:background="#B4B2B2" />
 
@@ -156,11 +156,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gifting Guide"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sdp"
                 android:textStyle="bold"
                 android:textColor="#000000"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp" />
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp" />
 
             <!-- Right Line -->
             <View
@@ -175,7 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="8sp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:gravity="center">
 
             <!-- Gift Box Emoji -->
@@ -184,8 +184,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="🎁"
-                android:textSize="24sp"
-                android:layout_marginEnd="8dp" />
+                android:textSize="@dimen/_24sdp"
+                android:layout_marginEnd="@dimen/_8sdp" />
 
             <!-- Maroon Stylish Text -->
             <TextView
@@ -193,7 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Find the Perfect Present"
-                android:textSize="20sp"
+                android:textSize="@dimen/_20sdp"
                 android:textColor="#800000"
                 android:fontFamily="cursive"
             android:textStyle="bold" />
@@ -214,8 +214,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginTop="12dp"
-            android:padding="10dp">
+            android:layout_marginTop="@dimen/_12sdp"
+            android:padding="@dimen/_10sdp">
 
             <!-- Left Line -->
             <View
@@ -229,13 +229,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gleam, Follow, and Shine!"
-                android:textSize="22sp"
+                android:textSize="@dimen/_20sdp"
                 android:fontFamily="serif"
 
                 android:textStyle="bold"
                 android:textColor="@color/maroon"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp" />
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp" />
 
             <!-- Right Line -->
             <View
@@ -262,7 +262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="16dp"
+                android:padding="@dimen/_10sdp"
                 android:gravity="center">
 
                 <!-- Item 1 -->
@@ -271,12 +271,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="8dp">
+                    android:layout_margin="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/ivinstgarm"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:src="@drawable/insta"
                          />
 
@@ -286,20 +286,20 @@
                         android:layout_height="wrap_content"
                         android:text="Instagram"
                         android:gravity="center"
-                        android:layout_marginTop="4dp"
-                        android:textSize="11sp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:textColor="@android:color/black" />
                 </LinearLayout> <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="8dp">
+                    android:layout_margin="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/ivwhatsapp"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:src="@drawable/whhatapp"
                          />
 
@@ -309,8 +309,8 @@
                         android:layout_height="wrap_content"
                         android:text="WhatsApp"
                         android:gravity="center"
-                        android:layout_marginTop="4dp"
-                        android:textSize="11sp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textSize="@dimen/_11sdp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -320,12 +320,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="8dp">
+                    android:layout_margin="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/ivFacebookk"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:src="@drawable/facebook"
                          />
 
@@ -335,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:text="Facebook"
                         android:gravity="center"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
@@ -346,12 +346,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="8dp">
+                    android:layout_margin="@dimen/_8sdp">
 
                     <ImageView
                         android:id="@+id/ivYoutube"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:src="@drawable/you"
                         />
 
@@ -361,8 +361,8 @@
                         android:layout_height="wrap_content"
                         android:text="Youtube"
                         android:gravity="center"
-                        android:layout_marginTop="4dp"
-                        android:textSize="12sp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -372,13 +372,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="8dp">
+                    android:layout_margin="@dimen/_8sdp">
 
                     <ImageView
 
                         android:id="@+id/ivPrintrest"
-                        android:layout_width="30dp"
-                        android:layout_height="40dp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:src="@drawable/print"
                          />
 
@@ -388,7 +388,7 @@
                         android:layout_height="wrap_content"
                         android:text="Pinterest"
                         android:gravity="center"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:textSize="11sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
@@ -415,13 +415,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fou Your Special"
-                android:textSize="22sp"
+                android:textSize="21sp"
                 android:fontFamily="serif"
 
                 android:textStyle="bold"
                 android:textColor="@color/maroon"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp" />
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp" />
 
             <!-- Right Line -->
             <View
@@ -436,19 +436,21 @@
           android:layout_height="wrap_content"
           android:orientation="horizontal"
           android:gravity="center"
-          android:layout_marginTop="20sp"
+          android:layout_marginTop="@dimen/_20sdp"
+          android:padding="@dimen/_16sdp"
           >
           <LinearLayout
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:orientation="vertical"
               android:layout_gravity="center"
+
               >
               <androidx.cardview.widget.CardView
-                  android:layout_width="180dp"
-                  android:layout_height="250sp"
-                  app:cardCornerRadius="12sp"
-                  app:cardElevation="12sp"
+                  android:layout_width="@dimen/_130sdp"
+                  android:layout_height="@dimen/_150sdp"
+                  app:cardCornerRadius="@dimen/_12sdp"
+                  app:cardElevation="@dimen/_12sdp"
                   android:id="@+id/cvHomeFragmentHIM"
                   >
                   <LinearLayout
@@ -458,12 +460,12 @@
                       android:gravity="center"
                       android:background="@drawable/marronbackline"
                       >
+
                       <ImageView
                           android:layout_width="match_parent"
                           android:layout_height="match_parent"
-                          android:src="@drawable/imgmen"
                           android:scaleType="fitXY"
-                          />
+                          android:src="@drawable/imgmen" />
                   </LinearLayout>
               </androidx.cardview.widget.CardView>
               <TextView
@@ -471,12 +473,12 @@
                   android:layout_height="wrap_content"
                   android:text="HIM"
                   android:layout_gravity="center"
-                  android:layout_marginTop="8sp"
-                  android:textSize="20sp"
+                  android:layout_marginTop="@dimen/_8sdp"
+                  android:textSize="18sp"
                   android:fontFamily="serif"
                   android:textColor="@color/maroon"
                   android:background="@drawable/goldenlineback"
-                  android:padding="8sp"
+                  android:padding="@dimen/_8sdp"
                   />
 
 
@@ -486,13 +488,13 @@
               android:layout_height="wrap_content"
               android:orientation="vertical"
               android:layout_gravity="center"
-              android:layout_marginStart="16sp"
+              android:layout_marginStart="@dimen/_16sdp"
 
               >
               <androidx.cardview.widget.CardView
-                  android:layout_width="180dp"
-                  android:layout_height="250sp"
-                  app:cardCornerRadius="12sp"
+                  android:layout_width="@dimen/_120sdp"
+                  android:layout_height="@dimen/_150sdp"
+                  app:cardCornerRadius="@dimen/_12sdp"
                   app:cardElevation="12sp"
                   android:id="@+id/cvHomeFragmentHER"
                   >
@@ -516,12 +518,12 @@
                   android:layout_height="wrap_content"
                   android:text="HER"
                   android:layout_gravity="center"
-                  android:layout_marginTop="8sp"
-                  android:textSize="20sp"
+                  android:layout_marginTop="@dimen/_8sdp"
+                  android:textSize="18sp"
                   android:fontFamily="serif"
                   android:textColor="@color/maroon"
                   android:background="@drawable/goldenlineback"
-                  android:padding="8sp"
+                  android:padding="@dimen/_8sdp"
                   />
 
 

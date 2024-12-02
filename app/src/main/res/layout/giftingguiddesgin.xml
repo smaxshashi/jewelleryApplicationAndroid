@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/cvGiftingproduct"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="@dimen/_8sdp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -22,8 +22,8 @@
             <!-- Image centered inside CardView -->
             <ImageView
                 android:id="@+id/categoryImage"
-                android:layout_width="150dp"
-                android:layout_height="200dp"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_200sdp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
@@ -41,7 +41,7 @@
                 android:textColor="@android:color/white"
                 android:background="@drawable/backshpe"
                 android:layout_marginTop="-42sp"
-                android:padding="10sp"
+                android:padding="@dimen/_10sdp"
                  />
 
         </RelativeLayout>
