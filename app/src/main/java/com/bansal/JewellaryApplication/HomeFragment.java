@@ -100,6 +100,8 @@ ImageView ivWhatsapp;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_home, container, false);
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+
 
 
         rvlistofcategory = view.findViewById(R.id.rvUserHomeFragmentcategorylist);

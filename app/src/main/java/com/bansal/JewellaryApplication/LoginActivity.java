@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(LoginActivity.this,R.color.maroon));
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+
 
 
 

@@ -47,6 +47,8 @@ public class OccusionProduct extends AppCompatActivity {
 
         getWindow().setStatusBarColor(ContextCompat.getColor(OccusionProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(OccusionProduct.this, R.color.white));
+        int screenWidth = getResources().getDisplayMetrics().widthPixels;
+
 
 
         rvexplorlist=findViewById(R.id.rvUserExplorList);
