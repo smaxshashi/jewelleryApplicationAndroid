@@ -57,7 +57,7 @@ public class ADPTEROCCUSIONWISEPRODUCT extends RecyclerView.Adapter<ADPTEROCCUSI
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(activity, Occusionfullproductdetails.class);
-                i.putExtra("productid",obj.getProductId());
+                i.putExtra("productID",obj.getProductId());
                 activity.startActivity(i);
             }
         });

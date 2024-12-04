@@ -1,10 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Occusionfullproductdetails">
+    android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Image Slider -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+
+        <!-- Product Name -->
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/viewPager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <!-- Karatage and Weight -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvProductName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/contain1"
+            android:layout_marginTop="8dp">
+
+            <!-- Karatage Label -->
+            <TextView
+                android:id="@+id/tvKaratLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Karatage:"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Karatage Value -->
+            <TextView
+                android:id="@+id/tvKaratValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="@id/tvKaratLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="4dp" />
+
+            <!-- Weight Label -->
+            <TextView
+                android:id="@+id/tvWeightLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight:"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@id/tvKaratValue"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="16dp" />
+
+            <!-- Weight Value -->
+            <TextView
+                android:id="@+id/tvWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="4dp" />  <TextView
+                android:id="@+id/tvWeshtage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wastage:"
+                android:textSize="14sp"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toEndOf="@id/tvWeightValue"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="16dp" />
+
+            <!-- Weight Value -->
+            <TextView
+                android:id="@+id/tvWashtageValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintStart_toEndOf="@id/tvWeshtage"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="4dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Company Name -->
+        <TextView
+            android:id="@+id/tvCompanyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/baseline_verified_24"
+            android:drawablePadding="@dimen/_4sdp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/contain1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add to Wishlist"
+            android:backgroundTint="@color/maroon"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

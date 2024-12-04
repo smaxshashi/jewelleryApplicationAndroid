@@ -253,7 +253,7 @@ ImageView ivWhatsapp;
 
 
 
-        rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
+        rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
         rvgiftGuid.setLayoutManager(layoutManager);
@@ -435,7 +435,7 @@ ImageView ivWhatsapp;
     }
 
     private void GetCategoryofProduct() {
-        String url = "http://3.110.34.172:8080/api/categories";
+        String url = "http://3.110.34.172:8080/api/categories?wholeseller=BANSAL";
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 

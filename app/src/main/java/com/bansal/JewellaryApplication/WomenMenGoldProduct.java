@@ -61,7 +61,7 @@ public class WomenMenGoldProduct extends AppCompatActivity {
 
     private void GoldMenData() {
         // Dynamically construct the URL
-        String url = "http://3.110.34.172:8080/api/subCategories/" + cc + "?genderCode=" + gc;
+        String url = "http://3.110.34.172:8080/api/subCategories/" + cc + "?genderCode=" + gc+"&wholeseller=BANSAL";
         Log.d("API URL", url);
 
 

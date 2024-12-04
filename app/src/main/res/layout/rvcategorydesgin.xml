@@ -1,38 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:padding="@dimen/_8sdp"
-    android:gravity="center_horizontal"
     android:layout_gravity="center">
 
+    <!-- CardView Container -->
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_8sdp"
+        android:id="@+id/categoryCard"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
         android:layout_margin="@dimen/_8sdp"
-        >
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Add a container inside CardView with the background -->
+        <!-- Background and Content in CardView -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/goldenlineback"
             android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:background="@drawable/goldenlineback">
 
             <ImageView
                 android:id="@+id/categoryImage"
-                android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_120sdp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
+    <!-- Category Name Text -->
     <TextView
         android:id="@+id/categoryName"
         android:layout_width="wrap_content"
@@ -41,5 +44,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:textColor="@android:color/black" />
-</LinearLayout>
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/categoryCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
