@@ -125,7 +125,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_500sdp"
+            android:layout_height="@dimen/_530sdp"
             android:id="@+id/rvUserHomeFragmentcategorylist"
 
 
