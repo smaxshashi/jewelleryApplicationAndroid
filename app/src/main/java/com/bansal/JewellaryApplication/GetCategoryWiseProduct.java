@@ -18,16 +18,22 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGETCATEGORYPRODUCT2;
 import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGetHimORHerProduct;
+import com.bansal.JewellaryApplication.Adapterclasses.ADPterSubcategory;
+import com.bansal.JewellaryApplication.pojoclasses.POJODIMAONDPRODUCTLIST;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGETCategoryproduct2;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
+import com.bansal.JewellaryApplication.pojoclasses.POJOOTHERSUBCATEGORY;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,10 +44,12 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
  RecyclerView rvList;
  List<POJOGETCategoryproduct2> pojogetCategoryproduct2s;
  TextView tvcategory;
- String  categoryname;
+ String  categoryname,categorycode;
+ List<POJOOTHERSUBCATEGORY> pojoothersubcategories;
+ ADPterSubcategory adPterSubcategory;
 
  ADPTERGETCATEGORYPRODUCT2 adptergetcategoryproduct2;
-    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?category=4001&subCategory=10002";
+    private static final String API_URL = "http://3.110.34.172:8080/api/subCategories/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +59,17 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.white));
         categoryname=getIntent().getStringExtra("categoryname");
+        categorycode=getIntent().getStringExtra("CategoryCode");
 
      rvList=findViewById(R.id.rvcategoryproduct);
      tvcategory=findViewById(R.id.tvcategory);
 
      tvcategory.setText(categoryname);
 
-        rvList.setLayoutManager(new GridLayoutManager(GetCategoryWiseProduct.this,2,GridLayoutManager.VERTICAL,false));
-        pojogetCategoryproduct2s = new ArrayList<>();
+        rvList.setLayoutManager(new GridLayoutManager(this, 1));
+        pojoothersubcategories = new ArrayList<>();
+        adPterSubcategory = new ADPterSubcategory(pojoothersubcategories,GetCategoryWiseProduct.this);
+        rvList.setAdapter(adPterSubcategory);
         
         
         fetchproductdata();
@@ -67,51 +78,61 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
     }
 
     private void fetchproductdata() {
-        String url = API_URL;
+        String url = API_URL+categorycode+"?wholeseller=BANSAL";
+        Log.d("API URL", url);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+
+        RequestQueue requestQueue = Volley.newRequestQueue(GetCategoryWiseProduct.this);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONArray response) {
                         try {
-                            if (response.getInt("status") == 0) {
-                                // Parse the product data
-                                JSONArray productsArray = response.getJSONArray("products");
-                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
+                            pojoothersubcategories.clear();
+                            Log.d("API Response", response.toString());
 
-                                for (int i = 0; i < productsArray.length(); i++) {
-                                    JSONObject productObj = productsArray.getJSONObject(i);
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject categoryObj = response.getJSONObject(i);
+                                Log.d("Item " + i, categoryObj.toString());
 
-                                    int productId = productObj.getInt("productId");
-                                    String productName = productObj.getString("productName");
-                                    String weight = productObj.getString("weight");
-                                    String karat = productObj.getString("karat");
+                                String name = categoryObj.getString("subcategoryName");
+                                String code = categoryObj.getString("subcategoryCode");
+                                String image=categoryObj.getString("exfield1");
+                                pojoothersubcategories.add(new POJOOTHERSUBCATEGORY(name,code,image));
 
-                                    // Fetch the image URL (assuming the first image is related to the product)
-                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
 
-                                    // Create a Product object and add it to the list
-                                    pojogetCategoryproduct2s.add(new POJOGETCategoryproduct2(productId,productName,weight,karat,imageUrl));
-                                }
-
-                                // Set the adapter
-                                adptergetcategoryproduct2 = new ADPTERGETCATEGORYPRODUCT2(pojogetCategoryproduct2s,GetCategoryWiseProduct.this);
-                                rvList.setAdapter(adptergetcategoryproduct2);
                             }
-                        } catch (Exception e) {
-                            Log.e("Error", "Error parsing data: " + e.getMessage());
+                            Log.d("Data List Size", String.valueOf(pojoothersubcategories.size()));
+
+                            // Update RecyclerView with the new data
+                            adPterSubcategory.notifyDataSetChanged();
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(GetCategoryWiseProduct.this, "Parsing error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Error", "Error in Volley request: " + error.getMessage());
+                        // Handling network error
+                        Log.e("Volley Error", error.toString());
+                        Toast.makeText(GetCategoryWiseProduct.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-                });
+                }
+        );
 
-        // Add the request to the Volley queue
-        Volley.newRequestQueue(this).add(jsonObjectRequest);
+        requestQueue.add(jsonArrayRequest);
 
     }
-}
+
+
+
+    }
+
