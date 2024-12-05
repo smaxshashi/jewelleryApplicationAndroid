@@ -15,9 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bansal.JewellaryApplication.GetGoldSubproductActivity;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGETDATAMENGOLD;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ADPTERGOLDMENDATA extends RecyclerView.Adapter<ADPTERGOLDMENDATA.ViewHolder> {
     private List<POJOGETDATAMENGOLD> dataList;
@@ -39,6 +42,11 @@ public class ADPTERGOLDMENDATA extends RecyclerView.Adapter<ADPTERGOLDMENDATA.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         POJOGETDATAMENGOLD item = dataList.get(position);
         holder.nameTextView.setText(item.getName());
+        Glide.with(context)
+                .load(item.getImage())
+                .skipMemoryCache(true)
+                .error(R.drawable.noimage)
+                .into(holder.cvimage);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,11 +73,13 @@ public class ADPTERGOLDMENDATA extends RecyclerView.Adapter<ADPTERGOLDMENDATA.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         CardView cardView;
+        CircleImageView cvimage;
 
         public ViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.tvnamecategory);
             cardView = itemView.findViewById(R.id.cvProductcard);
+            cvimage = itemView.findViewById(R.id.ListofProductimage);
             // Initialize other views...
         }
     }

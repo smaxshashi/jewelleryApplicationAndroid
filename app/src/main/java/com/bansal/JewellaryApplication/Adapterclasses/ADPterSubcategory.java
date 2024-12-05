@@ -14,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJODIMAONDPRODUCTLIST;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOTHERSUBCATEGORY;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ADPterSubcategory extends RecyclerView.Adapter<ADPterSubcategory.ViewHolder> {
     private List<POJOOTHERSUBCATEGORY> dataList;
@@ -37,6 +40,12 @@ public class ADPterSubcategory extends RecyclerView.Adapter<ADPterSubcategory.Vi
     public void onBindViewHolder(@NonNull ADPterSubcategory.ViewHolder holder, int position) {
         POJOOTHERSUBCATEGORY obj=dataList.get(position);
         holder.nameTextView.setText(obj.getName());
+
+        Glide.with(context)
+                .load(obj.getImage())
+                .skipMemoryCache(true)
+                .error(R.drawable.noimage)
+                .into(holder.cvImage);
 
         holder.cvcard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +70,12 @@ public class ADPterSubcategory extends RecyclerView.Adapter<ADPterSubcategory.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         CardView cvcard;
+        CircleImageView cvImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.tvnamecategory);
             cvcard = itemView.findViewById(R.id.cvProductcard);
+            cvImage=itemView.findViewById(R.id.ListofProductimage);
         }
     }
 }

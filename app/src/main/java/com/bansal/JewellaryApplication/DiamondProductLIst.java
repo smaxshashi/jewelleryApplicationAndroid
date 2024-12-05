@@ -65,7 +65,7 @@ public class DiamondProductLIst extends AppCompatActivity {
     }
 
     private void GetProductList() {
-        String url = "http://3.110.34.172:8080/api/subCategories/" + cc + "?genderCode=" + gc;
+        String url = "http://3.110.34.172:8080/api/subCategories/" + cc + "?genderCode=" +gc+"&wholeseller=BANSAL";
         Log.d("API URL", url);
 
 
@@ -88,8 +88,9 @@ public class DiamondProductLIst extends AppCompatActivity {
 
                                 String name = categoryObj.getString("subcategoryName");
                                 String code = categoryObj.getString("subcategoryCode");
+                                String image = categoryObj.getString("exfield1");
 
-                                pojodimaondproductlists.add(new POJODIMAONDPRODUCTLIST(name,code));
+                                pojodimaondproductlists.add(new POJODIMAONDPRODUCTLIST(name,code,image));
                             }
                             Log.d("Data List Size", String.valueOf(pojodimaondproductlists.size()));
 

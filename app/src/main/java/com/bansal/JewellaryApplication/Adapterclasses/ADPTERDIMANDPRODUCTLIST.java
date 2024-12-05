@@ -15,8 +15,11 @@ import com.bansal.JewellaryApplication.DimontCategoryProduct;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJODIMAONDPRODUCTLIST;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGETDATAMENGOLD;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ADPTERDIMANDPRODUCTLIST extends RecyclerView.Adapter<ADPTERDIMANDPRODUCTLIST.ViewHolder> {
     private List<POJODIMAONDPRODUCTLIST> dataList;
@@ -40,6 +43,11 @@ public class ADPTERDIMANDPRODUCTLIST extends RecyclerView.Adapter<ADPTERDIMANDPR
     public void onBindViewHolder(@NonNull ADPTERDIMANDPRODUCTLIST.ViewHolder holder, int position) {
         POJODIMAONDPRODUCTLIST item = dataList.get(position);
         holder.nameTextView.setText(item.getName());
+        Glide.with(context)
+                .load(item.getImage())
+                .skipMemoryCache(true)
+                .error(R.drawable.noimage)
+                .into(holder.circleImageView);
 
         holder.cvcard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +76,13 @@ public class ADPTERDIMANDPRODUCTLIST extends RecyclerView.Adapter<ADPTERDIMANDPR
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView;
         CardView cvcard;
+        CircleImageView circleImageView;
 
          public ViewHolder(@NonNull View itemView) {
             super(itemView);
              nameTextView = itemView.findViewById(R.id.tvnamecategory);
              cvcard = itemView.findViewById(R.id.cvProductcard);
+             circleImageView = itemView.findViewById(R.id.ListofProductimage);
         }
     }
 }

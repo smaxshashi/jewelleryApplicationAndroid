@@ -84,8 +84,9 @@ public class WomenMenGoldProduct extends AppCompatActivity {
 
                                 String name = categoryObj.getString("subcategoryName");
                                 String code = categoryObj.getString("subcategoryCode");
+                                String image = categoryObj.getString("exfield1");
 
-                                pojogetdatamengolds.add(new POJOGETDATAMENGOLD(name, code));
+                                pojogetdatamengolds.add(new POJOGETDATAMENGOLD(name, code,image));
                             }
                             Log.d("Data List Size", String.valueOf(pojogetdatamengolds.size()));
 
