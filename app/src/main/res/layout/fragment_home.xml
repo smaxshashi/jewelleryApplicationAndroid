@@ -31,28 +31,28 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:src="@drawable/image2"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/gia"
                 android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:src="@drawable/image3"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/igi"
                 android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/iv100return"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/full"
+                android:src="@drawable/exchg"
                 android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/ivinsurecce"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/insurence"
+                android:layout_height="@dimen/_26sdp"
+                android:src="@drawable/insurance20"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -125,8 +125,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_500sdp"
             android:id="@+id/rvUserHomeFragmentcategorylist"
+
 
             />
         <LinearLayout
@@ -198,6 +199,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rvUserHomeFragmentGiftingguidelist"
+            android:layout_marginStart="@dimen/_11sdp"
+            android:layout_marginEnd="@dimen/_11sdp"
+
 
             />
 
@@ -280,7 +284,7 @@
                         android:text="Instagram"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="9sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout> <LinearLayout
                     android:layout_width="wrap_content"
@@ -303,7 +307,7 @@
                         android:text="WhatsApp"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:textSize="@dimen/_11sdp"
+                        android:textSize="9sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -319,7 +323,7 @@
                         android:id="@+id/ivFacebookk"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/facebook"
+                        android:src="@drawable/fb"
                          />
 
                     <TextView
@@ -329,7 +333,7 @@
                         android:text="Facebook"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:textSize="11sp"
+                        android:textSize="9sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -345,7 +349,7 @@
                         android:id="@+id/ivYoutube"
                         android:layout_width="@dimen/_40sdp"
                         android:layout_height="@dimen/_40sdp"
-                        android:src="@drawable/you"
+                        android:src="@drawable/yout"
                         />
 
                     <TextView
@@ -355,7 +359,7 @@
                         android:text="Youtube"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:textSize="11sp"
+                        android:textSize="9sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -382,7 +386,7 @@
                         android:text="Pinterest"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/_4sdp"
-                        android:textSize="11sp"
+                        android:textSize="9sp"
                         android:textColor="@android:color/black" />
                 </LinearLayout>
 
@@ -443,7 +447,7 @@
                   android:layout_width="@dimen/_130sdp"
                   android:layout_height="@dimen/_150sdp"
                   app:cardCornerRadius="@dimen/_12sdp"
-                  app:cardElevation="@dimen/_12sdp"
+                  app:cardElevation="@dimen/_8sdp"
                   android:id="@+id/cvHomeFragmentHIM"
                   >
                   <LinearLayout
@@ -485,10 +489,10 @@
 
               >
               <androidx.cardview.widget.CardView
-                  android:layout_width="@dimen/_120sdp"
+                  android:layout_width="@dimen/_130sdp"
                   android:layout_height="@dimen/_150sdp"
                   app:cardCornerRadius="@dimen/_12sdp"
-                  app:cardElevation="12sp"
+                  app:cardElevation="@dimen/_8sdp"
                   android:id="@+id/cvHomeFragmentHER"
                   >
                   <LinearLayout

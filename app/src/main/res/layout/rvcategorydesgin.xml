@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="@dimen/_8sdp"
-    android:layout_gravity="center">
+    >
 
     <!-- CardView Container -->
     <androidx.cardview.widget.CardView
@@ -16,6 +16,7 @@
         app:cardCornerRadius="@dimen/_8sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/goldenlineback"
         app:layout_constraintEnd_toEndOf="parent">
 
         <!-- Background and Content in CardView -->
@@ -24,14 +25,18 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/goldenlineback">
+            android:background="@drawable/goldenlineback"
+
+
+            >
 
             <ImageView
                 android:id="@+id/categoryImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
                 android:scaleType="fitCenter"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -1,107 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_2sdp"
     android:layout_gravity="center">
 
-<androidx.cardview.widget.CardView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/rvUserFragmentCategoryProductCard"
-    android:background="@drawable/blacklinedegin"
-    >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-      >
-      <androidx.cardview.widget.CardView
-          android:layout_width="@dimen/_250sdp"
-          android:layout_height="@dimen/_250sdp"
-          app:cardCornerRadius="@dimen/_10sdp"
-          android:id="@+id/card1"
-          >
+  <androidx.cardview.widget.CardView
+      android:id="@+id/rvUserFragmentCategoryProductCard"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card1"
+          android:layout_width="@dimen/_180sdp"
+          android:layout_height="@dimen/_180sdp"
+          app:cardCornerRadius="@dimen/_10sdp"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Image as Background -->
         <ImageView
+            android:id="@+id/rvUserFragmentCategoryProductImge"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/image1"
-            android:id="@+id/rvUserFragmentCategoryProductImge"
-            />
-          <LinearLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:layout_marginTop="@dimen/_8sdp"
-              >
-          <TextView
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="22k"
-              android:textColor="@color/black"
-              android:textSize="18sp"
-              android:layout_marginStart="@dimen/_16sdp"
-              android:id="@+id/rvUserFragmentCategoryProductkaret"
-              android:background="@drawable/back"
-              android:padding="@dimen/_8sdp"
+            android:scaleType="centerCrop" />
 
-              />
-            <!-- Second TextView, positioned at the end -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="22k"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+        <!-- Text Over Image -->
+        <TextView
+            android:id="@+id/rvUserFragmentCategoryProductkaret"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_130sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/back2"
+            android:text="22k"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:padding="@dimen/_3sdp"
 
-                android:id="@+id/rvUserFragmentCategoryProductWeight"
-                android:background="@drawable/back2"
-                android:padding="@dimen/_8sdp"
-                android:layout_marginStart="@dimen/_130sdp"
+            android:textSize="20sp"
+            android:elevation="4dp"
+            android:shadowColor="#000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            />
-          </LinearLayout>
+        <TextView
+            android:id="@+id/rvUserFragmentCategoryProductWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_22sdp"
+            android:background="@drawable/back"
+            android:text="22k"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:elevation="4dp"
+            android:shadowColor="#000"
+            android:padding="@dimen/_3sdp"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
       </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/card1"
-            android:text="Name"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:id="@+id/rvUserFragmentCategoryProductName"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rvUserFragmentCategoryProductName"
-            android:text="@string/text"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="14sp"
-            android:drawableLeft="@drawable/baseline_verified_24"
-            android:drawablePadding="@dimen/_4sdp"
-            android:id="@+id/tv1"
+      <!-- Below Image Details -->
+      <TextView
+          android:id="@+id/rvUserFragmentCategoryProductName"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/_5sdp"
+          android:layout_marginTop="@dimen/_10sdp"
+          android:text="Name"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          app:layout_constraintTop_toBottomOf="@id/card1"
+          app:layout_constraintStart_toStartOf="parent" />
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv1"
-            android:text="5%"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textSize="18sp"
-            android:layout_marginBottom="@dimen/_6sdp"
-            android:textStyle="bold"
-            android:id="@+id/rvUserFragmentCategoryProductPrice"
+      <TextView
+          android:id="@+id/tv1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="@dimen/_5sdp"
+          android:layout_marginTop="@dimen/_10sdp"
+          android:drawableLeft="@drawable/baseline_verified_24"
+          android:drawablePadding="@dimen/_4sdp"
+          android:text="@string/text"
+          android:textSize="14sp"
+          app:layout_constraintTop_toBottomOf="@id/rvUserFragmentCategoryProductName"
+          app:layout_constraintStart_toStartOf="parent" />
 
-            />
-
-    </RelativeLayout>
-
-</androidx.cardview.widget.CardView>
-</RelativeLayout>
+      <TextView
+          android:id="@+id/rvUserFragmentCategoryProductPrice"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="@dimen/_6sdp"
+          android:layout_marginStart="@dimen/_5sdp"
+          android:layout_marginTop="@dimen/_10sdp"
+          android:text="5%"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          app:layout_constraintTop_toBottomOf="@id/tv1"
+          app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

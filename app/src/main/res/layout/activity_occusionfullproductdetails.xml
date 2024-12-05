@@ -10,11 +10,14 @@
         android:layout_height="wrap_content">
 
         <!-- Image Slider -->
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
-            android:layout_width="0dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_400sdp"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_30sdp"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="16dp" />
@@ -61,11 +64,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="24"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@id/tvKaratLabel"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="4dp" />
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toEndOf="@id/tvKaratLabel"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvKaratLabel"
+                android:layout_marginStart="4dp" />
 
             <!-- Weight Label -->
             <TextView
@@ -75,9 +78,9 @@
                 android:text="Weight:"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
-                app:layout_constraintStart_toEndOf="@id/tvKaratValue"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvKaratLabel"
+                android:layout_marginTop="8dp" />
 
             <!-- Weight Value -->
             <TextView
@@ -85,32 +88,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="4dp" />  <TextView
-                android:id="@+id/tvWeshtage"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
+                android:layout_marginStart="4dp" />
+
+            <!-- Wastage Label -->
+            <TextView
+                android:id="@+id/tvWastageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="wastage:"
+                android:text="Wastage:"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
-                app:layout_constraintStart_toEndOf="@id/tvWeightValue"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="16dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvWeightLabel"
+                android:layout_marginTop="8dp" />
 
-            <!-- Weight Value -->
+            <!-- Wastage Value -->
             <TextView
-                android:id="@+id/tvWashtageValue"
+                android:id="@+id/tvWastageValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintStart_toEndOf="@id/tvWeshtage"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="4dp" />
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toEndOf="@id/tvWastageLabel"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWastageLabel"
+                android:layout_marginStart="4dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Company Name -->

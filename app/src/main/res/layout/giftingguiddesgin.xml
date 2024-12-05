@@ -4,26 +4,32 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
+    android:padding="@dimen/_2sdp"
     android:gravity="center_horizontal"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:background="@drawable/blacklinedegin"
     android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_160sdp"
+        android:layout_height="@dimen/_160sdp"
         android:id="@+id/cvGiftingproduct"
-        app:cardCornerRadius="@dimen/_8sdp">
+       >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp"
+            android:gravity="center"
             >
 
             <!-- Image centered inside CardView -->
             <ImageView
                 android:id="@+id/categoryImage"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true" />
@@ -38,11 +44,12 @@
                 android:text="Category Name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:background="@drawable/backshpe"
-                android:layout_marginTop="-42sp"
-                android:padding="@dimen/_10sdp"
-                 />
+                android:layout_marginTop="@dimen/_10sdp"
+                android:textColor="@android:color/black"
+                android:background="@drawable/blacklinedegin"
+                android:padding="@dimen/_6sdp"
+
+                />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

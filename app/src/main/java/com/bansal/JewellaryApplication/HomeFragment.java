@@ -222,8 +222,8 @@ ImageView ivWhatsapp;
 
 
         ArrayList<SlideModel> slideModels=new ArrayList<>();
-        slideModels.add(new SlideModel(R.drawable.promis0,ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.promis1,ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.ps2,ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.ps1,ScaleTypes.CENTER_CROP));
         ivsta.setImageList(slideModels);
         ivsta.setSlideAnimation(AnimationTypes.ZOOM_IN);
 
@@ -253,7 +253,9 @@ ImageView ivWhatsapp;
 
 
 
-        rvlistofcategory.setLayoutManager(new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false));
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3); // 3 items per row
+        rvlistofcategory.setLayoutManager(gridLayoutManager);
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
         rvgiftGuid.setLayoutManager(layoutManager);

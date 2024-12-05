@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
 
         productId=getIntent().getStringExtra("productID");
 
+
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
         tvKaratValue = findViewById(R.id.tvKaratValue);
@@ -53,37 +55,40 @@ public class Occusionfullproductdetails extends AppCompatActivity {
 
     }
 
-    private void fetchProductDetails(String productId) {
-        String url = "http://3.110.34.172:8080/api/getProducts?occasion=diwali";
+     private void fetchProductDetails(String productId) {
+        String url = "http://3.110.34.172:8080/api/getProducts?occasion=diwali&wholeseller=Test";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        // Parse product data
+                        Log.d("API_RESPONSE", response.toString());
+
                         JSONArray productsArray = response.getJSONArray("products");
                         JSONArray imageUrlArray = response.getJSONArray("imageUrl");
 
-                        // Find product by productId
                         JSONObject selectedProduct = null;
+
+                        // Debug all product IDs
                         for (int i = 0; i < productsArray.length(); i++) {
                             JSONObject product = productsArray.getJSONObject(i);
-                            if (product.getString("productId").equals(productId)) {
+                            Log.d("PRODUCT_DEBUG", "Product ID: " + product.getInt("productId"));
+                            if (product.getInt("productId") == Integer.parseInt(productId)) {
                                 selectedProduct = product;
                                 break;
                             }
                         }
 
-                        // Extract the images for the selected product
+                        // Debug all image URLs
                         List<String> imageUrls = new ArrayList<>();
                         for (int i = 0; i < imageUrlArray.length(); i++) {
                             JSONObject image = imageUrlArray.getJSONObject(i);
-                            if (image.getString("productId").equals(productId)) {
+                            Log.d("IMAGE_DEBUG", "Image Product ID: " + image.getInt("productId") + ", URL: " + image.getString("imageUrl"));
+                            if (image.getInt("productId") == Integer.parseInt(productId)) {
                                 imageUrls.add(image.getString("imageUrl"));
                             }
                         }
 
-                        // Update the UI with product details
                         if (selectedProduct != null) {
                             String productName = selectedProduct.getString("productName");
                             String karatage = selectedProduct.getString("karat");
@@ -95,8 +100,9 @@ public class Occusionfullproductdetails extends AppCompatActivity {
                             tvWeightValue.setText(weight);
                             tvwashtage.setText(wastage);
 
-                            // Setup Image Slider
                             setupImageSlider(imageUrls);
+                        } else {
+                            Toast.makeText(Occusionfullproductdetails.this, "Product not found", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
@@ -104,11 +110,17 @@ public class Occusionfullproductdetails extends AppCompatActivity {
                         Toast.makeText(Occusionfullproductdetails.this, "Error parsing product data", Toast.LENGTH_SHORT).show();
                     }
                 },
-                error -> Toast.makeText(Occusionfullproductdetails.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show()
+                error -> {
+                    Log.e("API_ERROR", error.toString());
+                    Toast.makeText(Occusionfullproductdetails.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
+                }
         );
 
         requestQueue.add(jsonObjectRequest);
     }
+
+
+
 
     private void setupImageSlider(List<String> imageUrls) {
         ImagesliderAdapter adapter = new ImagesliderAdapter(this, imageUrls);
