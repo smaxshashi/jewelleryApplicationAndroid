@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.HimorherFullProductdettail;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
 import com.bumptech.glide.Glide;
@@ -49,6 +51,16 @@ public class ADPTERGetHimORHerProduct extends RecyclerView.Adapter<ADPTERGetHimO
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels
                 .into(holder.ivimage);
+        holder.cvcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity, HimorherFullProductdettail.class);
+                i.putExtra("productId",obj.getProductId());
+                i.putExtra("soulmet",obj.getSoulmet());
+
+                activity.startActivity(i);
+            }
+        });
 
     }
 

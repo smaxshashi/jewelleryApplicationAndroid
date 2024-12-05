@@ -37,7 +37,7 @@ public class HimORHerproduct extends AppCompatActivity {
     List<POJOGEThimHerProduct> pojogeThimHerProducts;
     ADPTERGetHimORHerProduct adpterGetHimORHerProduct;
 
-    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?gender=";
+    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?soulmate=";
 
 
     @Override
@@ -61,7 +61,7 @@ public class HimORHerproduct extends AppCompatActivity {
     }
 
     private void fetchProduct() {
-        String url = API_URL +gender;
+        String url = API_URL +gender+"&wholeseller=test";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -76,16 +76,17 @@ public class HimORHerproduct extends AppCompatActivity {
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
 
-                                    int productId = productObj.getInt("productId");
+                                    String productId = productObj.getString("productId");
                                     String productName = productObj.getString("productName");
                                     String weight = productObj.getString("weight");
                                     String karat = productObj.getString("karat");
+                                    String soilmet=productObj.getString("soulmate");
 
                                     // Fetch the image URL (assuming the first image is related to the product)
                                     String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
 
                                     // Create a Product object and add it to the list
-                                    pojogeThimHerProducts.add(new POJOGEThimHerProduct(productId,productName,weight,karat,imageUrl));
+                                    pojogeThimHerProducts.add(new POJOGEThimHerProduct(productId,productName,weight,karat,imageUrl,soilmet));
                                 }
 
                                 // Set the adapter

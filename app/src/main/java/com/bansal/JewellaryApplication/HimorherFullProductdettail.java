@@ -1,0 +1,126 @@
+package com.bansal.JewellaryApplication;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager2.widget.ViewPager2;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterSliderSoulmet;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HimorherFullProductdettail extends AppCompatActivity {
+    ViewPager2 viewPager;
+    TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
+    Button btnAddToWishlist;
+    String productId="2",soulmet;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_himorher_full_productdettail);
+        getWindow().setNavigationBarColor(ContextCompat.getColor(HimorherFullProductdettail.this,R.color.white));
+        getWindow().setStatusBarColor(ContextCompat.getColor(HimorherFullProductdettail.this,R.color.maroon));
+
+
+        soulmet=getIntent().getStringExtra("soulmet");
+        viewPager = findViewById(R.id.viewPager);
+        tvProductName = findViewById(R.id.tvProductName);
+        tvKaratValue = findViewById(R.id.tvKaratValue);
+        tvWeightValue = findViewById(R.id.tvWeightValue);
+        tvwashtage=findViewById(R.id.tvWastageValue);
+        tvCompanyName = findViewById(R.id.tvCompanyName);
+        btnAddToWishlist = findViewById(R.id.btnAddToCart);
+        
+        fetchProductDetails(productId);
+    }
+
+    private void fetchProductDetails(String productId) {
+        String url = "http://3.110.34.172:8080/api/getProducts?soulmate="+soulmet+"&wholeseller=test";
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        Log.d("API_RESPONSE", response.toString());
+
+                        JSONArray productsArray = response.getJSONArray("products");
+                        JSONArray imageUrlArray = response.getJSONArray("imageUrl");
+
+                        JSONObject selectedProduct = null;
+
+                        // Debug all product IDs
+                        for (int i = 0; i < productsArray.length(); i++) {
+                            JSONObject product = productsArray.getJSONObject(i);
+                            Log.d("PRODUCT_DEBUG", "Product ID: " + product.getInt("productId"));
+                            if (product.getInt("productId") == Integer.parseInt(productId)) {
+                                selectedProduct = product;
+                                break;
+                            }
+                        }
+
+                        // Debug all image URLs
+                        List<String> imageUrls = new ArrayList<>();
+                        for (int i = 0; i < imageUrlArray.length(); i++) {
+                            JSONObject image = imageUrlArray.getJSONObject(i);
+                            Log.d("IMAGE_DEBUG", "Image Product ID: " + image.getInt("productId") + ", URL: " + image.getString("imageUrl"));
+                            if (image.getInt("productId") == Integer.parseInt(productId)) {
+                                imageUrls.add(image.getString("imageUrl"));
+                            }
+                        }
+
+                        if (selectedProduct != null) {
+                            String productName = selectedProduct.getString("productName");
+                            String karatage = selectedProduct.getString("karat");
+                            String weight = selectedProduct.getString("weight");
+                            String wastage = selectedProduct.getString("wastage");
+
+                            tvProductName.setText(productName);
+                            tvKaratValue.setText(karatage);
+                            tvWeightValue.setText(weight);
+                            tvwashtage.setText(wastage);
+
+                            setupImageSlider(imageUrls);
+                        } else {
+                            Toast.makeText(HimorherFullProductdettail.this, "Product not found", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(HimorherFullProductdettail.this, "Error parsing product data", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    Log.e("API_ERROR", error.toString());
+                    Toast.makeText(HimorherFullProductdettail.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        requestQueue.add(jsonObjectRequest);
+    }
+    private void setupImageSlider(List<String> imageUrls) {
+        AdpterSliderSoulmet adapter=new AdpterSliderSoulmet(HimorherFullProductdettail.this,imageUrls);
+        ViewPager2 viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(adapter);
+    }
+    }
