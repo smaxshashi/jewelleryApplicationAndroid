@@ -79,10 +79,11 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
                     intent = new Intent(activity, DimaondMenWOmen.class);
 
                 } else if (categoryCode.equals("4003") || categoryCode.equals("4004") ||
-                        categoryCode.equals("4005") || categoryCode.equals("4006")) {
+                        categoryCode.equals("4005") || categoryCode.equals("4006") ||  categoryCode.equals("4007")
+                ||  categoryCode.equals("4008") ||  categoryCode.equals("4009")) {
                     intent = new Intent(activity, GetCategoryWiseProduct.class);
 
-                } else {
+               } else {
                     // Handle any other unexpected codes
                     Toast.makeText(activity, "Unknown category code: " + categoryCode, Toast.LENGTH_SHORT).show();
                     return;
