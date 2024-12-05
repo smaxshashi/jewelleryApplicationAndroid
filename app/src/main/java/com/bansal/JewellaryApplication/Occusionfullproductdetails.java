@@ -47,7 +47,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         tvProductName = findViewById(R.id.tvProductName);
         tvKaratValue = findViewById(R.id.tvKaratValue);
         tvWeightValue = findViewById(R.id.tvWeightValue);
-        tvwashtage=findViewById(R.id.tvWashtageValue);
+        tvwashtage=findViewById(R.id.tvWastageValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
 
