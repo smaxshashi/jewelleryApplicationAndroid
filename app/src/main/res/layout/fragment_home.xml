@@ -272,8 +272,8 @@
 
                     <ImageView
                         android:id="@+id/ivinstgarm"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:src="@drawable/insta"
                          />
 
@@ -295,8 +295,8 @@
 
                     <ImageView
                         android:id="@+id/ivwhatsapp"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:src="@drawable/whhatapp"
                          />
 
@@ -321,8 +321,8 @@
 
                     <ImageView
                         android:id="@+id/ivFacebookk"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:src="@drawable/fb"
                          />
 
@@ -347,8 +347,8 @@
 
                     <ImageView
                         android:id="@+id/ivYoutube"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:src="@drawable/youtubelogo"
                         />
 
@@ -375,7 +375,7 @@
 
                         android:id="@+id/ivPrintrest"
                         android:layout_width="@dimen/_30sdp"
-                        android:layout_height="@dimen/_40sdp"
+                        android:layout_height="@dimen/_30sdp"
                         android:src="@drawable/print"
                          />
 

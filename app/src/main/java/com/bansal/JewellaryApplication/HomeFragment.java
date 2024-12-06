@@ -223,7 +223,7 @@ ImageView ivWhatsapp;
 
         ArrayList<SlideModel> slideModels=new ArrayList<>();
         slideModels.add(new SlideModel(R.drawable.ps2,ScaleTypes.CENTER_CROP));
-        slideModels.add(new SlideModel(R.drawable.ps1,ScaleTypes.CENTER_CROP));
+        slideModels.add(new SlideModel(R.drawable.ppp,ScaleTypes.CENTER_CROP));
         ivsta.setImageList(slideModels);
         ivsta.setSlideAnimation(AnimationTypes.ZOOM_IN);
 
