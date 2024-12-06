@@ -1,11 +1,16 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +41,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
     Button btnAddToWishlist;
     String productId,gifting;
     SharedPreferences preferences;
+    ImageView ivwhtasapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +63,35 @@ public class GiftingFulllDetails extends AppCompatActivity {
         tvwashtage=findViewById(R.id.tvWastageValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
+        ivwhtasapp=findViewById(R.id.ivfullWhatsapp);
 
-       Fetchdata(productId);
+        ivwhtasapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String message = "Hello, I have a question regarding the product from your app.";
+
+                try {
+                    // Ensure the URL is properly encoded
+                    String url = "https://wa.me/" + phoneNumber + "?text=" + Uri.encode(message);
+                    Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+                    whatsappIntent.setData(Uri.parse(url));
+                    whatsappIntent.setPackage("com.whatsapp"); // Explicitly set WhatsApp package
+
+                    v.getContext().startActivity(whatsappIntent);
+                } catch (ActivityNotFoundException e) {
+                    // Handle case where WhatsApp is not installed
+                    Toast.makeText(v.getContext(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    // Handle generic exceptions
+                    e.printStackTrace();
+                    Toast.makeText(v.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
+        Fetchdata(productId);
 
 
 
