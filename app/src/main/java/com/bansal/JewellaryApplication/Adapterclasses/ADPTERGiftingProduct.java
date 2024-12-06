@@ -1,6 +1,9 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.GiftingFulllDetails;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGiftingproduct;
@@ -50,6 +54,17 @@ public class ADPTERGiftingProduct extends RecyclerView.Adapter<ADPTERGiftingProd
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels
                 .into(holder.ivimage);
+
+        holder.cvcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences preferences=activity.getSharedPreferences("Gifting", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=preferences.edit();
+                Intent i = new Intent(activity, GiftingFulllDetails.class);
+                editor.putString("ProductId",obj.getProductId());
+                editor.apply();
+                activity.startActivity(i);            }
+        });
 
 
 

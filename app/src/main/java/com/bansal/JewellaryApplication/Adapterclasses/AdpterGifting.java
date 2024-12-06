@@ -3,6 +3,8 @@ package com.bansal.JewellaryApplication.Adapterclasses;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,11 +54,17 @@ public class AdpterGifting extends RecyclerView.Adapter<AdpterGifting.ViewHolder
                 .error(R.drawable.noimage) // Error image if loading fails
                 .into(holder.giftingImage);
 
+
         holder.cvcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences=activity.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=preferences.edit();
+
                 Intent i = new Intent(activity, GiftingProduct.class);
                 i.putExtra("Gifting",gifting.getGiftingName());
+                editor.putString("Gifting",gifting.getGiftingName());
+                editor.apply();
                 activity.startActivity(i);
             }
         });

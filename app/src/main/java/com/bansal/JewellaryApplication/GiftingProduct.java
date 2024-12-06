@@ -77,7 +77,7 @@ public class GiftingProduct extends AppCompatActivity {
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
 
-                                    int productId = productObj.getInt("productId");
+                                    String productId = productObj.getString("productId");
                                     String productName = productObj.getString("productName");
                                     String weight = productObj.getString("weight");
                                     String karat = productObj.getString("karat");
@@ -110,4 +110,5 @@ public class GiftingProduct extends AppCompatActivity {
 
 
     }
+
 }
