@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -37,7 +36,7 @@
             android:gravity="center"
             android:layout_marginTop="8dp" />
 
-        <!-- Karatage and Weight -->
+        <!-- Karat and Weight -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -47,19 +46,19 @@
             android:id="@+id/contain1"
             android:layout_marginTop="8dp">
 
-            <!-- Karatage Label -->
+            <!-- Karat Label -->
             <TextView
                 android:id="@+id/tvKaratLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Karatage:"
+                android:text="Karat:"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Karatage Value -->
+            <!-- Karat Value -->
             <TextView
                 android:id="@+id/tvKaratValue"
                 android:layout_width="wrap_content"
@@ -97,13 +96,24 @@
                 app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
                 android:layout_marginStart="4dp" />
-
-            <!-- Wastage Label -->
             <TextView
-                android:id="@+id/tvWastageLabel"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Wastage:"
+                android:text="gm"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toEndOf="@id/tvMakingChargeValue"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
+                android:layout_marginStart="-40dp" />
+
+            <!-- MakingCharge Label -->
+            <TextView
+                android:id="@+id/tvMakingChargeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MakingCharge:"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
@@ -111,41 +121,88 @@
                 app:layout_constraintTop_toBottomOf="@id/tvWeightLabel"
                 android:layout_marginTop="8dp" />
 
-            <!-- Wastage Value -->
+            <!-- MakingCharge Value -->
             <TextView
-                android:id="@+id/tvWastageValue"
+                android:id="@+id/tvMakingChargeValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/darker_gray"
-                app:layout_constraintStart_toEndOf="@id/tvWastageLabel"
-                app:layout_constraintBaseline_toBaselineOf="@id/tvWastageLabel"
+                app:layout_constraintStart_toEndOf="@id/tvMakingChargeLabel"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMakingChargeLabel"
                 android:layout_marginStart="4dp" />
+            <TextView
 
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toEndOf="@id/tvMakingChargeValue"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMakingChargeLabel"
+                android:layout_marginStart="@dimen/_1sdp"
+                />
+
+            <TextView
+                android:id="@+id/tvDiscriptionlable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discription:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel"
+                android:layout_marginTop="8dp" />
+
+            <!-- MakingCharge Value -->
+            <TextView
+                android:id="@+id/tvdis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                app:layout_constraintStart_toEndOf="@id/tvDiscriptionlable"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvDiscriptionlable"
+                android:layout_marginStart="4dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDiscriptionlable"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/btnshape"
+                android:id="@+id/llWhatsapp"
+                >
             <ImageView
                 android:id="@+id/ivfullWhatsapp"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvWastageLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel"
                 android:src="@drawable/whhatapp"
-                android:layout_marginTop="8dp" />
+                />
 
-            <!-- Wastage Value -->
+            <!-- MakingCharge Value -->
             <TextView
                 android:id="@+id/tvwhatext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
                 android:text="Have questions? Click WhatsApp to ask!"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#04BB0C"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/ivfullWhatsapp"
-                app:layout_constraintTop_toBottomOf="@id/tvWastageValue" />
+                app:layout_constraintTop_toBottomOf="@id/tvMakingChargeValue" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -175,8 +232,6 @@
             app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
-
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

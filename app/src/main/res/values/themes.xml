@@ -8,7 +8,7 @@
     <style name="Theme.JewellaryApplication" parent="Base.Theme.JewellaryApplication" />
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">18sp</item> <!-- Set desired size here -->
+        <item name="android:textSize">14sp</item> <!-- Set desired size here -->
         <item name="android:textColor">@android:color/white</item> <!-- Optional color -->
     </style>
 

@@ -65,7 +65,7 @@ public class DiamondProductLIst extends AppCompatActivity {
     }
 
     private void GetProductList() {
-        String url = "http://3.110.34.172:8080/api/subCategories/" + cc + "?genderCode=" +gc+"&wholeseller=BANSAL";
+        String url = "https://api.gehnamall.com/api/subCategories/" + cc + "?genderCode=" +gc+"&wholeseller=BANSAL";
         Log.d("API URL", url);
 
 

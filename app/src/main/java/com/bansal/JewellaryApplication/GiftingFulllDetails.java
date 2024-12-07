@@ -26,6 +26,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterSliderSoulmet;
 import com.bansal.JewellaryApplication.Adapterclasses.GiftingSlider;
 
 import org.json.JSONArray;
@@ -39,7 +40,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
     ViewPager2 viewPager;
     TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
-    String productId,gifting;
+    String productId="2",gifting;
     SharedPreferences preferences;
     ImageView ivwhtasapp;
 
@@ -55,12 +56,12 @@ public class GiftingFulllDetails extends AppCompatActivity {
         preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         gifting=preferences.getString("Gifting","");
         SharedPreferences preferences2=getSharedPreferences("Gifting", Context.MODE_PRIVATE);
-        productId=preferences2.getString("ProductId","");
+       // productId=preferences2.getString("ProductId","");
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
         tvKaratValue = findViewById(R.id.tvKaratValue);
         tvWeightValue = findViewById(R.id.tvWeightValue);
-        tvwashtage=findViewById(R.id.tvWastageValue);
+        tvwashtage=findViewById(R.id.tvMakingChargeValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
         ivwhtasapp=findViewById(R.id.ivfullWhatsapp);
@@ -98,7 +99,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
     }
 
     private void Fetchdata(String productId) {
-        String url = "http://3.110.34.172:8080/api/getProducts?wholeseller=test&gifting="+gifting;
+        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting=birthday";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -106,63 +107,74 @@ public class GiftingFulllDetails extends AppCompatActivity {
                     try {
                         Log.d("API_RESPONSE", response.toString());
 
+                        // Check if 'products' array exists
+                        if (!response.has("products") || !response.has("imageUrl")) {
+                            Toast.makeText(this, "Invalid response format", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         JSONArray productsArray = response.getJSONArray("products");
                         JSONArray imageUrlArray = response.getJSONArray("imageUrl");
 
                         JSONObject selectedProduct = null;
 
-                        // Debug all product IDs
+                        // Find product by ID
                         for (int i = 0; i < productsArray.length(); i++) {
                             JSONObject product = productsArray.getJSONObject(i);
-                            Log.d("PRODUCT_DEBUG", "Product ID: " + product.getInt("productId"));
-                            if (product.getInt("productId") == Integer.parseInt(productId)) {
+                            if (product.optInt("productId", -1) == Integer.parseInt(productId)) {
                                 selectedProduct = product;
                                 break;
                             }
                         }
 
-                        // Debug all image URLs
+                        // Get image URLs for the product
                         List<String> imageUrls = new ArrayList<>();
                         for (int i = 0; i < imageUrlArray.length(); i++) {
                             JSONObject image = imageUrlArray.getJSONObject(i);
-                            Log.d("IMAGE_DEBUG", "Image Product ID: " + image.getInt("productId") + ", URL: " + image.getString("imageUrl"));
-                            if (image.getInt("productId") == Integer.parseInt(productId)) {
-                                imageUrls.add(image.getString("imageUrl"));
+                            if (image.optInt("productId", -1) == Integer.parseInt(productId)) {
+                                imageUrls.add(image.optString("imageUrl", ""));
                             }
                         }
 
                         if (selectedProduct != null) {
-                            String productName = selectedProduct.getString("productName");
-                            String karatage = selectedProduct.getString("karat");
-                            String weight = selectedProduct.getString("weight");
-                            String wastage = selectedProduct.getString("wastage");
+                            String productName = selectedProduct.optString("productName", "N/A");
+                            String karat = selectedProduct.optString("karat", "N/A");
+                            String weight = selectedProduct.optString("weight", "N/A");
+                            String makingCharge = selectedProduct.optString("karat", "0"); // Default to "0" or a fallback value
+
+
+
 
                             tvProductName.setText(productName);
-                            tvKaratValue.setText(karatage);
+                            tvKaratValue.setText(karat);
                             tvWeightValue.setText(weight);
-                            tvwashtage.setText(wastage);
+                            tvwashtage.setText(makingCharge);
+
+                            Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
+                                    ", Karat: " + karat );
 
                             setupImageSlider(imageUrls);
-                        } else {
-                            Toast.makeText(GiftingFulllDetails.this, "Product not found", Toast.LENGTH_SHORT).show();
+                        } else {Log.e("JSON_ERROR", "Products array not found");
+
+                            Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(GiftingFulllDetails.this, "Error parsing product data", Toast.LENGTH_SHORT).show();
+                        Log.e("JSON_ERROR", "Missing key: MakingCharge", e);
+                        Toast.makeText(this, "Error parsing product data", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
                     Log.e("API_ERROR", error.toString());
-                    Toast.makeText(GiftingFulllDetails.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
                 }
         );
 
         requestQueue.add(jsonObjectRequest);
     }
-
     private void setupImageSlider(List<String> imageUrls) {
-        GiftingSlider adapter = new GiftingSlider(this, imageUrls);
+        GiftingSlider adapter=new GiftingSlider(GiftingFulllDetails.this,imageUrls);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
     }

@@ -42,7 +42,7 @@ public class GetCtegoryProduct extends AppCompatActivity {
     String categorycode,gendercode;
     List<POJOgetCTaegorygenderwiseproduct> pojOgetCTaegorygenderwiseproducts;
     AdpterGetcategorygenderproduct adpterGetcategorygenderproduct;
-    private static final String BASE_URL = "http://3.110.34.172:8080/api/subCategories";
+    private static final String BASE_URL = "https://api.gehnamall.com/api/subCategories";
 
 
     @Override
@@ -73,7 +73,7 @@ public class GetCtegoryProduct extends AppCompatActivity {
     private void getProduct() {
         String categoryCode = "4002";  // Example category code
         String genderCode = "2";       // Example gender filter
-        String API_URL = "http://3.110.34.172:8080/api/subCategories/" + categoryCode + "?gender=" + genderCode;
+        String API_URL = "https://api.gehnamall.com/api/subCategories/" + categoryCode + "?gender=" + genderCode;
 
         Log.d("API_URL", "Request URL: " + API_URL);  // Log the URL being used
 

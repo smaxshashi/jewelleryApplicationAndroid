@@ -37,7 +37,7 @@ public class HimORHerproduct extends AppCompatActivity {
     List<POJOGEThimHerProduct> pojogeThimHerProducts;
     ADPTERGetHimORHerProduct adpterGetHimORHerProduct;
 
-    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?soulmate=";
+    private static final String API_URL = "https://api.gehnamall.com/api/getProducts?soulmate=";
 
 
     @Override

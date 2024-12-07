@@ -2,17 +2,20 @@ package com.bansal.JewellaryApplication;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -37,7 +40,10 @@ public class Occusionfullproductdetails extends AppCompatActivity {
      TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
     String productId;
-    ImageView ivWhtasappp;
+    LinearLayout ivWhtasappp;
+    SharedPreferences preferences;
+    String occusion;
+    TextView tvDis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,16 +53,21 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(Occusionfullproductdetails.this,R.color.maroon));
 
         productId=getIntent().getStringExtra("productID");
+        preferences = getSharedPreferences("Gifting", MODE_PRIVATE);
+        occusion=preferences.getString("Occusion","");
 
 
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
         tvKaratValue = findViewById(R.id.tvKaratValue);
         tvWeightValue = findViewById(R.id.tvWeightValue);
-        tvwashtage=findViewById(R.id.tvWastageValue);
+        tvwashtage=findViewById(R.id.tvMakingChargeValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
-        ivWhtasappp=findViewById(R.id.ivfullWhatsapp);
+        ivWhtasappp=findViewById(R.id.llWhatsapp);
+        tvDis=findViewById(R.id.tvdis);
+
+        tvDis.setText(occusion);
 
         ivWhtasappp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,67 +101,67 @@ public class Occusionfullproductdetails extends AppCompatActivity {
     }
 
      private void fetchProductDetails(String productId) {
-        String url = "http://3.110.34.172:8080/api/getProducts?occasion=diwali&wholeseller=Test";
+         String url = "https://api.gehnamall.com/api/getProducts?gifting="+occusion+"&wholeseller=test";
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        Log.d("API_RESPONSE", response.toString());
+         RequestQueue requestQueue = Volley.newRequestQueue(this);
+         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                 response -> {
+                     try {
+                         Log.d("API_RESPONSE", response.toString());
 
-                        JSONArray productsArray = response.getJSONArray("products");
-                        JSONArray imageUrlArray = response.getJSONArray("imageUrl");
+                         JSONArray productsArray = response.getJSONArray("products");
+                         JSONArray imageUrlArray = response.getJSONArray("imageUrl");
 
-                        JSONObject selectedProduct = null;
+                         JSONObject selectedProduct = null;
 
-                        // Debug all product IDs
-                        for (int i = 0; i < productsArray.length(); i++) {
-                            JSONObject product = productsArray.getJSONObject(i);
-                            Log.d("PRODUCT_DEBUG", "Product ID: " + product.getInt("productId"));
-                            if (product.getInt("productId") == Integer.parseInt(productId)) {
-                                selectedProduct = product;
-                                break;
-                            }
-                        }
+                         // Debug all product IDs
+                         for (int i = 0; i < productsArray.length(); i++) {
+                             JSONObject product = productsArray.getJSONObject(i);
+                             Log.d("PRODUCT_DEBUG", "Product ID: " + product.getInt("productId"));
+                             if (product.getInt("productId") == Integer.parseInt(productId)) {
+                                 selectedProduct = product;
+                                 break;
+                             }
+                         }
 
-                        // Debug all image URLs
-                        List<String> imageUrls = new ArrayList<>();
-                        for (int i = 0; i < imageUrlArray.length(); i++) {
-                            JSONObject image = imageUrlArray.getJSONObject(i);
-                            Log.d("IMAGE_DEBUG", "Image Product ID: " + image.getInt("productId") + ", URL: " + image.getString("imageUrl"));
-                            if (image.getInt("productId") == Integer.parseInt(productId)) {
-                                imageUrls.add(image.getString("imageUrl"));
-                            }
-                        }
+                         // Debug all image URLs
+                         List<String> imageUrls = new ArrayList<>();
+                         for (int i = 0; i < imageUrlArray.length(); i++) {
+                             JSONObject image = imageUrlArray.getJSONObject(i);
+                             Log.d("IMAGE_DEBUG", "Image Product ID: " + image.getInt("productId") + ", URL: " + image.getString("imageUrl"));
+                             if (image.getInt("productId") == Integer.parseInt(productId)) {
+                                 imageUrls.add(image.getString("imageUrl"));
+                             }
+                         }
 
-                        if (selectedProduct != null) {
-                            String productName = selectedProduct.getString("productName");
-                            String karatage = selectedProduct.getString("karat");
-                            String weight = selectedProduct.getString("weight");
-                            String wastage = selectedProduct.getString("wastage");
+                         if (selectedProduct != null) {
+                             String productName = selectedProduct.getString("productName");
+                             String Karat = selectedProduct.getString("karat");
+                             String weight = selectedProduct.getString("weight");
+                             String MakingCharge = selectedProduct.getString("wastage");
 
-                            tvProductName.setText(productName);
-                            tvKaratValue.setText(karatage);
-                            tvWeightValue.setText(weight);
-                            tvwashtage.setText(wastage);
+                             tvProductName.setText(productName);
+                             tvKaratValue.setText(Karat);
+                             tvWeightValue.setText(weight);
+                             tvwashtage.setText(MakingCharge);
 
-                            setupImageSlider(imageUrls);
-                        } else {
-                            Toast.makeText(Occusionfullproductdetails.this, "Product not found", Toast.LENGTH_SHORT).show();
-                        }
+                             setupImageSlider(imageUrls);
+                         } else {
+                             Toast.makeText(Occusionfullproductdetails.this, "Product not found", Toast.LENGTH_SHORT).show();
+                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(Occusionfullproductdetails.this, "Error parsing product data", Toast.LENGTH_SHORT).show();
-                    }
-                },
-                error -> {
-                    Log.e("API_ERROR", error.toString());
-                    Toast.makeText(Occusionfullproductdetails.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
-                }
-        );
+                     } catch (JSONException e) {
+                         e.printStackTrace();
+                         Toast.makeText(Occusionfullproductdetails.this, "Error parsing product data", Toast.LENGTH_SHORT).show();
+                     }
+                 },
+                 error -> {
+                     Log.e("API_ERROR", error.toString());
+                     Toast.makeText(Occusionfullproductdetails.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
+                 }
+         );
 
-        requestQueue.add(jsonObjectRequest);
+         requestQueue.add(jsonObjectRequest);
     }
 
 

@@ -29,7 +29,7 @@ import java.util.List;
 
 public class OccusionProduct extends AppCompatActivity {
     RecyclerView rvexplorlist;
-    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?occasion=";
+    private static final String API_URL = "https://api.gehnamall.com/api/getProducts?occasion=";
     List<POJOOCCUSIONWISEPRODUCT> pojooccusionwiseproducts;
     ADPTEROCCUSIONWISEPRODUCT adpteroccusionwiseproduct;
 

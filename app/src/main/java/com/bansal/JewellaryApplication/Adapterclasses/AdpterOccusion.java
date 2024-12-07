@@ -1,7 +1,9 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,7 @@ public class AdpterOccusion extends RecyclerView.Adapter<AdpterOccusion.ViewHold
     public void onBindViewHolder(@NonNull AdpterOccusion.ViewHolder holder, int position) {
         POJOOccusion obj=pojoOccusions.get(position);
         holder.tvname.setText(obj.getName());
+
         Glide.with(activity)
                 .load(obj.getImage())
                 .skipMemoryCache(true)
@@ -48,7 +51,11 @@ public class AdpterOccusion extends RecyclerView.Adapter<AdpterOccusion.ViewHold
         holder.ivimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences=activity.getSharedPreferences("Gifting", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor=preferences.edit();
                 Intent i = new Intent(activity, OccusionProduct.class);
+                editor.putString("Occusion",obj.getName());
+                editor.apply();
                 i.putExtra("occusionname",obj.getName());
                 activity.startActivity(i);
             }

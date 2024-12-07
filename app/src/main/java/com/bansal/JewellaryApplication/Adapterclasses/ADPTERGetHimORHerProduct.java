@@ -57,7 +57,6 @@ public class ADPTERGetHimORHerProduct extends RecyclerView.Adapter<ADPTERGetHimO
                 Intent i = new Intent(activity, HimorherFullProductdettail.class);
                 i.putExtra("productId",obj.getProductId());
                 i.putExtra("soulmet",obj.getSoulmet());
-
                 activity.startActivity(i);
             }
         });

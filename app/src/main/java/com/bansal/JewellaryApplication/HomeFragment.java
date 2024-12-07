@@ -304,7 +304,7 @@ ImageView ivWhatsapp;
 
 
     private void fetchGiftingData() {
-        String Giftingurl = "http://3.110.34.172:8080/api/gifting";
+        String Giftingurl = "https://api.gehnamall.com/api/gifting";
 
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
 
@@ -365,7 +365,7 @@ ImageView ivWhatsapp;
     }
 
     private void fetchPrices() {
-        String url = "http://3.110.34.172:8080/api/prices";
+        String url = "https://api.gehnamall.com/api/prices";
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity()); // Initialize the request queue
 
         pojOgetPrices = new ArrayList<>(); // Initialize the list that will hold your data
@@ -437,7 +437,7 @@ ImageView ivWhatsapp;
     }
 
     private void GetCategoryofProduct() {
-        String url = "http://3.110.34.172:8080/api/categories?wholeseller=BANSAL";
+        String url = "https://api.gehnamall.com/api/categories?wholeseller=BANSAL";
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
@@ -479,7 +479,7 @@ ImageView ivWhatsapp;
 
     private void fetchBannerImages() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String url = "http://3.110.34.172:8080/api/banners"; // Replace with your actual API URL
+        String url = "https://api.gehnamall.com/api/banners"; // Replace with your actual API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
@@ -574,7 +574,7 @@ ImageView ivWhatsapp;
 
     // Method to set up ViewPager2 with the adapter
     private void fetchoccuction() {
-        String url = "http://3.110.34.172:8080/api/occasion";
+        String url = "https://api.gehnamall.com/api/occasion";
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
 
         // Initialize the list
@@ -629,7 +629,7 @@ ImageView ivWhatsapp;
 
     private void fetchsoulmate()
     {
-        String url = "http://3.110.34.172:8080/api/soulmate";
+        String url = "https://api.gehnamall.com/api/soulmate";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -670,7 +670,7 @@ ImageView ivWhatsapp;
 
 
     private void fetchTestimonial() {
-        String url = "http://3.110.34.172:8080/api/testimonial";
+        String url = "https://api.gehnamall.com/api/testimonial";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(

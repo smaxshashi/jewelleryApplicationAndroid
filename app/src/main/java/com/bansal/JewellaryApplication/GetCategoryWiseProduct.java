@@ -49,7 +49,7 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
  ADPterSubcategory adPterSubcategory;
 
  ADPTERGETCATEGORYPRODUCT2 adptergetcategoryproduct2;
-    private static final String API_URL = "http://3.110.34.172:8080/api/subCategories/";
+    private static final String API_URL = "https://api.gehnamall.com/api/subCategories/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

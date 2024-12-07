@@ -34,7 +34,7 @@ public class GiftingProduct extends AppCompatActivity {
     TextView tvgift;
     RecyclerView rvList;
     String gift;
-    private static final String API_URL = "http://3.110.34.172:8080/api/getProducts?wholeseller=test&gifting=";
+    private static final String API_URL = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting=";
     List<POJOGiftingproduct> pojoGiftingproducts;
     ADPTERGiftingProduct adpterGiftingProduct;
 

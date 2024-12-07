@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +38,9 @@ public class HimorherFullProductdettail extends AppCompatActivity {
     TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
     String productId="2",soulmet;
-    ImageView ivWhatsapp;
+
+    LinearLayout ivWhatsapp;
+    TextView tvdis;
 
 
     @Override
@@ -50,14 +53,19 @@ public class HimorherFullProductdettail extends AppCompatActivity {
 
 
         soulmet=getIntent().getStringExtra("soulmet");
+        productId=getIntent().getStringExtra("productId");
+
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
         tvKaratValue = findViewById(R.id.tvKaratValue);
         tvWeightValue = findViewById(R.id.tvWeightValue);
-        tvwashtage=findViewById(R.id.tvWastageValue);
+        tvwashtage=findViewById(R.id.tvMakingChargeValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
-        ivWhatsapp=findViewById(R.id.ivfullWhatsapp);
+        ivWhatsapp=findViewById(R.id.llWhatsapp);
+        tvdis=findViewById(R.id.tvdis);
+        tvdis.setText(soulmet);
+
 
         ivWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +98,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
     }
 
     private void fetchProductDetails(String productId) {
-        String url = "http://3.110.34.172:8080/api/getProducts?soulmate="+soulmet+"&wholeseller=test";
+        String url = "https://api.gehnamall.com/api/getProducts?soulmate="+soulmet+"&wholeseller=test";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -125,14 +133,14 @@ public class HimorherFullProductdettail extends AppCompatActivity {
 
                         if (selectedProduct != null) {
                             String productName = selectedProduct.getString("productName");
-                            String karatage = selectedProduct.getString("karat");
+                            String Karat = selectedProduct.getString("karat");
                             String weight = selectedProduct.getString("weight");
-                            String wastage = selectedProduct.getString("wastage");
+                            String MakingCharge = selectedProduct.getString("wastage");
 
                             tvProductName.setText(productName);
-                            tvKaratValue.setText(karatage);
+                            tvKaratValue.setText(Karat);
                             tvWeightValue.setText(weight);
-                            tvwashtage.setText(wastage);
+                            tvwashtage.setText(MakingCharge);
 
                             setupImageSlider(imageUrls);
                         } else {

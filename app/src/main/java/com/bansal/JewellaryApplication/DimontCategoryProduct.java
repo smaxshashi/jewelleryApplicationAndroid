@@ -57,7 +57,7 @@ public class DimontCategoryProduct extends AppCompatActivity {
     }
 
     private void fetchdata() {
-        String url ="http://3.110.34.172:8080/api/getProducts?gifting=Sister";
+        String url ="https://api.gehnamall.com/api/getProducts?gifting=Sister";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
