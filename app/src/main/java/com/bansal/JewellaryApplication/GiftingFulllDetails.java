@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
     Button btnAddToWishlist;
     String productId="2",gifting;
     SharedPreferences preferences;
-    ImageView ivwhtasapp;
+    LinearLayout ivwhtasapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
         tvwashtage=findViewById(R.id.tvMakingChargeValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
-        ivwhtasapp=findViewById(R.id.ivfullWhatsapp);
+        ivwhtasapp=findViewById(R.id.llWhatsapp);
 
         ivwhtasapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +141,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
                             String productName = selectedProduct.optString("productName", "N/A");
                             String karat = selectedProduct.optString("karat", "N/A");
                             String weight = selectedProduct.optString("weight", "N/A");
-                            String makingCharge = selectedProduct.optString("karat", "0"); // Default to "0" or a fallback value
+                            String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
 
 
 
