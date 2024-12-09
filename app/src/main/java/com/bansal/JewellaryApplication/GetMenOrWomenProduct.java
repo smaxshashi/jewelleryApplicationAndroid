@@ -53,6 +53,7 @@ public class GetMenOrWomenProduct extends AppCompatActivity {
         i.putExtra("categorycode",categorycode);
         i.putExtra("gendercode",gendercode);
         startActivity(i);
+
     }
 
 
