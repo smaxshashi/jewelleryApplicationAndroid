@@ -29,6 +29,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterSliderSoulmet;
 import com.bansal.JewellaryApplication.Adapterclasses.GiftingSlider;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +46,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
     String productId="2",gifting;
     SharedPreferences preferences;
     LinearLayout ivwhtasapp;
+     TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
         ivwhtasapp=findViewById(R.id.llWhatsapp);
+        tabLayout = findViewById(R.id.tabLayout);
 
         ivwhtasapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,6 +182,10 @@ public class GiftingFulllDetails extends AppCompatActivity {
         GiftingSlider adapter=new GiftingSlider(GiftingFulllDetails.this,imageUrls);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
+
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            // Dots for the indicator
+        }).attach();
     }
 
 

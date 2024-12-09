@@ -26,6 +26,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +46,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
     SharedPreferences preferences;
     String occusion;
     TextView tvDis;
+    TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +69,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
         ivWhtasappp=findViewById(R.id.llWhatsapp);
         tvDis=findViewById(R.id.tvdis);
+        tabLayout = findViewById(R.id.tabLayout);
 
         tvDis.setText(occusion);
 
@@ -171,5 +175,9 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         ImagesliderAdapter adapter = new ImagesliderAdapter(this, imageUrls);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
+
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            // Dots for the indicator
+        }).attach();
     }
 }

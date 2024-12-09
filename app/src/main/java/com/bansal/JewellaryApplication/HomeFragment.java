@@ -94,6 +94,7 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
     ProgressBar progressBar;
     String Him="Him",Her="Her";
 ImageView ivWhatsapp;
+    ProgressBar pbloading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,6 +129,7 @@ ImageView ivWhatsapp;
         cvHIM=view.findViewById(R.id.cvHomeFragmentHIM);
         cvHER=view.findViewById(R.id.cvHomeFragmentHER);
         ivWhatsapp=view.findViewById(R.id.ivwhatsapp);
+        pbloading=view.findViewById(R.id.pbProgreddbar);
 
         ivWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -305,12 +307,15 @@ ImageView ivWhatsapp;
 
     private void fetchGiftingData() {
         String Giftingurl = "https://api.gehnamall.com/api/gifting";
+        progressBar.setVisibility(View.VISIBLE);
+        rvgiftGuid.setVisibility(View.GONE);
 
         RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
 
         // Log the start time
         long startTime = System.currentTimeMillis();
         Log.d("API_CALL", "API call started at: " + startTime);
+
 
         // Create JsonArrayRequest for fetching data
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
@@ -340,16 +345,30 @@ ImageView ivWhatsapp;
                                 int giftingCode = giftingObj.getInt("giftingCode");
                                 String exfield1 = giftingObj.getString("exfield1");
 
-                                // Create POJOGifting object and add to the list
                                 pojoGiftings.add(new POJOGifting(giftingName, giftingCode, exfield1));
+
                             }
+
 
                             // Notify the adapter that the data set has changed
                             adpterGifting.notifyDataSetChanged();
 
+                            // Toggle visibility based on data presence
+                            if (pojoGiftings.isEmpty()) {
+                                // No data: show ProgressBar
+                                progressBar.setVisibility(View.VISIBLE);
+                                rvgiftGuid.setVisibility(View.GONE);
+                            } else {
+                                // Data present: show RecyclerView
+                                progressBar.setVisibility(View.GONE);
+                                rvgiftGuid.setVisibility(View.VISIBLE);
+                            }
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(requireActivity(), "Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 },

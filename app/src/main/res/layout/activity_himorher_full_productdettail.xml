@@ -13,13 +13,23 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_400sdp"
+            android:layout_height="@dimen/_220sdp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/_30sdp"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="16dp" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/viewPager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_5sdp" />
+
 
 
         <!-- Product Name -->
@@ -30,11 +40,11 @@
             android:text="Product Name"
             android:textSize="22sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/viewPager"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="5dp" />
 
         <!-- Karat and Weight -->
 
@@ -68,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="24"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvKaratLabel"
@@ -94,7 +104,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="3"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
@@ -106,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-40dp"
                 android:text="gm"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
@@ -132,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="3"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvMakingChargeLabel"
@@ -144,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_1sdp"
                 android:text="%"
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvMakingChargeLabel"
@@ -169,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text=""
-                android:textColor="@android:color/darker_gray"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvDiscriptionlable"

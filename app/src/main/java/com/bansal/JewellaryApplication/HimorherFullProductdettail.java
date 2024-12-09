@@ -25,6 +25,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterSliderSoulmet;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +43,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
 
     LinearLayout ivWhatsapp;
     TextView tvdis;
+    TabLayout tabLayout;
 
 
     @Override
@@ -65,6 +68,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
         ivWhatsapp=findViewById(R.id.llWhatsapp);
         tvdis=findViewById(R.id.tvdis);
         tvdis.setText(soulmet);
+        tabLayout = findViewById(R.id.tabLayout);
 
 
         ivWhatsapp.setOnClickListener(new View.OnClickListener() {
@@ -164,5 +168,8 @@ public class HimorherFullProductdettail extends AppCompatActivity {
         AdpterSliderSoulmet adapter=new AdpterSliderSoulmet(HimorherFullProductdettail.this,imageUrls);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            // Dots for the indicator
+        }).attach();
     }
     }
