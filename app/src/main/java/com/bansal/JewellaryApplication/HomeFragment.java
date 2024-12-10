@@ -73,7 +73,7 @@ AdpterGetPrice adpterGetPrice;
 ImageView ivtestinomialimage;
     ImageSlider imageSlider;
     ImageSlider ivsta;
-CardView cvHIM,cvHER;
+CardView cvHIM,cvHER,cvrate;
 
 
 
@@ -130,6 +130,26 @@ ImageView ivWhatsapp;
         cvHER=view.findViewById(R.id.cvHomeFragmentHER);
         ivWhatsapp=view.findViewById(R.id.ivwhatsapp);
         pbloading=view.findViewById(R.id.pbProgreddbar);
+        cvrate=view.findViewById(R.id.cvraate);
+
+
+        cvrate.setOnClickListener(v -> {
+            // Direct link to Google Maps review section
+            String reviewUrl = "https://search.google.com/local/writereview?placeid=ChIJ78nbKCr9DDkRCUdu1MEiAwM&noredir=1";
+
+            // Intent to open the review section in Google Maps
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(reviewUrl));
+            intent.setPackage("com.google.android.apps.maps"); // Open specifically in Google Maps
+
+            // Try to start the activity
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                // Fallback if Google Maps isn't installed
+                Intent fallbackIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(reviewUrl));
+                startActivity(fallbackIntent);
+            }
+        });
 
         ivWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,7 +222,7 @@ ImageView ivWhatsapp;
 
         btnrateus.setOnClickListener(v -> {
             // Direct link to Google Maps review section
-            String reviewUrl = "https://www.google.com/maps/place/Bansal+%26+sons+Jewellers/@28.6574758,77.2288831,17z/data=!4m8!3m7!1s0x390cfd2a28dbc9ef:0x30322c1d46e4709!8m2!3d28.6574758!4d77.2288831!9m1!1b1!16s%2Fg%2F1pzr0nf9x?entry=ttu";
+            String reviewUrl = "https://search.google.com/local/writereview?placeid=ChIJ78nbKCr9DDkRCUdu1MEiAwM&noredir=1";
 
             // Intent to open the review section in Google Maps
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(reviewUrl));
