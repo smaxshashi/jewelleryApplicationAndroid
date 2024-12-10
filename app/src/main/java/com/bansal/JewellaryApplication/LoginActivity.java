@@ -3,6 +3,8 @@ package com.bansal.JewellaryApplication;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,12 +19,29 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.StringReader;
+
 public class LoginActivity extends AppCompatActivity {
     EditText etPhonenumber;
 
     TextView tvgenerateotp,tvnewuser;
     AppCompatButton acbtnLogin,acbtnCancleLogin;
     ProgressDialog progressDialog;
+    private static final String API_URL = "https://api.gehnamall.com/auth/check-user?phoneNumber=";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         etPhonenumber =  findViewById(R.id.etLoginActivityPhonenumber);
-        tvgenerateotp =  findViewById(R.id.tvLoginActivityGenerateotp);
         acbtnLogin = findViewById(R.id.acbtnLoginActivityLogin);
         acbtnCancleLogin = findViewById(R.id.acbtnLoginActivityCancleLogin);
         tvnewuser = findViewById(R.id.tvLoginActivityNewuser);
@@ -62,10 +80,11 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (etPhonenumber.getText().toString().length() != 10) {
                     etPhonenumber.setError("Enter  the proper Mobile Number");
                 }else{
-                    Intent i = new Intent(LoginActivity.this,HomeActivity.class);
-                    startActivity(i);
+                    String phoneNumber = etPhonenumber.getText().toString().trim();
+                    checkUser(phoneNumber);
                 }
             }
+
         });
 
         acbtnCancleLogin.setOnClickListener(new View.OnClickListener() {
@@ -76,12 +95,64 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tvgenerateotp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "OTP sent to entered Phone Number", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
+
+
+    private void checkUser(String phoneNumber) {
+        String url = API_URL + phoneNumber;
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        StringRequest request = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    try {
+                        // Log server response for debugging
+//                        Toast.makeText(LoginActivity.this, "Server Response: " + response, Toast.LENGTH_LONG).show();
+
+                        JSONObject jsonResponse = new JSONObject(response);
+
+                        String status = jsonResponse.optString("status");
+
+                        if ("0".equals(status)) {
+                            // Jump to OTP activity if status is 0
+                            Intent intent = new Intent(LoginActivity.this, OTPVerificationactivity.class);
+                            intent.putExtra("phoneNumber", phoneNumber);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            // Toast if user doesn't exist
+                            Toast.makeText(LoginActivity.this, "User does not exist. Please sign up.", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        // Handle JSON parsing errors
+                        Toast.makeText(LoginActivity.this, "Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    // Handle network error
+                    Toast.makeText(LoginActivity.this, "Network Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        queue.add(request);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
