@@ -2,6 +2,8 @@ package com.bansal.JewellaryApplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
@@ -26,6 +28,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bansal.JewellaryApplication.Network.NetworkChangeListner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton acbtnLogin,acbtnCancleLogin;
     ProgressDialog progressDialog;
     private static final String API_URL = "https://api.gehnamall.com/auth/check-user?phoneNumber=";
+    NetworkChangeListner networkChangeListner = new NetworkChangeListner();
 
 
     @Override
@@ -99,6 +103,19 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(networkChangeListner,intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(networkChangeListner);
+    }
+
 
     private void checkUser(String phoneNumber) {
         String url = API_URL + phoneNumber;
@@ -139,6 +156,7 @@ public class LoginActivity extends AppCompatActivity {
 
         queue.add(request);
     }
+
 
 
 

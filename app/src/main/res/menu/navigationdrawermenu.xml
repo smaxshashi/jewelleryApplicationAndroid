@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menuhome"
-        android:title="Home"
-        android:icon="@drawable/baseline_home_24"/>
+        android:id="@+id/gold"
+        android:title="GOLD"
+       />
     <item
-        android:id="@+id/menuprofile"
-        android:title="Profile"
-        android:icon="@drawable/baseline_person_24"/>
+        android:id="@+id/Diamond"
+        android:title="Diamond"
+       />
     <item
-        android:id="@+id/menuorders"
-        android:title="wishlist"
-        android:icon="@drawable/baseline_favorite_border_24"/>
+        android:id="@+id/antique"
+        android:title="ANTIQQUE"
+       />
     <item
-        android:id="@+id/menuchat"
-        android:title="chat"
-        android:icon="@drawable/baseline_chat_24"/>
+        android:id="@+id/polki"
+        android:title="POLKI"
+        /> <item
+        android:id="@+id/baby"
+        android:title="BABY"
+        />
+    <item
+        android:id="@+id/goldcoinbars"
+        android:title="GOLD COINS AND BAR"
+        />
+    <item
+        android:id="@+id/gemstone"
+        android:title="GEMSTONE"
+        />
+    <item
+        android:id="@+id/lossediamond"
+        android:title="LOOSE DIAMONDS"
+        />
+    <item
+        android:id="@+id/jadau"
+        android:title="JADAU"
+        />
 </menu>
