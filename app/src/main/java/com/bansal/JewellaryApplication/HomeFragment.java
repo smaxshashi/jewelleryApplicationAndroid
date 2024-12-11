@@ -81,8 +81,11 @@ ImageView ivtestinomialimage;
     ImageSlider imageSlider;
     ImageSlider ivsta;
 CardView cvHIM,cvHER,cvrate;
-TextView tvdirector;
+TextView tvdirector,tvcompany;
 Button btnreadmore;
+Button btnreadmore2;
+CardView cvvd1,cvvd2;
+TextView tvemail;
 
 
 
@@ -157,6 +160,69 @@ ImageView ivWhatsapp;
         cvhus=view.findViewById(R.id.cvhus);
         tvdirector=view.findViewById(R.id.directorsVision);
         btnreadmore=view.findViewById(R.id.readMoreButton);
+        tvcompany=view.findViewById(R.id.aboutCompany);
+        btnreadmore2=view.findViewById(R.id.readMoreButton2);
+        cvvd1=view.findViewById(R.id.cvinfcall);
+        cvvd2=view.findViewById(R.id.cvcall);
+        tvemail=view.findViewById(R.id.tvemail);
+
+
+
+        cvvd1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String message = "Hello, I have a question regarding the product from your app.";
+
+                try {
+                    // Ensure the URL is properly encoded
+                    String url = "https://wa.me/" + phoneNumber + "?text=" + Uri.encode(message);
+                    Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+                    whatsappIntent.setData(Uri.parse(url));
+                    whatsappIntent.setPackage("com.whatsapp"); // Explicitly set WhatsApp package
+
+                    v.getContext().startActivity(whatsappIntent);
+                } catch (ActivityNotFoundException e) {
+                    // Handle case where WhatsApp is not installed
+                    Toast.makeText(v.getContext(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    // Handle generic exceptions
+                    e.printStackTrace();
+                    Toast.makeText(v.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        cvvd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String message = "Hello, I have a question regarding the product from your app.";
+
+                try {
+                    // Ensure the URL is properly encoded
+                    String url = "https://wa.me/" + phoneNumber + "?text=" + Uri.encode(message);
+                    Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+                    whatsappIntent.setData(Uri.parse(url));
+                    whatsappIntent.setPackage("com.whatsapp"); // Explicitly set WhatsApp package
+
+                    v.getContext().startActivity(whatsappIntent);
+                } catch (ActivityNotFoundException e) {
+                    // Handle case where WhatsApp is not installed
+                    Toast.makeText(v.getContext(), "WhatsApp is not installed", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    // Handle generic exceptions
+                    e.printStackTrace();
+                    Toast.makeText(v.getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        tvemail.setOnClickListener(v -> {
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:info@bansalandsonsjewellers")); // Ensure "mailto:" prefix is added
+            startActivity(Intent.createChooser(emailIntent, "Send Email"));
+        });
+
 
 
 
@@ -175,6 +241,25 @@ ImageView ivWhatsapp;
                     tvdirector.setMaxLines(Integer.MAX_VALUE);
                     tvdirector.setEllipsize(null);
                     btnreadmore.setText("Read Less");
+                }
+                isExpanded = !isExpanded;
+            }
+        });
+        btnreadmore2.setOnClickListener(new View.OnClickListener() {
+            private boolean isExpanded = false;
+
+            @Override
+            public void onClick(View v) {
+                if (isExpanded) {
+                    // Collapse to 5 lines
+                    tvcompany.setMaxLines(5);
+                    tvcompany.setEllipsize(TextUtils.TruncateAt.END);
+                    btnreadmore2.setText("Read More");
+                } else {
+                    // Expand to full text
+                    tvcompany.setMaxLines(Integer.MAX_VALUE);
+                    tvcompany.setEllipsize(null);
+                    btnreadmore2.setText("Read Less");
                 }
                 isExpanded = !isExpanded;
             }

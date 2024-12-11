@@ -15,7 +15,7 @@
         android:title="Profile" />
     <item
         android:id="@+id/gold"
-        android:title="GOLD"
+        android:title="Gold"
        />
     <item
         android:id="@+id/Diamond"
@@ -23,29 +23,29 @@
        />
     <item
         android:id="@+id/antique"
-        android:title="ANTIQQUE"
+        android:title="Antique"
        />
     <item
         android:id="@+id/polki"
-        android:title="POLKI"
+        android:title="Polki"
         /> <item
         android:id="@+id/baby"
-        android:title="BABY"
+        android:title="Baby"
         />
     <item
         android:id="@+id/goldcoinbars"
-        android:title="GOLD COINS AND BAR"
+        android:title="Gold coins and bar"
         />
     <item
         android:id="@+id/gemstone"
-        android:title="GEMSTONE"
+        android:title="Gemstone"
         />
     <item
         android:id="@+id/lossediamond"
-        android:title="LOOSE DIAMONDS"
+        android:title="Loose diamond"
         />
     <item
         android:id="@+id/jadau"
-        android:title="JADAU"
+        android:title="Jadau"
         />
 </menu>

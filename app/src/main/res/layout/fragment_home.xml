@@ -193,252 +193,267 @@
             android:textStyle="bold" />
         </LinearLayout>
         <!-- Row 1 -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:layout_height="wrap_content">
 
-            <!-- Item 1 -->
-            <androidx.cardview.widget.CardView
+            <!-- Row 1 -->
+            <LinearLayout
+                android:id="@+id/row1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                android:id="@+id/cvsis"
-                app:cardElevation="4dp">
+                android:orientation="horizontal"
+                android:padding="@dimen/_4sdp"
+                android:weightSum="3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="8sp"
-                    android:background="@drawable/blacklinedegin"
-                    android:gravity="center">
+                <!-- CardView Items (Sister, Mother, Brother) -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    android:id="@+id/cvsis"
+                    app:cardElevation="4dp">
 
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/sister"
-                        android:layout_marginTop="5dp"
-                        android:scaleType="centerCrop" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="SISTER"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
+                    <LinearLayout
+                        android:layout_width="118dp"
+                        android:layout_height="match_parent"
                         android:background="@drawable/blacklinedegin"
-                        android:padding="5dp"
-                        android:gravity="center" />
-                </LinearLayout>
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8sp">
 
-            </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/sister" />
 
-            <!-- Item 2 -->
-            <androidx.cardview.widget.CardView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/blacklinedegin"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="SISTER"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    android:id="@+id/cvmom"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8sp"
+                        android:background="@drawable/blacklinedegin"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:src="@drawable/mother"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="centerCrop" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="MOTHER"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:background="@drawable/blacklinedegin"
+                            android:padding="5sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    android:id="@+id/cvbro"
+                    app:cardElevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8sp"
+                        android:background="@drawable/blacklinedegin"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:src="@drawable/brother"
+                            android:layout_marginTop="5dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="BROTHER"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:background="@drawable/blacklinedegin"
+                            android:padding="5sp"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <!-- Row 2 -->
+            <LinearLayout
+                android:id="@+id/row2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                android:id="@+id/cvmom"
-                app:cardElevation="4dp">
+                android:orientation="horizontal"
+                android:padding="@dimen/_4sdp"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@id/row1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="8sp"
-                    android:background="@drawable/blacklinedegin"
-                    android:gravity="center">
+                <!-- CardView Items (Friends, Wife, Husband) -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    android:id="@+id/cvfrn"
+                    app:cardElevation="4dp">
 
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/mother"
-                        android:layout_marginTop="5dp"
-                        android:scaleType="centerCrop" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="MOTHER"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8sp"
                         android:background="@drawable/blacklinedegin"
-                        android:padding="5sp"
-                        android:gravity="center" />
-                </LinearLayout>
+                        android:gravity="center">
 
-            </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:src="@drawable/friends"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="centerCrop" />
 
-            <!-- Item 3 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                android:id="@+id/cvbro"
-                app:cardElevation="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="FRIENDS"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:background="@drawable/blacklinedegin"
+                            android:padding="5dp"
+                            android:gravity="center" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="8sp"
-                    android:background="@drawable/blacklinedegin"
-                    android:gravity="center">
+                </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/brother"
-                        android:layout_marginTop="5sp"
-                         />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    android:id="@+id/cvwife"
+                    app:cardElevation="4dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="BROTHER"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8sp"
                         android:background="@drawable/blacklinedegin"
-                        android:padding="5sp"
-                        android:gravity="center" />
-                </LinearLayout>
+                        android:gravity="center">
 
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>   <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="3">
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:src="@drawable/wife"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="centerCrop" />
 
-            <!-- Item 1 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                android:id="@+id/cvfrn"
-                app:cardElevation="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="WIFE"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:background="@drawable/blacklinedegin"
+                            android:padding="5sp"
+                            android:gravity="center" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="8sp"
-                    android:background="@drawable/blacklinedegin"
-                    android:gravity="center">
+                </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/friends"
-                        android:layout_marginTop="5dp"
-                        android:scaleType="centerCrop" />
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="8dp"
+                    android:id="@+id/cvhus"
+                    app:cardElevation="4dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="FRIENDS"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="8sp"
                         android:background="@drawable/blacklinedegin"
-                        android:padding="5dp"
-                        android:gravity="center" />
-                </LinearLayout>
+                        android:gravity="center">
 
-            </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:src="@drawable/husband"
+                            android:layout_marginTop="5dp" />
 
-            <!-- Item 2 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                android:id="@+id/cvwife"
-                app:cardElevation="4dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="HUSBAND"
+                            android:textColor="@android:color/black"
+                            android:textSize="12sp"
+                            android:background="@drawable/blacklinedegin"
+                            android:padding="5sp"
+                            android:gravity="center" />
+                    </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="8sp"
-                    android:background="@drawable/blacklinedegin"
-                    android:gravity="center">
+                </androidx.cardview.widget.CardView>
 
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/wife"
-                        android:layout_marginTop="5dp"
-                        android:scaleType="centerCrop" />
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text=" WIFE  "
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
-                        android:background="@drawable/blacklinedegin"
-                        android:padding="5sp"
-                        android:gravity="center" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <!-- Item 3 -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
-                app:cardCornerRadius="8dp"
-                android:id="@+id/cvhus"
-
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="8sp"
-                    android:background="@drawable/blacklinedegin"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/husband"
-                        android:layout_marginTop="5sp"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="HUSBAND"
-                        android:textColor="@android:color/black"
-                        android:textSize="14sp"
-                        android:background="@drawable/blacklinedegin"
-                        android:padding="5sp"
-                        android:gravity="center" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
@@ -1029,8 +1044,19 @@
             android:text="Welcome to Bansal and Sons Jewellers\n\nA legacy of trust, quality, and excellence\n\nBansal and Sons Jewellers has been a trustworthy name in the world of jewellery since many years. Our family-owned business was founded by Mr. Rakesh Bansal.\n\nOur mission at Bansal and Sons Jewellers, we are committed to:\n\n1. Creating trending jewellery designs that exceed our customers' expectations.\n2. Providing exceptional customer service that builds trust and loyalty.\n3. Our aim is to make Bansal and Sons Jewellers a nationwide and then a worldwide jewellery store.\n\nAwards by Celebrity:\n\nWe are proud to receive national and international awards, a testament to our commitment to excellence."
             android:textSize="16sp"
             android:textColor="#000000"
+            android:ellipsize="end"
+            android:maxLines="5"
             android:lineSpacingExtra="4dp"
             android:fontFamily="sans-serif" />
+        <Button
+            android:id="@+id/readMoreButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read More"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/maroon"
+            android:layout_marginTop="8dp" />
 
         <com.denzcoskun.imageslider.ImageSlider
         android:layout_width="match_parent"
@@ -1177,6 +1203,289 @@
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20sp"
+            android:padding="10dp">
+
+            <!-- Left Line -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#B4B2B2" />
+
+            <!-- Text in the Middle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connect with us"
+                android:textSize="18sp"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textColor="@color/maroon"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+
+            <!-- Right Line -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#B4B2B2" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:gravity="center">
+
+            <!-- CardView 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cvinfcall"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/whhatapp"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Connect on Whatsapp"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CardView 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/cvcall"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/cvinfcall2"
+                    android:padding="8dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/ic_camera"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Schedule video call"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- CardView 3 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/baseline_update_24"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Latest          Update"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <!-- Left Side -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1167/1094 lijt wali building,Ground floor,3rd floor,4th floor,Kuchu Mahajani chandni chowk Delhi-110006"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="info@bansalandsonsjewellers"
+                    android:id="@+id/tvemail"
+                    android:textSize="13sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contact"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91-9810080068"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91-9818386380"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91-8802878783"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+91-7982031621"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="16dp" />
+
+            </LinearLayout>
+
+            <!-- Right Side -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Careers"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blog"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Offer and Contact Details"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Help and FAQ"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
 
 </ScrollView>
