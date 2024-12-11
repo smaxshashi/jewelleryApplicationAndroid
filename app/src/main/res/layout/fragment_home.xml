@@ -211,15 +211,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="5sp"
+                    android:padding="8sp"
                     android:background="@drawable/blacklinedegin"
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/sister"
                         android:layout_marginTop="5dp"
                         android:scaleType="centerCrop" />
@@ -250,15 +250,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="5sp"
+                    android:padding="8sp"
                     android:background="@drawable/blacklinedegin"
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/mother"
                         android:layout_marginTop="5dp"
                         android:scaleType="centerCrop" />
@@ -289,18 +289,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="5sp"
+                    android:padding="8sp"
                     android:background="@drawable/blacklinedegin"
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/brother"
                         android:layout_marginTop="5sp"
-                        android:scaleType="centerCrop" />
+                         />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -333,15 +333,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="5sp"
+                    android:padding="8sp"
                     android:background="@drawable/blacklinedegin"
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/friends"
                         android:layout_marginTop="5dp"
                         android:scaleType="centerCrop" />
@@ -372,15 +372,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="5sp"
+                    android:padding="8sp"
                     android:background="@drawable/blacklinedegin"
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/wife"
                         android:layout_marginTop="5dp"
                         android:scaleType="centerCrop" />
@@ -412,18 +412,18 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="5sp"
+                    android:padding="8sp"
                     android:background="@drawable/blacklinedegin"
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
                         android:src="@drawable/husband"
                         android:layout_marginTop="5sp"
-                        android:scaleType="centerCrop" />
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -833,41 +833,48 @@
             android:id="@+id/rvHomefargemtshopbyoccusion"
             android:layout_marginTop="16sp"
             />
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_circle_right_24"
+            android:layout_marginStart="@dimen/_280sdp"
+            />
 
-            <!-- HorizontalScrollView to allow scrolling -->
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+<!--        <LinearLayout-->
+<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical">-->
 
-                <!-- LinearLayout holding the items (just two items here) -->
-                <LinearLayout
-                    android:id="@+id/linearLayoutItems"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
+<!--            &lt;!&ndash; HorizontalScrollView to allow scrolling &ndash;&gt;-->
+<!--            <HorizontalScrollView-->
+<!--                android:id="@+id/horizontalScrollView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
 
-                    <!-- Add your items here (for example, just two simple views) -->
+<!--                &lt;!&ndash; LinearLayout holding the items (just two items here) &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linearLayoutItems"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:orientation="horizontal">-->
 
-                </LinearLayout>
+<!--                    &lt;!&ndash; Add your items here (for example, just two simple views) &ndash;&gt;-->
 
-            </HorizontalScrollView>
+<!--                </LinearLayout>-->
 
-            <!-- TabLayout for the dots indicator -->
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:tabGravity="center"
-                app:tabMode="fixed"/>
-        </LinearLayout>
+<!--            </HorizontalScrollView>-->
+
+<!--            &lt;!&ndash; TabLayout for the dots indicator &ndash;&gt;-->
+<!--            <com.google.android.material.tabs.TabLayout-->
+<!--                android:id="@+id/tabLayout"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:tabGravity="center"-->
+<!--                app:tabMode="fixed"/>-->
+<!--        </LinearLayout>-->
 
 
 

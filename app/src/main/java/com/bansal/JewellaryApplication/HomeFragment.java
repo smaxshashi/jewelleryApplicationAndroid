@@ -103,11 +103,11 @@ ImageView ivWhatsapp;
     ProgressBar pbloading;
     String gift;
     CardView cvsis,cvmom,cvbro,cvfrn,cvwife,cvhus;
-    private HorizontalScrollView horizontalScrollView;
-    private LinearLayout linearLayoutItems;
-    private TabLayout tabLayout;
-    private int itemCount = 5;  // Number of items in the HorizontalScrollView
-    private int tabCount = 3; // The number of dots you want to display
+//    private HorizontalScrollView horizontalScrollView;
+//    private LinearLayout linearLayoutItems;
+//    private TabLayout tabLayout;
+//    private int itemCount = 5;  // Number of items in the HorizontalScrollView
+//    private int tabCount = 3; // The number of dots you want to display
 
 
 
@@ -153,46 +153,46 @@ ImageView ivWhatsapp;
         cvwife=view.findViewById(R.id.cvwife);
         cvhus=view.findViewById(R.id.cvhus);
         // Initialize views
-        horizontalScrollView = view.findViewById(R.id.horizontalScrollView);
-        linearLayoutItems = view.findViewById(R.id.linearLayoutItems);
-        tabLayout = view.findViewById(R.id.tabLayout);
+//        horizontalScrollView = view.findViewById(R.id.horizontalScrollView);
+//        linearLayoutItems = view.findViewById(R.id.linearLayoutItems);
+//        tabLayout = view.findViewById(R.id.tabLayout);
 
 
-        for (int i = 0; i < 2; i++) {
-            tabLayout.addTab(tabLayout.newTab());
-        }
-
-        // Set the initial selected tab (dot)
-        tabLayout.getTabAt(0).select();
-
-        // Set an initial selected dot (optional)
-        tabLayout.getTabAt(0).select();
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-        for (int i = 0; i < tabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = tabLayout.getTabAt(i);
-            if (tab != null) {
-                tab.view.setBackgroundColor(getResources().getColor(android.R.color.transparent)); // Remove line
-            }
-        }
-
-        horizontalScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                // Calculate total width of all items
-                float totalWidth = linearLayoutItems.getWidth();
-
-                // Adjust scroll sensitivity to make the transition quicker
-                float scrollRatio = (float) scrollX / totalWidth;
-                int selectedDot = (int) (scrollRatio * 2); // Map scroll to two dots
-
-                // Ensure that we only select either the first or second dot (no out-of-bounds selection)
-                selectedDot = Math.min(selectedDot, 1);
-
-                // Select the corresponding dot in the TabLayout
-                tabLayout.getTabAt(selectedDot).select();
-            }
-        });
+//        for (int i = 0; i < 2; i++) {
+//            tabLayout.addTab(tabLayout.newTab());
+//        }
+//
+//        // Set the initial selected tab (dot)
+//        tabLayout.getTabAt(0).select();
+//
+//        // Set an initial selected dot (optional)
+//        tabLayout.getTabAt(0).select();
+//        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+//        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+//        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+//            TabLayout.Tab tab = tabLayout.getTabAt(i);
+//            if (tab != null) {
+//                tab.view.setBackgroundColor(getResources().getColor(android.R.color.transparent)); // Remove line
+//            }
+//        }
+//
+//        horizontalScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                // Calculate total width of all items
+//                float totalWidth = linearLayoutItems.getWidth();
+//
+//                // Adjust scroll sensitivity to make the transition quicker
+//                float scrollRatio = (float) scrollX / totalWidth;
+//                int selectedDot = (int) (scrollRatio * 2); // Map scroll to two dots
+//
+//                // Ensure that we only select either the first or second dot (no out-of-bounds selection)
+//                selectedDot = Math.min(selectedDot, 1);
+//
+//                // Select the corresponding dot in the TabLayout
+//                tabLayout.getTabAt(selectedDot).select();
+//            }
+//        });
 
 
         cvsis.setOnClickListener(new View.OnClickListener() {
