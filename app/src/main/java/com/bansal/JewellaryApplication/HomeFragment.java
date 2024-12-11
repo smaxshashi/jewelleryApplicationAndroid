@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -80,6 +81,8 @@ ImageView ivtestinomialimage;
     ImageSlider imageSlider;
     ImageSlider ivsta;
 CardView cvHIM,cvHER,cvrate;
+TextView tvdirector;
+Button btnreadmore;
 
 
 
@@ -152,6 +155,30 @@ ImageView ivWhatsapp;
         cvfrn=view.findViewById(R.id.cvfrn);
         cvwife=view.findViewById(R.id.cvwife);
         cvhus=view.findViewById(R.id.cvhus);
+        tvdirector=view.findViewById(R.id.directorsVision);
+        btnreadmore=view.findViewById(R.id.readMoreButton);
+
+
+
+        btnreadmore.setOnClickListener(new View.OnClickListener() {
+            private boolean isExpanded = false;
+
+            @Override
+            public void onClick(View v) {
+                if (isExpanded) {
+                    // Collapse to 5 lines
+                    tvdirector.setMaxLines(5);
+                    tvdirector.setEllipsize(TextUtils.TruncateAt.END);
+                    btnreadmore.setText("Read More");
+                } else {
+                    // Expand to full text
+                    tvdirector.setMaxLines(Integer.MAX_VALUE);
+                    tvdirector.setEllipsize(null);
+                    btnreadmore.setText("Read Less");
+                }
+                isExpanded = !isExpanded;
+            }
+        });
         // Initialize views
 //        horizontalScrollView = view.findViewById(R.id.horizontalScrollView);
 //        linearLayoutItems = view.findViewById(R.id.linearLayoutItems);
