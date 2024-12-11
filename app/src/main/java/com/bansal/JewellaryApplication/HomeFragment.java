@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,12 +18,16 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -51,6 +56,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.AnimationTypes;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -95,6 +101,15 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
     String Him="Him",Her="Her";
 ImageView ivWhatsapp;
     ProgressBar pbloading;
+    String gift;
+    CardView cvsis,cvmom,cvbro,cvfrn,cvwife,cvhus;
+    private HorizontalScrollView horizontalScrollView;
+    private LinearLayout linearLayoutItems;
+    private TabLayout tabLayout;
+    private int itemCount = 5;  // Number of items in the HorizontalScrollView
+    private int tabCount = 3; // The number of dots you want to display
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,7 +126,7 @@ ImageView ivWhatsapp;
         ivfacebook = view.findViewById(R.id.ivFacebookk);
         ivyoutube = view.findViewById(R.id.ivYoutube);
         ivprintrest = view.findViewById(R.id.ivPrintrest);
-        rvgiftGuid=view.findViewById(R.id.rvUserHomeFragmentGiftingguidelist);
+//        rvgiftGuid=view.findViewById(R.id.rvUserHomeFragmentGiftingguidelist);
         pojoGetallcategories =  new ArrayList<>();
         pojoGiftings = new ArrayList<>();
         pojoOccusions = new ArrayList<>();
@@ -129,8 +144,111 @@ ImageView ivWhatsapp;
         cvHIM=view.findViewById(R.id.cvHomeFragmentHIM);
         cvHER=view.findViewById(R.id.cvHomeFragmentHER);
         ivWhatsapp=view.findViewById(R.id.ivwhatsapp);
-        pbloading=view.findViewById(R.id.pbProgreddbar);
+//        pbloading=view.findViewById(R.id.pbProgreddbar);
         cvrate=view.findViewById(R.id.cvraate);
+        cvsis=view.findViewById(R.id.cvsis);
+        cvmom=view.findViewById(R.id.cvmom);
+        cvbro=view.findViewById(R.id.cvbro);
+        cvfrn=view.findViewById(R.id.cvfrn);
+        cvwife=view.findViewById(R.id.cvwife);
+        cvhus=view.findViewById(R.id.cvhus);
+        // Initialize views
+        horizontalScrollView = view.findViewById(R.id.horizontalScrollView);
+        linearLayoutItems = view.findViewById(R.id.linearLayoutItems);
+        tabLayout = view.findViewById(R.id.tabLayout);
+
+
+        for (int i = 0; i < 2; i++) {
+            tabLayout.addTab(tabLayout.newTab());
+        }
+
+        // Set the initial selected tab (dot)
+        tabLayout.getTabAt(0).select();
+
+        // Set an initial selected dot (optional)
+        tabLayout.getTabAt(0).select();
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            if (tab != null) {
+                tab.view.setBackgroundColor(getResources().getColor(android.R.color.transparent)); // Remove line
+            }
+        }
+
+        horizontalScrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                // Calculate total width of all items
+                float totalWidth = linearLayoutItems.getWidth();
+
+                // Adjust scroll sensitivity to make the transition quicker
+                float scrollRatio = (float) scrollX / totalWidth;
+                int selectedDot = (int) (scrollRatio * 2); // Map scroll to two dots
+
+                // Ensure that we only select either the first or second dot (no out-of-bounds selection)
+                selectedDot = Math.min(selectedDot, 1);
+
+                // Select the corresponding dot in the TabLayout
+                tabLayout.getTabAt(selectedDot).select();
+            }
+        });
+
+
+        cvsis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 gift="Sister";
+                Intent i = new Intent(getActivity(),GiftingProduct.class);
+                i.putExtra("gift",gift);
+                startActivity(i);
+            }
+        });
+        cvmom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 gift="Mother";
+                Intent i = new Intent(getActivity(),GiftingProduct.class);
+                i.putExtra("gift",gift);
+                startActivity(i);
+            }
+        });
+        cvbro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 gift="Brother";
+                Intent i = new Intent(getActivity(),GiftingProduct.class);
+                i.putExtra("gift",gift);
+                startActivity(i);
+            }
+        });
+        cvfrn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 gift="Friends";
+                Intent i = new Intent(getActivity(),GiftingProduct.class);
+                i.putExtra("gift",gift);
+                startActivity(i);
+            }
+        });
+        cvwife.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 gift="Wife";
+                Intent i = new Intent(getActivity(),GiftingProduct.class);
+                i.putExtra("gift",gift);
+                startActivity(i);
+            }
+        });
+        cvhus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 gift="Husband";
+                Intent i = new Intent(getActivity(),GiftingProduct.class);
+                i.putExtra("gift",gift);
+                startActivity(i);
+            }
+        });
 
 
         cvrate.setOnClickListener(v -> {
@@ -279,10 +397,12 @@ ImageView ivWhatsapp;
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3); // 3 items per row
         rvlistofcategory.setLayoutManager(gridLayoutManager);
         rvoccusion.setLayoutManager(new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false));
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
-        rvgiftGuid.setLayoutManager(layoutManager);
 
-        rvgiftGuid.setAdapter(adpterGifting);
+
+//        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3, GridLayoutManager.VERTICAL, false);
+//        rvgiftGuid.setLayoutManager(layoutManager);
+//
+//        rvgiftGuid.setAdapter(adpterGifting);
 
 
 
@@ -312,7 +432,7 @@ ImageView ivWhatsapp;
 
         GetCategoryofProduct();
         fetchPrices();
-        fetchGiftingData();
+//        fetchGiftingData();
         fetchBannerImages();
         fetchoccuction();
        // fetchsoulmate();
@@ -323,85 +443,112 @@ ImageView ivWhatsapp;
 
     }
 
+//    private void setupIndicator(RecyclerView recyclerView, TabLayout tabLayout, int itemCount) {
+//        // Create dots in TabLayout based on the item count
+//        for (int i = 0; i < itemCount; i++) {
+//            tabLayout.addTab(tabLayout.newTab());
+//        }
+//
+//        // Add a scroll listener to update the selected dot
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                // Get the current visible item index
+//                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+//                if (layoutManager != null) {
+//                    int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+//
+//                    // Update the TabLayout to highlight the correct dot
+//                    TabLayout.Tab tab = tabLayout.getTabAt(firstVisibleItemPosition);
+//                    if (tab != null) {
+//                        tab.select();
+//                    }
+//                }
+//            }
+//        });
+//    }
 
 
-    private void fetchGiftingData() {
-        String Giftingurl = "https://api.gehnamall.com/api/gifting";
-        progressBar.setVisibility(View.VISIBLE);
-        rvgiftGuid.setVisibility(View.GONE);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
-
-        // Log the start time
-        long startTime = System.currentTimeMillis();
-        Log.d("API_CALL", "API call started at: " + startTime);
-
-
-        // Create JsonArrayRequest for fetching data
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                Giftingurl,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        // Log the end time
-                        long endTime = System.currentTimeMillis();
-                        Log.d("API_CALL", "API call completed at: " + endTime);
-
-                        // Calculate the time taken for the API call
-                        long timeTaken = endTime - startTime;
-                        Log.d("API_CALL", "Time taken for API call: " + timeTaken + " ms");
-
-                        try {
-                            pojoGiftings.clear(); // Clear the list to prevent duplicate data
-
-                            // Loop through the response
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject giftingObj = response.getJSONObject(i);
-
-                                // Fetch data using the correct key names
-                                String giftingName = giftingObj.getString("giftingName");
-                                int giftingCode = giftingObj.getInt("giftingCode");
-                                String exfield1 = giftingObj.getString("exfield1");
-
-                                pojoGiftings.add(new POJOGifting(giftingName, giftingCode, exfield1));
-
-                            }
-
-
-                            // Notify the adapter that the data set has changed
-                            adpterGifting.notifyDataSetChanged();
-
-                            // Toggle visibility based on data presence
-                            if (pojoGiftings.isEmpty()) {
-                                // No data: show ProgressBar
-                                progressBar.setVisibility(View.VISIBLE);
-                                rvgiftGuid.setVisibility(View.GONE);
-                            } else {
-                                // Data present: show RecyclerView
-                                progressBar.setVisibility(View.GONE);
-                                rvgiftGuid.setVisibility(View.VISIBLE);
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(requireActivity(), "Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(requireActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-
-        requestQueue.add(jsonArrayRequest);
-    }
+//    private void fetchGiftingData() {
+//        String Giftingurl = "https://api.gehnamall.com/api/gifting";
+//        progressBar.setVisibility(View.VISIBLE);
+//        rvgiftGuid.setVisibility(View.GONE);
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity());
+//
+//        // Log the start time
+//        long startTime = System.currentTimeMillis();
+//        Log.d("API_CALL", "API call started at: " + startTime);
+//
+//
+//        // Create JsonArrayRequest for fetching data
+//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+//                Request.Method.GET,
+//                Giftingurl,
+//                null,
+//                new Response.Listener<JSONArray>() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//                        // Log the end time
+//                        long endTime = System.currentTimeMillis();
+//                        Log.d("API_CALL", "API call completed at: " + endTime);
+//
+//                        // Calculate the time taken for the API call
+//                        long timeTaken = endTime - startTime;
+//                        Log.d("API_CALL", "Time taken for API call: " + timeTaken + " ms");
+//
+//                        try {
+//                            pojoGiftings.clear(); // Clear the list to prevent duplicate data
+//
+//                            // Loop through the response
+//                            for (int i = 0; i < response.length(); i++) {
+//                                JSONObject giftingObj = response.getJSONObject(i);
+//
+//                                // Fetch data using the correct key names
+//                                String giftingName = giftingObj.getString("giftingName");
+//                                int giftingCode = giftingObj.getInt("giftingCode");
+//                                String exfield1 = giftingObj.getString("exfield1");
+//
+//                                pojoGiftings.add(new POJOGifting(giftingName, giftingCode, exfield1));
+//
+//                            }
+//
+//
+//                            // Notify the adapter that the data set has changed
+//                            adpterGifting.notifyDataSetChanged();
+//
+//                            // Toggle visibility based on data presence
+//                            if (pojoGiftings.isEmpty()) {
+//                                // No data: show ProgressBar
+//                                progressBar.setVisibility(View.VISIBLE);
+//                                rvgiftGuid.setVisibility(View.GONE);
+//                            } else {
+//                                // Data present: show RecyclerView
+//                                progressBar.setVisibility(View.GONE);
+//                                rvgiftGuid.setVisibility(View.VISIBLE);
+//                            }
+//
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            Toast.makeText(requireActivity(), "Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                            progressBar.setVisibility(View.GONE);
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(requireActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        );
+//
+//        requestQueue.add(jsonArrayRequest);
+//    }
 
     private void fetchPrices() {
         String url = "https://api.gehnamall.com/api/prices";

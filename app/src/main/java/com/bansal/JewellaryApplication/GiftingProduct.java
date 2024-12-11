@@ -47,7 +47,7 @@ public class GiftingProduct extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GiftingProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(GiftingProduct.this, R.color.white));
 
-        gift=getIntent().getStringExtra("Gifting");
+        gift=getIntent().getStringExtra("gift");
 
         tvgift = findViewById(R.id.tvgift);
         rvList=findViewById(R.id.rvGiftingList);

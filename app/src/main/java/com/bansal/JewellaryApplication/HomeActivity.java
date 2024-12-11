@@ -1,5 +1,6 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -23,6 +24,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private BottomNavigationView userBottomnevigation;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    String code;
 
     // Fragments
     HomeFragment homeFragment = new HomeFragment();
@@ -69,15 +71,64 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle Navigation Drawer items
-        if (item.getItemId() == R.id.menuhome) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, homeFragment).commit();
-        } else if (item.getItemId() == R.id.menuchat) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, chatFragment).commit();
-        } else if (item.getItemId() == R.id.menuorders) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, wishlistFragment).commit();
-        } else if (item.getItemId() == R.id.menuprofile) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, myprofilFragment).commit();
-        }
+if (item.getItemId()==R.id.gold){
+    Intent i = new Intent(HomeActivity.this,GetMenOrWomenProduct.class);
+    code="4001";
+
+    i.putExtra("CategoryCode",code);
+
+    startActivity(i);
+}else  if (item.getItemId()==R.id.Diamond){
+    Intent i = new Intent(HomeActivity.this,DimaondMenWOmen.class);
+    code="4002";
+    i.putExtra("CategoryCode",code);
+    startActivity(i);
+}else  if (item.getItemId()==R.id.antique){
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4003";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","Antique");
+    startActivity(i);
+}else  if (item.getItemId()==R.id.polki){
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4004";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","Polki");
+    startActivity(i);
+}else  if (item.getItemId()==R.id.baby){
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4005";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","Baby");
+    startActivity(i);
+}else  if (item.getItemId()==R.id.goldcoinbars) {
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4006";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","GOLD COINS AND BAR");
+    startActivity(i);
+}
+else  if (item.getItemId()==R.id.gemstone) {
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4007";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","GEMSTONE");
+    startActivity(i);
+}
+else  if (item.getItemId()==R.id.lossediamond) {
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4008";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","LOOSE DIAMONDS");
+    startActivity(i);
+}
+else  if (item.getItemId()==R.id.jadau) {
+    Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
+    code="4009";
+    i.putExtra("CategoryCode",code);
+    i.putExtra("categoryname","Jadau");
+    startActivity(i);
+}
 
         // Handle Bottom Navigation items
         if (item.getItemId() == R.id.menuUserhomebottomnavigationHome) {
