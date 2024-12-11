@@ -42,7 +42,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
      TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
     String productId;
-    LinearLayout ivWhtasappp;
+    LinearLayout ivWhtasappp, llCall;
     SharedPreferences preferences;
     String occusion;
     TextView tvDis;
@@ -70,6 +70,15 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         ivWhtasappp=findViewById(R.id.llWhatsapp);
         tvDis=findViewById(R.id.tvdis);
         tabLayout = findViewById(R.id.tabLayout);
+        llCall = findViewById(R.id.llCall);
+
+
+        llCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialer("+9191982031621"); // Replace with your phone number
+            }
+        });
 
         tvDis.setText(occusion);
 
@@ -179,5 +188,11 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             // Dots for the indicator
         }).attach();
+    }
+
+    private void openDialer(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
     }
 }

@@ -186,36 +186,70 @@
                 app:layout_constraintStart_toEndOf="@id/tvDiscriptionlable" />
 
             <LinearLayout
-                android:id="@+id/llWhatsapp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDiscriptionlable"
+                app:layout_constraintStart_toEndOf="@id/llWhatsapp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/btnshape"
+                android:id="@+id/llWhatsapp"
+                >
+                <ImageView
+                    android:id="@+id/ivwhatappp"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel"
+                    android:src="@drawable/whhatapp"
+                    />
+
+                <!-- MakingCharge Value -->
+                <TextView
+                    android:id="@+id/tvwhatss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Click WhatsApp to ask!"
+                    android:textColor="#04BB0C"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/llWhatsapp"
+                    app:layout_constraintTop_toBottomOf="@id/tvMakingChargeValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:background="@drawable/btnshape"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:padding="@dimen/_5sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvDiscriptionlable">
+                app:layout_constraintBottom_toBottomOf="@id/llWhatsapp"
+
+                app:layout_constraintStart_toEndOf="@id/llWhatsapp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
 
                 <ImageView
-                    android:id="@+id/ivfullWhatsapp"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:src="@drawable/whhatapp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel" />
+                    android:id="@+id/ivCall"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:contentDescription="Call Icon"
+                    android:src="@drawable/ic_call" />
 
-                <!-- MakingCharge Value -->
                 <TextView
-                    android:id="@+id/tvwhatext"
+                    android:id="@+id/tvCall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Have questions? Click WhatsApp to ask!"
-                    android:textColor="#04BB0C"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@id/ivfullWhatsapp"
-                    app:layout_constraintTop_toBottomOf="@id/tvMakingChargeValue" />
+                    android:text="     Click to Call!              "
+                    android:textColor="#4CAF50"
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

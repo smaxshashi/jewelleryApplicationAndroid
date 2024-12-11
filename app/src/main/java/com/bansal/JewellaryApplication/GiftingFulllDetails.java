@@ -45,7 +45,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
     Button btnAddToWishlist;
     String productId="2",gifting;
     SharedPreferences preferences;
-    LinearLayout ivwhtasapp;
+    LinearLayout ivwhtasapp,llCall;
      TabLayout tabLayout;
 
     @Override
@@ -70,6 +70,13 @@ public class GiftingFulllDetails extends AppCompatActivity {
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
         ivwhtasapp=findViewById(R.id.llWhatsapp);
         tabLayout = findViewById(R.id.tabLayout);
+        llCall = findViewById(R.id.llCall);
+        llCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialer("+9191982031621"); // Replace with your phone number
+            }
+        });
 
         ivwhtasapp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,6 +194,10 @@ public class GiftingFulllDetails extends AppCompatActivity {
             // Dots for the indicator
         }).attach();
     }
-
+    private void openDialer(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
+    }
 
 }

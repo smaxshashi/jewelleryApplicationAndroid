@@ -41,7 +41,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
     Button btnAddToWishlist;
     String productId="2",soulmet;
 
-    LinearLayout ivWhatsapp;
+    LinearLayout ivWhatsapp, llCall;
     TextView tvdis;
     TabLayout tabLayout;
 
@@ -69,6 +69,13 @@ public class HimorherFullProductdettail extends AppCompatActivity {
         tvdis=findViewById(R.id.tvdis);
         tvdis.setText(soulmet);
         tabLayout = findViewById(R.id.tabLayout);
+        llCall = findViewById(R.id.llCall);
+        llCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialer("+9191982031621"); // Replace with your phone number
+            }
+        });
 
 
         ivWhatsapp.setOnClickListener(new View.OnClickListener() {
@@ -171,5 +178,11 @@ public class HimorherFullProductdettail extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             // Dots for the indicator
         }).attach();
+    }
+
+    private void openDialer(String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + phoneNumber));
+        startActivity(intent);
     }
     }
