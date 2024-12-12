@@ -129,6 +129,15 @@ else  if (item.getItemId()==R.id.jadau) {
     i.putExtra("categoryname","Jadau");
     startActivity(i);
 }
+        if (item.getItemId() == R.id.hoome) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, homeFragment).commit();
+        } else if (item.getItemId() == R.id.chat) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, chatFragment).commit();
+        } else if (item.getItemId() == R.id.wishlist) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, wishlistFragment).commit();
+        } else if (item.getItemId() == R.id.profil) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, myprofilFragment).commit();
+        }
 
         // Handle Bottom Navigation items
         if (item.getItemId() == R.id.menuUserhomebottomnavigationHome) {
