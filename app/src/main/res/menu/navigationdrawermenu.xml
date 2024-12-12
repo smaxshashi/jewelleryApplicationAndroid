@@ -10,9 +10,7 @@
     <item
         android:id="@+id/wishlist"
         android:title="Wishlist" />
-    <item
-        android:id="@+id/profil"
-        android:title="Profile" />
+
     <item
         android:id="@+id/gold"
         android:title="Gold"
@@ -48,4 +46,7 @@
         android:id="@+id/jadau"
         android:title="Jadau"
         />
+    <item
+        android:id="@+id/profil"
+        android:title="Profile" />
 </menu>

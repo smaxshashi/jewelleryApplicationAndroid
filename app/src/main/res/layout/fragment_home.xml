@@ -45,14 +45,14 @@
                 android:id="@+id/iv100return"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/exchg"
+                android:src="@drawable/ex00"
                 android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/ivinsurecce"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_26sdp"
-                android:src="@drawable/insurance20"
+                android:src="@drawable/iimg"
                 android:layout_weight="1" />
         </LinearLayout>
 

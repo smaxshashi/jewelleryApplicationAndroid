@@ -195,8 +195,8 @@
                 >
                 <ImageView
                     android:id="@+id/ivwhatappp"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel"
                     android:src="@drawable/whhatapp"
@@ -210,7 +210,7 @@
                     android:layout_marginStart="8dp"
                     android:text="Click WhatsApp to ask!"
                     android:textColor="#04BB0C"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     app:layout_constraintStart_toEndOf="@id/llWhatsapp"
                     app:layout_constraintTop_toBottomOf="@id/tvMakingChargeValue" />
             </LinearLayout>
@@ -232,8 +232,8 @@
 
             <ImageView
                 android:id="@+id/ivCall"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
                 android:contentDescription="Call Icon"
                 android:src="@drawable/ic_call" />
 
@@ -242,9 +242,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="     Click to Call!              "
+                android:text="Click to Call!"
                 android:textColor="#4CAF50"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

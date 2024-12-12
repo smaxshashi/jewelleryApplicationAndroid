@@ -219,10 +219,11 @@ ImageView ivWhatsapp;
         });
         tvemail.setOnClickListener(v -> {
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-            emailIntent.setData(Uri.parse("mailto:info@bansalandsonsjewellers")); // Ensure "mailto:" prefix is added
+            emailIntent.setData(Uri.parse("mailto:info@bansalandsonsjewellers.com")); // Add the "mailto:" prefix
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Inquiry about Jewelry");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Bansal and Sons Jewellers,\n\n");
             startActivity(Intent.createChooser(emailIntent, "Send Email"));
         });
-
 
 
 
