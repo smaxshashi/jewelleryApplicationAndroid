@@ -1178,7 +1178,7 @@
                 android:gravity="center"
                 >
                 <ImageView
-                    android:layout_width="80sp"
+                    android:layout_width="180sp"
                     android:layout_height="80sp"
                     android:src="@drawable/rate12"
                     />
