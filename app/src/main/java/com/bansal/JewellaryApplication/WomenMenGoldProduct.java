@@ -1,6 +1,8 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -30,6 +32,8 @@ public class WomenMenGoldProduct extends AppCompatActivity {
     List<POJOGETDATAMENGOLD> pojogetdatamengolds;
     ADPTERGOLDMENDATA adptergoldmendata;
     RecyclerView recyclerView;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,16 @@ public class WomenMenGoldProduct extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(WomenMenGoldProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(WomenMenGoldProduct.this, R.color.white));
 
+        preferences= PreferenceManager.getDefaultSharedPreferences(WomenMenGoldProduct.this);
+        editor=preferences.edit();
+
         // Get Intent data
         cc = getIntent().getStringExtra("categorycode");
         gc = getIntent().getStringExtra("gendercode");
+
+        editor.putString("Goldcategorycode",cc);
+        editor.putString("gendercodegold",gc);
+        editor.apply();
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recyclerView);

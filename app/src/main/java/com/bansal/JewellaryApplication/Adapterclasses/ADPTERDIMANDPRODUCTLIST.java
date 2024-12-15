@@ -54,6 +54,7 @@ public class ADPTERDIMANDPRODUCTLIST extends RecyclerView.Adapter<ADPTERDIMANDPR
             public void onClick(View v) {
                 Intent i = new Intent(context, DimontCategoryProduct.class);
                 i.putExtra("Categoryname",item.getName());
+                i.putExtra("subcategorycode",item.getCode());
                 context.startActivity(i);
             }
         });

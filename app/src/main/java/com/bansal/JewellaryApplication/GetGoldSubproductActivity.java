@@ -1,6 +1,8 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -19,9 +21,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGetHimORHerProduct;
+import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGiftingProduct;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterCategoryGoldSublist;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterGoldproductList;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGetSubProduct;
+import com.bansal.JewellaryApplication.pojoclasses.POJOGiftingproduct;
+import com.bansal.JewellaryApplication.pojoclasses.PojoGoldProduct;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,10 +38,10 @@ import java.util.List;
 public class GetGoldSubproductActivity extends AppCompatActivity {
     TextView tvname;
     RecyclerView rvList;
-    String strName;
-    List<POJOGetSubProduct> pojoGetSubProducts;
-    AdpterCategoryGoldSublist adpterCategoryGoldSublist;
-
+    String strName,strcategorycode,strsubcategorycode,strGendercode;
+   List<PojoGoldProduct> pojogetProduct;
+    AdpterGoldproductList adpterGiftingProduct;
+    SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,25 +51,35 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GetGoldSubproductActivity.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(GetGoldSubproductActivity.this, R.color.white));
 
-        strName=getIntent().getStringExtra("name");
+
+
+
+        strName=getIntent().getStringExtra("Subcategoryname");
+        strsubcategorycode=getIntent().getStringExtra("subcategorycode");
+        preferences= PreferenceManager.getDefaultSharedPreferences(GetGoldSubproductActivity.this);
+        strcategorycode=preferences.getString("Goldcategorycode","");
+        strGendercode=preferences.getString("gendercodegold","");
 
         tvname=findViewById(R.id.tvNameofproduct);
         rvList=findViewById(R.id.recyclerView);
 
         tvname.setText(strName);
 
-        rvList.setLayoutManager(new GridLayoutManager(GetGoldSubproductActivity.this,2,GridLayoutManager.VERTICAL,false));
-        pojoGetSubProducts=new ArrayList<>();
 
-        fetchdata();
+
+        rvList.setLayoutManager(new GridLayoutManager(GetGoldSubproductActivity.this,2,GridLayoutManager.VERTICAL,false));
+        pojogetProduct=new ArrayList<>();
+
+        getproduct();
+
+
         
 
 
     }
 
-    private void fetchdata() {
-        String url ="https://api.gehnamall.com/api/getProducts?gifting=Sister";
-
+    private void getproduct() {
+        String url ="https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&categoryCode="+strcategorycode+"&subCategoryCode="+strsubcategorycode+"&genderCode="+strGendercode;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -77,7 +93,7 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
 
-                                    int productId = productObj.getInt("productId");
+                                    String productId = productObj.getString("productId");
                                     String productName = productObj.getString("productName");
                                     String weight = productObj.getString("weight");
                                     String karat = productObj.getString("karat");
@@ -86,12 +102,13 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
                                     String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
 
                                     // Create a Product object and add it to the list
-                                    pojoGetSubProducts.add(new POJOGetSubProduct(productId,productName,weight,karat,imageUrl));
+                                    pojogetProduct.add(new PojoGoldProduct(productId,productName,weight,karat,imageUrl));
                                 }
 
                                 // Set the adapter
-                                adpterCategoryGoldSublist = new AdpterCategoryGoldSublist(pojoGetSubProducts,GetGoldSubproductActivity.this);
-                                rvList.setAdapter(adpterCategoryGoldSublist);
+
+                                adpterGiftingProduct = new AdpterGoldproductList(pojogetProduct,GetGoldSubproductActivity.this);
+                                rvList.setAdapter(adpterGiftingProduct);
                             }
                         } catch (Exception e) {
                             Log.e("Error", "Error parsing data: " + e.getMessage());
@@ -109,4 +126,6 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonObjectRequest);
 
     }
+
+
 }

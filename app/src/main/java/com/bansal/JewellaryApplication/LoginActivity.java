@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView tvgenerateotp,tvnewuser;
     AppCompatButton acbtnLogin,acbtnCancleLogin;
     ProgressDialog progressDialog;
-    private static final String API_URL = "https://api.gehnamall.com/auth/check-user?phoneNumber=";
+    private static final String API_URL = "https://api.gehnamall.com/auth/login?phoneNumber=";
     NetworkChangeListner networkChangeListner = new NetworkChangeListner();
 
 

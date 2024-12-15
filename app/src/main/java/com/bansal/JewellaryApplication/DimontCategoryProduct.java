@@ -1,6 +1,8 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -20,8 +22,12 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterCategoryGoldSublist;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterDiamonSubProduct;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterDiamondSubcategoryProduct;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterGoldproductList;
 import com.bansal.JewellaryApplication.pojoclasses.POJODiamondSubProduct;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGetSubProduct;
+import com.bansal.JewellaryApplication.pojoclasses.PojoDiamondProductSubcategorylist;
+import com.bansal.JewellaryApplication.pojoclasses.PojoGoldProduct;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -32,8 +38,10 @@ import java.util.List;
 public class DimontCategoryProduct extends AppCompatActivity {
     TextView tvname;
     RecyclerView rvlidt;
-    List<POJODiamondSubProduct> pojoDiamondSubProducts;
-    AdpterDiamonSubProduct adpterDiamonSubProduct;
+    String strName,strcategorycode,strsubcategorycode,strGendercode;
+    List<PojoDiamondProductSubcategorylist> pojoDiamondSubProducts;
+    AdpterDiamondSubcategoryProduct adpterDiamondSubcategoryProduct;
+    SharedPreferences preferences;
 
 
     @Override
@@ -43,22 +51,31 @@ public class DimontCategoryProduct extends AppCompatActivity {
         setContentView(R.layout.activity_dimont_category_product);
         getWindow().setStatusBarColor(ContextCompat.getColor(DimontCategoryProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(DimontCategoryProduct.this, R.color.white));
-        String name;
-        name=getIntent().getStringExtra("Categoryname");
 
-        tvname=findViewById(R.id.tvcategory);
-        rvlidt=findViewById(R.id.rcvlistdimamond);
-        tvname.setText(name);
-        rvlidt.setLayoutManager(new GridLayoutManager(DimontCategoryProduct.this,2,GridLayoutManager.VERTICAL,false));
-        pojoDiamondSubProducts=new ArrayList<>();
 
-        fetchdata();
+
+
+
+        strName=getIntent().getStringExtra("Categoryname");
+        strsubcategorycode=getIntent().getStringExtra("subcategorycode");
+        preferences= PreferenceManager.getDefaultSharedPreferences(DimontCategoryProduct.this);
+        strcategorycode=preferences.getString("Dimondtcategorycode","");
+        strGendercode=preferences.getString("diamondgendercode","");
+
+        tvname = findViewById(R.id.tvcategory);
+        rvlidt = findViewById(R.id.rcvlistdimamond);
+        tvname.setText(strName);
+        rvlidt.setLayoutManager(new GridLayoutManager(DimontCategoryProduct.this, 2, GridLayoutManager.VERTICAL, false));
+        pojoDiamondSubProducts = new ArrayList<>();
+        getproduct();
+
+
+
 
     }
 
-    private void fetchdata() {
-        String url ="https://api.gehnamall.com/api/getProducts?gifting=Sister";
-
+    private void getproduct() {
+        String url ="https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&categoryCode="+strcategorycode+"&subCategoryCode="+strsubcategorycode+"&genderCode="+strGendercode;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -72,7 +89,7 @@ public class DimontCategoryProduct extends AppCompatActivity {
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
 
-                                    int productId = productObj.getInt("productId");
+                                    String productId = productObj.getString("productId");
                                     String productName = productObj.getString("productName");
                                     String weight = productObj.getString("weight");
                                     String karat = productObj.getString("karat");
@@ -81,12 +98,13 @@ public class DimontCategoryProduct extends AppCompatActivity {
                                     String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
 
                                     // Create a Product object and add it to the list
-                                    pojoDiamondSubProducts.add(new POJODiamondSubProduct(productId,productName,weight,karat,imageUrl));
+                                    pojoDiamondSubProducts.add(new PojoDiamondProductSubcategorylist(productId,productName,weight,karat,imageUrl));
                                 }
 
                                 // Set the adapter
-                                adpterDiamonSubProduct = new AdpterDiamonSubProduct(pojoDiamondSubProducts,DimontCategoryProduct.this);
-                                rvlidt.setAdapter(adpterDiamonSubProduct);
+
+                                adpterDiamondSubcategoryProduct = new AdpterDiamondSubcategoryProduct(pojoDiamondSubProducts,DimontCategoryProduct.this);
+                                rvlidt.setAdapter(adpterDiamondSubcategoryProduct);
                             }
                         } catch (Exception e) {
                             Log.e("Error", "Error parsing data: " + e.getMessage());
@@ -102,5 +120,7 @@ public class DimontCategoryProduct extends AppCompatActivity {
 
         // Add the request to the Volley queue
         Volley.newRequestQueue(this).add(jsonObjectRequest);
+
     }
+
 }

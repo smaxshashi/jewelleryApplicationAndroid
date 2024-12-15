@@ -1,6 +1,9 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -36,6 +39,8 @@ public class DiamondProductLIst extends AppCompatActivity {
     List<POJODIMAONDPRODUCTLIST> pojodimaondproductlists;
    ADPTERDIMANDPRODUCTLIST adpterdimandproductlist;
     RecyclerView recyclerView;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +50,15 @@ public class DiamondProductLIst extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(DiamondProductLIst.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(DiamondProductLIst.this, R.color.white));
 
+        preferences= PreferenceManager.getDefaultSharedPreferences(DiamondProductLIst.this);
+        editor=preferences.edit();
+
         // Get Intent data
         cc = getIntent().getStringExtra("categorycode");
         gc = getIntent().getStringExtra("gendercode");
+        editor.putString("Dimondtcategorycode",cc);
+        editor.putString("diamondgendercode",gc);
+        editor.apply();
 
         // Initialize RecyclerView
         recyclerView = findViewById(R.id.recyclerView);

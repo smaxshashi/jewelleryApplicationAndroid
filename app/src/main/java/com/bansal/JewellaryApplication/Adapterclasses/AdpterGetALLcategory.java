@@ -65,10 +65,6 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
                 }
 
                 // Save the category code using SharedPreferences
-                SharedPreferences sharedPreferences = activity.getSharedPreferences("AppPreferences", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("CategoryCode", categoryCode);
-                editor.apply();
 
                 Intent intent;
                 // Use .equals() to compare strings

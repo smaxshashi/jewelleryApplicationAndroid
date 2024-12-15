@@ -51,7 +51,8 @@ public class ADPTERGOLDMENDATA extends RecyclerView.Adapter<ADPTERGOLDMENDATA.Vi
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, GetGoldSubproductActivity.class);
-                i.putExtra("name",item.getName());
+                i.putExtra("subcategorycode",item.getCode());
+                i.putExtra("Subcategoryname",item.getName());
                 context.startActivity(i);
             }
         });
