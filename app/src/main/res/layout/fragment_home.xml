@@ -32,13 +32,13 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
-                android:src="@drawable/image2"
+                android:src="@drawable/gia"
                 android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
-                android:src="@drawable/image3"
+                android:src="@drawable/igi"
                 android:layout_weight="1" />
 
             <ImageView
