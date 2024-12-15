@@ -28,6 +28,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".OtthercategoryListProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".GiftingFulllDetails"
             android:exported="false" />
         <activity

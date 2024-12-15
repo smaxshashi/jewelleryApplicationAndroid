@@ -1,7 +1,9 @@
 package com.bansal.JewellaryApplication;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +40,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.Preferences;
 
 public class GetCategoryWiseProduct extends AppCompatActivity {
 
@@ -49,6 +52,8 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
  ADPterSubcategory adPterSubcategory;
 
  ADPTERGETCATEGORYPRODUCT2 adptergetcategoryproduct2;
+ SharedPreferences preferences;
+ SharedPreferences.Editor editor;
     private static final String API_URL = "https://api.gehnamall.com/api/subCategories/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,9 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
         getWindow().setNavigationBarColor(ContextCompat.getColor(GetCategoryWiseProduct.this, R.color.white));
         categoryname=getIntent().getStringExtra("categoryname");
         categorycode=getIntent().getStringExtra("CategoryCode");
+        preferences= PreferenceManager.getDefaultSharedPreferences(GetCategoryWiseProduct.this);
+        editor=preferences.edit();
+        editor.putString("Othercategorycode",categoryname);editor.apply();
 
      rvList=findViewById(R.id.rvcategoryproduct);
      tvcategory=findViewById(R.id.tvcategory);

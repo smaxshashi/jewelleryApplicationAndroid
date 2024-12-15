@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.OtthercategoryListProductActivity;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJODIMAONDPRODUCTLIST;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOTHERSUBCATEGORY;
@@ -50,6 +51,10 @@ public class ADPterSubcategory extends RecyclerView.Adapter<ADPterSubcategory.Vi
         holder.cvcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent i = new Intent(context, OtthercategoryListProductActivity.class);
+                i.putExtra("subcategorycode",obj.getCode());
+                i.putExtra("subcategory",obj.getName());
+                context.startActivity(i);
 
             }
         });
