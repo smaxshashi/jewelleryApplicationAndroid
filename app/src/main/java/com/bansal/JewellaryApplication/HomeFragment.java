@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -47,6 +48,7 @@ import com.bansal.JewellaryApplication.Adapterclasses.AdpterGifting;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterOccusion;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterSoulmate;
 import com.bansal.JewellaryApplication.Adapterclasses.ImageSliderAdapter;
+import com.bansal.JewellaryApplication.Adapterclasses.Testinomilaadpter;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGetallcategory;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGifting;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOccusion;
@@ -97,8 +99,14 @@ ImageView ivinstgarm,ivfacebook,ivyoutube,ivprintrest;
 
 
     private ViewPager2 viewPager2;
+
     private ImageSliderAdapter adapter;
     private List<String> imageUrls = new ArrayList<>();
+    private ViewPager2 test;
+
+    private Testinomilaadpter testinomilaadpter;
+    List<String> testimonialImageUrls = new ArrayList<>();
+
 
     CardView cvShoplocation;
     Button btnrateus;
@@ -109,6 +117,9 @@ ImageView ivWhatsapp;
     ProgressBar pbloading;
     String gift;
     CardView cvsis,cvmom,cvbro,cvfrn,cvwife,cvhus;
+    private Handler autoScrollHandler;
+    private Runnable autoScrollRunnable;
+    private int currentPage = 0;
 //    private HorizontalScrollView horizontalScrollView;
 //    private LinearLayout linearLayoutItems;
 //    private TabLayout tabLayout;
@@ -137,10 +148,10 @@ ImageView ivWhatsapp;
         pojoGiftings = new ArrayList<>();
         pojoOccusions = new ArrayList<>();
         viewPager2 = view.findViewById(R.id.viewPager);
+        test = view.findViewById(R.id.viewPager2);
         rvoccusion=view.findViewById(R.id.rvHomefargemtshopbyoccusion);
        // rvsolematelist=view.findViewById(R.id.rvSolemetlist);
         pojoSokumates = new ArrayList<>();
-        ivtestinomialimage=view.findViewById(R.id.ivtestinomialimage);
         imageSlider = view.findViewById(R.id.imagesliderwelcome);
         ivsta=view.findViewById(R.id.isPromisiMgae);
         cvShoplocation=view.findViewById(R.id.cvShopLocation);
@@ -165,6 +176,9 @@ ImageView ivWhatsapp;
         cvvd1=view.findViewById(R.id.cvinfcall);
         cvvd2=view.findViewById(R.id.cvcall);
         tvemail=view.findViewById(R.id.tvemail);
+
+
+
 
 
 
@@ -548,13 +562,19 @@ ImageView ivWhatsapp;
 //        fetchGiftingData();
         fetchBannerImages();
         fetchoccuction();
-       // fetchsoulmate();
-        fetchTestimonial();
+       //fetchsoulmate();
+
+       // fetchdatatest();
+       fetchTestimonial();
+
 
 
         return view;
 
     }
+
+
+
 
 //    private void setupIndicator(RecyclerView recyclerView, TabLayout tabLayout, int itemCount) {
 //        // Create dots in TabLayout based on the item count
@@ -968,64 +988,82 @@ ImageView ivWhatsapp;
     }
 
 
+
+
+
     private void fetchTestimonial() {
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
         String url = "https://api.gehnamall.com/api/testimonial";
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                response -> {
+                    testimonialImageUrls.clear();
+
+                    for (int i = 0; i < response.length(); i++) {
                         try {
-                            // Assuming you are displaying only one image for now
-                            if (response.length() > 0) {
-                                JSONObject categoryObj = response.getJSONObject(0); // Fetch the first object
-                                String image = categoryObj.getString("imageUrl");
-
-                                // Load the image using Glide
-                                Glide.with(getActivity())
-                                        .load(image)
-                                        .error(R.drawable.noimage) // Error placeholder
-                                        .into(ivtestinomialimage); // Your ImageView
-                            }
+                            JSONObject bannerObject = response.getJSONObject(i);
+                            String imageUrl = bannerObject.getString("imageUrl");
+                            Log.d("API Response", "Image URL: " + imageUrl);
+                            testimonialImageUrls.add(imageUrl);
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            Log.e("JSON Error", "Error parsing JSON response", e);
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
 
-        // Add the request to the queue
-        requestQueue.add(jsonArrayRequest);
+                    Log.d("Testimonial Image URLs", "List size: " + testimonialImageUrls.size());
+                    if (!testimonialImageUrls.isEmpty()) {
+                        setupImageSlider2();
+                    } else {
+                        Log.w("API Warning", "No images found.");
+                    }
+                },
+                error -> {
+                    if (error.networkResponse != null && error.networkResponse.data != null) {
+                        String errorMessage = new String(error.networkResponse.data);
+                        Log.e("Volley Error", "Error fetching data: " + error.networkResponse.statusCode + " " + errorMessage);
+                    } else {
+                        Log.e("Volley Error", "Error: " + error.getMessage());
+                    }
+                }) {
+            @Override
+            public RetryPolicy getRetryPolicy() {
+                return new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            }
+        };
+
+        queue.add(jsonArrayRequest);
     }
 
+    private void setupImageSlider2() {
+        Testinomilaadpter adapter = new Testinomilaadpter(getActivity(), testimonialImageUrls);
+        test.setAdapter(adapter);
 
+        autoScrollViewPager2();
+    }
 
+    private void autoScrollViewPager2() {
+      Handler  handler = new Handler();
+        autoScrollRunnable = () -> {
+            if (test != null && testimonialImageUrls != null && !testimonialImageUrls.isEmpty()) {
+                int nextItem = test.getCurrentItem() + 1;
+                if (nextItem >= testimonialImageUrls.size()) {
+                    nextItem = 0;
+                }
+                test.setCurrentItem(nextItem, true);
+                handler.postDelayed(autoScrollRunnable, 6000);
+            }
+        };
+        handler.postDelayed(autoScrollRunnable, 6000);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Handler handler = new Handler();
+        if (handler != null) {
+            handler.removeCallbacks(autoScrollRunnable);
+        }
+    }
 
 
 
