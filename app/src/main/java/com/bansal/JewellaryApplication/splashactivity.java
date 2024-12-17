@@ -2,6 +2,7 @@ package com.bansal.JewellaryApplication;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -26,7 +27,6 @@ public class splashactivity extends AppCompatActivity {
 
         ivAppLogo = findViewById(R.id.ivSplashScreenAppLogo);
 
-
         animateSplashScreen();
 
 
@@ -34,8 +34,20 @@ public class splashactivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(splashactivity.this,LoginActivity.class);
-                startActivity(i);
+                SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+                if (isLoggedIn) {
+                    // User is already logged in, navigate to HomeActivity
+                    Intent intent = new Intent(splashactivity.this, HomeActivity.class);
+                    startActivity(intent);
+                } else {
+                    // User is not logged in, navigate to LoginActivity
+                    Intent intent = new Intent(splashactivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+
+                finish();
+
             }
         },6000);
 

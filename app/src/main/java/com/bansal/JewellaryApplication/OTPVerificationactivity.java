@@ -3,6 +3,7 @@ package com.bansal.JewellaryApplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class OTPVerificationactivity extends AppCompatActivity {
     EditText etotp1,etotp2,etotp3,etotp4;
     String otp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,7 @@ public class OTPVerificationactivity extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(OTPVerificationactivity.this, R.color.white));
 
         number=getIntent().getStringExtra("phoneNumber");
+
 
 
         tvnumber=findViewById(R.id.tvOTPverificationtMobileno);
@@ -92,6 +95,7 @@ public class OTPVerificationactivity extends AppCompatActivity {
                             editor.putString("userId", userId);
                             editor.putString("name", name);
                             editor.putString("mobileNumber", mobileNumber);
+                            editor.putBoolean("isLoggedIn",true);
                             editor.apply();
                             startActivity(intent);
                             finish();

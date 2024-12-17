@@ -38,6 +38,7 @@ public class OtthercategoryListProductActivity extends AppCompatActivity {
     List<PojoOtehrcategory> pojoOtehrcategoryList;
     AdpterOtehrCategory adpterOtehrCategory;
     SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
