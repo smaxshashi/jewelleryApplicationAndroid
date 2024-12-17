@@ -1061,16 +1061,15 @@
             android:layout_marginTop="8dp" />
 
         <com.denzcoskun.imageslider.ImageSlider
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        app:iss_auto_cycle="true"
-        android:id="@+id/imagesliderwelcome"
-        app:iss_delay="2000"
-        app:iss_period="2000"
-        app:iss_no_dots="true"
-            android:layout_margin="20sp"
-
-        />
+            android:id="@+id/imagesliderwelcome"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_margin="20dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="2000"
+            app:iss_period="2000"
+            app:iss_no_dots="true"
+            app:iss_image_scale_type="fitCenter" />
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
