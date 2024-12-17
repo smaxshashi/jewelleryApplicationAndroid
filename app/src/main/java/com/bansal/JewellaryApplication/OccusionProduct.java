@@ -18,10 +18,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bansal.JewellaryApplication.Adapterclasses.ADPTERGetHimORHerProduct;
 import com.bansal.JewellaryApplication.Adapterclasses.ADPTEROCCUSIONWISEPRODUCT;
+import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOCCUSIONWISEPRODUCT;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -71,23 +74,24 @@ public class OccusionProduct extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if (response.getInt("status") == 0) {
-                                // Parse the product data
+                            if (response.getInt("status") == 0) { // Check status = 0
                                 JSONArray productsArray = response.getJSONArray("products");
-                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
 
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
 
-                                    String productId = productObj.getString("productId");
-                                    String productName = productObj.getString("productName");
-                                    String weight = productObj.getString("weight");
-                                    String karat = productObj.getString("karat");
+                                    // Extract basic product details
+                                    String productId = productObj.optString("productId", "N/A");
+                                    String productName = productObj.optString("productName", "N/A");
+                                    String weight = productObj.optString("weight", "N/A");
+                                    String karat = productObj.optString("karat", "N/A");
+                                    String soilmet = productObj.getString("soulmate");
 
-                                    // Fetch the image URL (assuming the first image is related to the product)
-                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
+                                    // Extract imageUrls (assume first image for display)
+                                    JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
+                                    String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
-                                    // Create a Product object and add it to the list
+                                    // Add product to the list
                                     pojooccusionwiseproducts.add(new POJOOCCUSIONWISEPRODUCT(productId,productName,weight,karat,imageUrl));
                                 }
 
@@ -95,19 +99,19 @@ public class OccusionProduct extends AppCompatActivity {
                                 adpteroccusionwiseproduct = new ADPTEROCCUSIONWISEPRODUCT(pojooccusionwiseproducts,OccusionProduct.this);
                                 rvexplorlist.setAdapter(adpteroccusionwiseproduct);
                             }
-                        } catch (Exception e) {
-                            Log.e("Error", "Error parsing data: " + e.getMessage());
+                        } catch (JSONException e) {
+                            Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Error", "Error in Volley request: " + error.getMessage());
+                        Log.e("Volley_Error", "Error in Volley request: " + error.getMessage());
                     }
                 });
 
-        // Add the request to the Volley queue
+// Add the request to the Volley queue
         Volley.newRequestQueue(this).add(jsonObjectRequest);
 
     }

@@ -1,6 +1,8 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ import com.bansal.JewellaryApplication.pojoclasses.POJOGEThimHerProduct;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOCCUSIONWISEPRODUCT;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,6 +41,8 @@ public class HimORHerproduct extends AppCompatActivity {
     ADPTERGetHimORHerProduct adpterGetHimORHerProduct;
 
     private static final String API_URL = "https://api.gehnamall.com/api/getProducts?soulmate=";
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
 
     @Override
@@ -49,6 +54,10 @@ public class HimORHerproduct extends AppCompatActivity {
         getWindow().setNavigationBarColor(ContextCompat.getColor(HimORHerproduct.this, R.color.white));
         
         gender=getIntent().getStringExtra("gender");
+        preferences= PreferenceManager.getDefaultSharedPreferences(HimORHerproduct.this);
+        editor=preferences.edit();
+        editor.putString("Himorhercategory",gender);
+        editor.apply();
         
         tvhimorher=findViewById(R.id.tvHIMorHERprohimorher);
         rvProductList=findViewById(R.id.rvHimeorherproduct);
@@ -68,46 +77,47 @@ public class HimORHerproduct extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if (response.getInt("status") == 0) {
-                                // Parse the product data
+                            if (response.getInt("status") == 0) { // Check status = 0
                                 JSONArray productsArray = response.getJSONArray("products");
-                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
 
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
 
-                                    String productId = productObj.getString("productId");
-                                    String productName = productObj.getString("productName");
-                                    String weight = productObj.getString("weight");
-                                    String karat = productObj.getString("karat");
-                                    String soilmet=productObj.getString("soulmate");
+                                    // Extract basic product details
+                                    String productId = productObj.optString("productId", "N/A");
+                                    String productName = productObj.optString("productName", "N/A");
+                                    String weight = productObj.optString("weight", "N/A");
+                                    String karat = productObj.optString("karat", "N/A");
+                                    String soilmet = productObj.getString("soulmate");
 
-                                    // Fetch the image URL (assuming the first image is related to the product)
-                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
+                                    // Extract imageUrls (assume first image for display)
+                                    JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
+                                    String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
-                                    // Create a Product object and add it to the list
+                                    // Add product to the list
                                     pojogeThimHerProducts.add(new POJOGEThimHerProduct(productId,productName,weight,karat,imageUrl,soilmet));
+
                                 }
 
-                                // Set the adapter
+                                // Set up the RecyclerView adapter
                                 adpterGetHimORHerProduct = new ADPTERGetHimORHerProduct(pojogeThimHerProducts,HimORHerproduct.this);
                                 rvProductList.setAdapter(adpterGetHimORHerProduct);
                             }
-                        } catch (Exception e) {
-                            Log.e("Error", "Error parsing data: " + e.getMessage());
+                        } catch (JSONException e) {
+                            Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("Error", "Error in Volley request: " + error.getMessage());
+                        Log.e("Volley_Error", "Error in Volley request: " + error.getMessage());
                     }
                 });
 
-        // Add the request to the Volley queue
+// Add the request to the Volley queue
         Volley.newRequestQueue(this).add(jsonObjectRequest);
 
-
     }
+
 }

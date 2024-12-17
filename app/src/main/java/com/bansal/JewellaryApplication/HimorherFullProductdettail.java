@@ -1,7 +1,9 @@
 package com.bansal.JewellaryApplication;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +25,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterSliderSoulmet;
 import com.google.android.material.tabs.TabLayout;
@@ -39,11 +42,12 @@ public class HimorherFullProductdettail extends AppCompatActivity {
     ViewPager2 viewPager;
     TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
-    String productId="2",soulmet;
+    String productId,soulmet;
 
     LinearLayout ivWhatsapp, llCall;
     TextView tvdis;
     TabLayout tabLayout;
+    String UserId;
 
 
     @Override
@@ -57,6 +61,9 @@ public class HimorherFullProductdettail extends AppCompatActivity {
 
         soulmet=getIntent().getStringExtra("soulmet");
         productId=getIntent().getStringExtra("productId");
+        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        UserId=sharedPreferences.getString("userId","");
 
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
@@ -102,70 +109,127 @@ public class HimorherFullProductdettail extends AppCompatActivity {
                 }
             }
         });
+        btnAddToWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (isLoggedIn) {
+                    // Proceed with adding to cart
+                    addToCart(productId);
+                } else {
+                    // Show login required dialog
+                    showLoginAlertDialog();
+                }
+
+            }
+        });
+
 
 
 
         fetchProductDetails(productId);
     }
+    private void addToCart(String productId) {
+
+        String url = "https://gehnamall.com/api/cart/add?userId=" + UserId + "&productId=" + productId;
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        String status = jsonResponse.optString("status");
+                        String message = jsonResponse.optString("message");
+
+                        if ("0".equals(status)) {
+                            // Successfully added to cart
+                            Toast.makeText(this, "Product added to cart successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Failure case
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Response Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    Toast.makeText(this, "Network Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    error.printStackTrace();
+                });
+
+        requestQueue.add(stringRequest);
+    }
+
+
 
     private void fetchProductDetails(String productId) {
         String url = "https://api.gehnamall.com/api/getProducts?soulmate="+soulmet+"&wholeseller=test";
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         Log.d("API_RESPONSE", response.toString());
 
-                        JSONArray productsArray = response.getJSONArray("products");
-                        JSONArray imageUrlArray = response.getJSONArray("imageUrl");
+                        // Check if 'products' array exists
+                        if (!response.has("products")) {
+                            Toast.makeText(this, "Invalid response format", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
+                        JSONArray productsArray = response.getJSONArray("products");
+                        JSONArray imageUrlArray = null;
+
+                        // Assuming there's a single product in the response
                         JSONObject selectedProduct = null;
 
-                        // Debug all product IDs
                         for (int i = 0; i < productsArray.length(); i++) {
                             JSONObject product = productsArray.getJSONObject(i);
-                            Log.d("PRODUCT_DEBUG", "Product ID: " + product.getInt("productId"));
-                            if (product.getInt("productId") == Integer.parseInt(productId)) {
+                            if (product.optInt("productId", -1) == Integer.parseInt(productId)) {
                                 selectedProduct = product;
+                                imageUrlArray = selectedProduct.getJSONArray("imageUrls");
                                 break;
                             }
                         }
 
-                        // Debug all image URLs
-                        List<String> imageUrls = new ArrayList<>();
-                        for (int i = 0; i < imageUrlArray.length(); i++) {
-                            JSONObject image = imageUrlArray.getJSONObject(i);
-                            Log.d("IMAGE_DEBUG", "Image Product ID: " + image.getInt("productId") + ", URL: " + image.getString("imageUrl"));
-                            if (image.getInt("productId") == Integer.parseInt(productId)) {
-                                imageUrls.add(image.getString("imageUrl"));
-                            }
-                        }
-
                         if (selectedProduct != null) {
-                            String productName = selectedProduct.getString("productName");
-                            String Karat = selectedProduct.getString("karat");
-                            String weight = selectedProduct.getString("weight");
-                            String MakingCharge = selectedProduct.getString("wastage");
+                            String productName = selectedProduct.optString("productName", "N/A");
+                            String karat = selectedProduct.optString("karat", "N/A");
+                            String weight = selectedProduct.optString("weight", "N/A");
+                            String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
 
                             tvProductName.setText(productName);
-                            tvKaratValue.setText(Karat);
+                            tvKaratValue.setText(karat);
                             tvWeightValue.setText(weight);
-                            tvwashtage.setText(MakingCharge);
+                            tvwashtage.setText(makingCharge);
+
+                            Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
+                                    ", Karat: " + karat);
+
+                            // Extract and set image URLs
+                            List<String> imageUrls = new ArrayList<>();
+                            for (int i = 0; i < imageUrlArray.length(); i++) {
+                                String imageUrl = imageUrlArray.getString(i);
+                                imageUrls.add(imageUrl);
+                            }
 
                             setupImageSlider(imageUrls);
                         } else {
-                            Toast.makeText(HimorherFullProductdettail.this, "Product not found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(HimorherFullProductdettail.this, "Error parsing product data", Toast.LENGTH_SHORT).show();
+                        Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
+                        Toast.makeText(this, "Error parsing product data", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
                     Log.e("API_ERROR", error.toString());
-                    Toast.makeText(HimorherFullProductdettail.this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
                 }
         );
 
@@ -185,4 +249,18 @@ public class HimorherFullProductdettail extends AppCompatActivity {
         intent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(intent);
     }
+
+    private void showLoginAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Login Required")
+                .setMessage("You need to log in to add items to your cart.")
+                .setPositiveButton("Log In", (dialog, which) -> {
+                    // Navigate to LoginActivity
+                    Intent intent = new Intent(HimorherFullProductdettail.this, LoginActivity.class);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
     }
+
+}
