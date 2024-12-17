@@ -133,7 +133,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
     }
     private void addToCart(String productId) {
 
-        String url = "https://gehnamall.com/api/cart/add?userId=" + UserId + "&productId=" + productId;
+        String url = "https://api.gehnamall.com/api/addToCart?userId=" + UserId + "&productId=" + productId;
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 

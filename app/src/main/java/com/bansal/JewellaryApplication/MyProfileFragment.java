@@ -1,10 +1,12 @@
 package com.bansal.JewellaryApplication;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -29,15 +32,28 @@ public class MyProfileFragment extends Fragment {
     private ImageView imageView;
     private static final int PICK_IMAGE_REQUEST = 1;
 
+    TextView tvusername,tvnumber;
+    String name,number;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_myprofil, container, false);
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+       name=sharedPreferences.getString("name","Unknow");
+       number=sharedPreferences.getString("mobileNumber","Unknow");
+
         // Initialize the views
         imageView = view.findViewById(R.id.profileImage);
         imageButton = view.findViewById(R.id.editPhotoButton);
+        tvnumber=view.findViewById(R.id.tvmobileNumber);
+        tvusername=view.findViewById(R.id.tvuserName);
+
+        tvusername.setText(name);
+        tvnumber.setText(number);
 
         // Set click listener for the ImageButton
         imageButton.setOnClickListener(new View.OnClickListener() {

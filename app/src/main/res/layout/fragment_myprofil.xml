@@ -59,7 +59,7 @@
 
             <!-- User Name -->
             <TextView
-                android:id="@+id/userName"
+                android:id="@+id/tvuserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Parth Dahapute"
@@ -73,13 +73,13 @@
 
             <!-- Mobile Number -->
             <TextView
-                android:id="@+id/mobileNumber"
+                android:id="@+id/tvmobileNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+9322766871"
                 android:textSize="18sp"
                 android:textColor="#666666"
-                app:layout_constraintTop_toBottomOf="@id/userName"
+                app:layout_constraintTop_toBottomOf="@id/tvuserName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="4dp"
