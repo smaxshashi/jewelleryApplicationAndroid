@@ -1,5 +1,6 @@
 package com.bansal.JewellaryApplication;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterSliderSoulmet;
 import com.bansal.JewellaryApplication.Adapterclasses.GiftingSlider;
@@ -37,16 +39,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GiftingFulllDetails extends AppCompatActivity {
     ViewPager2 viewPager;
     TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
-    String productId="2",gifting;
+    String productId,gifting;
     SharedPreferences preferences;
     LinearLayout ivwhtasapp,llCall;
      TabLayout tabLayout;
+     String productid,UserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +62,17 @@ public class GiftingFulllDetails extends AppCompatActivity {
 
 //        productId=getIntent().getStringExtra("ProductId");
         preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        gifting=preferences.getString("Gifting","");
+       // gifting=preferences.getString("Gifting","");
         SharedPreferences preferences2=getSharedPreferences("Gifting", Context.MODE_PRIVATE);
+        productId=preferences2.getString("ProductId","");
+
+        SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        UserId=sharedPreferences.getString("userId","");
+
+        SharedPreferences preferences1=PreferenceManager.getDefaultSharedPreferences(GiftingFulllDetails.this);
+        gifting=preferences1.getString("Giftingcategory","");
+
        // productId=preferences2.getString("ProductId","");
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
@@ -106,9 +119,61 @@ public class GiftingFulllDetails extends AppCompatActivity {
 
         Fetchdata(productId);
 
+        btnAddToWishlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                if (isLoggedIn) {
+                    // Proceed with adding to cart
+                    addToCart(productId);
+                } else {
+                    // Show login required dialog
+                    showLoginAlertDialog();
+                }
+
+            }
+        });
+
 
 
     }
+
+    private void addToCart(String productId) {
+
+            String url = "https://gehnamall.com/api/cart/add?userId=" + UserId + "&productId=" + productId;
+
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                    response -> {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            String status = jsonResponse.optString("status");
+                            String message = jsonResponse.optString("message");
+
+                            if ("0".equals(status)) {
+                                // Successfully added to cart
+                                Toast.makeText(this, "Product added to cart successfully", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Failure case
+                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(this, "Response Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    },
+                    error -> {
+                        Toast.makeText(this, "Network Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        error.printStackTrace();
+                    });
+
+            requestQueue.add(stringRequest);
+        }
+
+
 
     private void Fetchdata(String productId) {
         String url = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting=birthday";
@@ -120,31 +185,23 @@ public class GiftingFulllDetails extends AppCompatActivity {
                         Log.d("API_RESPONSE", response.toString());
 
                         // Check if 'products' array exists
-                        if (!response.has("products") || !response.has("imageUrl")) {
+                        if (!response.has("products")) {
                             Toast.makeText(this, "Invalid response format", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         JSONArray productsArray = response.getJSONArray("products");
-                        JSONArray imageUrlArray = response.getJSONArray("imageUrl");
+                        JSONArray imageUrlArray = null;
 
+                        // Assuming there's a single product in the response
                         JSONObject selectedProduct = null;
 
-                        // Find product by ID
                         for (int i = 0; i < productsArray.length(); i++) {
                             JSONObject product = productsArray.getJSONObject(i);
                             if (product.optInt("productId", -1) == Integer.parseInt(productId)) {
                                 selectedProduct = product;
+                                imageUrlArray = selectedProduct.getJSONArray("imageUrls");
                                 break;
-                            }
-                        }
-
-                        // Get image URLs for the product
-                        List<String> imageUrls = new ArrayList<>();
-                        for (int i = 0; i < imageUrlArray.length(); i++) {
-                            JSONObject image = imageUrlArray.getJSONObject(i);
-                            if (image.optInt("productId", -1) == Integer.parseInt(productId)) {
-                                imageUrls.add(image.optString("imageUrl", ""));
                             }
                         }
 
@@ -154,26 +211,29 @@ public class GiftingFulllDetails extends AppCompatActivity {
                             String weight = selectedProduct.optString("weight", "N/A");
                             String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
 
-
-
-
                             tvProductName.setText(productName);
                             tvKaratValue.setText(karat);
                             tvWeightValue.setText(weight);
                             tvwashtage.setText(makingCharge);
 
                             Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
-                                    ", Karat: " + karat );
+                                    ", Karat: " + karat);
+
+                            // Extract and set image URLs
+                            List<String> imageUrls = new ArrayList<>();
+                            for (int i = 0; i < imageUrlArray.length(); i++) {
+                                String imageUrl = imageUrlArray.getString(i);
+                                imageUrls.add(imageUrl);
+                            }
 
                             setupImageSlider(imageUrls);
-                        } else {Log.e("JSON_ERROR", "Products array not found");
-
+                        } else {
                             Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Log.e("JSON_ERROR", "Missing key: MakingCharge", e);
+                        Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
                         Toast.makeText(this, "Error parsing product data", Toast.LENGTH_SHORT).show();
                     }
                 },
@@ -185,8 +245,9 @@ public class GiftingFulllDetails extends AppCompatActivity {
 
         requestQueue.add(jsonObjectRequest);
     }
+
     private void setupImageSlider(List<String> imageUrls) {
-        GiftingSlider adapter=new GiftingSlider(GiftingFulllDetails.this,imageUrls);
+        GiftingSlider adapter = new GiftingSlider(GiftingFulllDetails.this, imageUrls);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(adapter);
 
@@ -194,10 +255,27 @@ public class GiftingFulllDetails extends AppCompatActivity {
             // Dots for the indicator
         }).attach();
     }
+
+
+
     private void openDialer(String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
         startActivity(intent);
     }
+
+    private void showLoginAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Login Required")
+                .setMessage("You need to log in to add items to your cart.")
+                .setPositiveButton("Log In", (dialog, which) -> {
+                    // Navigate to LoginActivity
+                    Intent intent = new Intent(GiftingFulllDetails.this, LoginActivity.class);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                .show();
+    }
+
 
 }
