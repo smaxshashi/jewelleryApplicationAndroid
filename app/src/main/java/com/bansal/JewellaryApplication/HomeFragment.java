@@ -502,12 +502,12 @@ ImageView ivWhatsapp;
 
 
         ArrayList<SlideModel> slideModelArrayList = new ArrayList<>();
-        slideModelArrayList.add(new SlideModel(R.drawable.img1,ScaleTypes.FIT));
-        slideModelArrayList.add(new SlideModel(R.drawable.img3, ScaleTypes.FIT));
-        slideModelArrayList.add(new SlideModel(R.drawable.img5, ScaleTypes.FIT));
-        slideModelArrayList.add(new SlideModel(R.drawable.img6, ScaleTypes.FIT));
-        slideModelArrayList.add(new SlideModel(R.drawable.img7, ScaleTypes.FIT));
-        slideModelArrayList.add(new SlideModel(R.drawable.img8, ScaleTypes.FIT));
+        slideModelArrayList.add(new SlideModel(R.drawable.img1,ScaleTypes.CENTER_INSIDE));
+        slideModelArrayList.add(new SlideModel(R.drawable.img3, ScaleTypes.CENTER_INSIDE));
+        slideModelArrayList.add(new SlideModel(R.drawable.img5, ScaleTypes.CENTER_INSIDE));
+        slideModelArrayList.add(new SlideModel(R.drawable.img6, ScaleTypes.CENTER_INSIDE));
+        slideModelArrayList.add(new SlideModel(R.drawable.img7, ScaleTypes.CENTER_INSIDE));
+        slideModelArrayList.add(new SlideModel(R.drawable.img8, ScaleTypes.CENTER_INSIDE));
         imageSlider.setImageList(slideModelArrayList);
         imageSlider.setSlideAnimation(AnimationTypes.ZOOM_IN);
 
@@ -768,6 +768,7 @@ ImageView ivWhatsapp;
                     @Override
                     public void onResponse(JSONArray response) {
                         try {
+                            Log.d("API_RESPONSE", response.toString());
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject categoryObj = response.getJSONObject(i);
                                 String categoryName = categoryObj.getString("categoryName");
