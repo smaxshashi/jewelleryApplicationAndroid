@@ -57,6 +57,26 @@ public class MyProfileFragment extends Fragment {
         tvnumber=view.findViewById(R.id.tvmobileNumber);
         tvusername=view.findViewById(R.id.tvuserName);
         addemail = view.findViewById(R.id.addEmailButton);
+        ImageView logoutIcon = view.findViewById(R.id.logoutIcon);
+
+        logoutIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Clear login state from SharedPreferences
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("isLoggedIn", false); // Mark user as logged out
+                editor.apply();
+
+                // Navigate back to LoginActivity
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+                startActivity(intent);
+
+                // Optionally, show a toast message
+                Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         addemail.setOnClickListener(new View.OnClickListener() {
             @Override
