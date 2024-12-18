@@ -18,6 +18,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class MyProfileFragment extends Fragment {
 
     TextView tvusername,tvnumber;
     String name,number;
+    Button addemail;
+    String UserId;
 
 
     @Override
@@ -45,12 +48,25 @@ public class MyProfileFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
        name=sharedPreferences.getString("name","Unknow");
        number=sharedPreferences.getString("mobileNumber","Unknow");
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        UserId=sharedPreferences.getString("userId","");
 
         // Initialize the views
         imageView = view.findViewById(R.id.profileImage);
         imageButton = view.findViewById(R.id.editPhotoButton);
         tvnumber=view.findViewById(R.id.tvmobileNumber);
         tvusername=view.findViewById(R.id.tvuserName);
+        addemail = view.findViewById(R.id.addEmailButton);
+
+        addemail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(),AddUserDetails.class);
+                i.putExtra("userid",UserId);
+                startActivity(i);
+
+            }
+        });
 
         tvusername.setText(name);
         tvnumber.setText(number);

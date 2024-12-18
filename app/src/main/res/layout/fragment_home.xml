@@ -794,7 +794,7 @@
 
         <com.denzcoskun.imageslider.ImageSlider
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
             app:iss_auto_cycle="true"
             android:id="@+id/isPromisiMgae"
             app:iss_delay="2000"
