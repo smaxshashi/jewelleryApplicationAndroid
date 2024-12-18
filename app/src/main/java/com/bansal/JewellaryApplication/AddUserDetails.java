@@ -67,7 +67,7 @@ public class AddUserDetails extends AppCompatActivity {
     }
 
     private void updateUserDetails(String email, String gender) {
-        String url = "https://api.gehnamall.com/auth/update/9";
+        String url = "https://api.gehnamall.com/auth/update/"+UserId;
 
         JSONObject userDetails = new JSONObject();
         try {
