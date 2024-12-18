@@ -67,11 +67,10 @@ public class AddUserDetails extends AppCompatActivity {
     }
 
     private void updateUserDetails(String email, String gender) {
-        String url = "https://api.gehnamall.com/auth/updateUserDetail";
+        String url = "https://api.gehnamall.com/auth/update/9";
 
         JSONObject userDetails = new JSONObject();
         try {
-            userDetails.put("userId", 9); // Replace with dynamic userId if needed
             userDetails.put("email", email);
             userDetails.put("gender", gender);
         } catch (JSONException e) {
@@ -80,7 +79,7 @@ public class AddUserDetails extends AppCompatActivity {
         }
 
         JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET,
+                Request.Method.PUT,
                 url,
                 userDetails,
                 response -> {
