@@ -31,13 +31,13 @@
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:src="@drawable/gia"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/pai"
                 android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:src="@drawable/igi"
                 android:layout_weight="1" />
 
@@ -51,8 +51,9 @@
             <ImageView
                 android:id="@+id/ivinsurecce"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/paic"
+                android:layout_height="match_parent"
+                android:src="@drawable/ss"
+
                 android:layout_weight="1" />
         </LinearLayout>
 
