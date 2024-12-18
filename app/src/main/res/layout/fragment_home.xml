@@ -52,7 +52,7 @@
                 android:id="@+id/ivinsurecce"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/insurance20"
+                android:src="@drawable/paic"
                 android:layout_weight="1" />
         </LinearLayout>
 
