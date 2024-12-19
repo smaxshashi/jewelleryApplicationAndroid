@@ -28,6 +28,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".OtherFulldetails"
+            android:exported="false" />
+        <activity
+            android:name=".DiamondProductfull"
+            android:exported="false" />
+        <activity
+            android:name=".GoldFulldetails"
+            android:exported="false" />
+        <activity
             android:name=".AddUserDetails"
             android:exported="false" />
         <activity

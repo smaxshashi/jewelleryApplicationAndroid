@@ -60,6 +60,12 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
         strcategorycode=preferences.getString("Goldcategorycode","");
         strGendercode=preferences.getString("gendercodegold","");
 
+        SharedPreferences preferences1= PreferenceManager.getDefaultSharedPreferences(GetGoldSubproductActivity.this);
+        SharedPreferences.Editor editor=preferences1.edit();
+        editor.putString("subcategorycode",strsubcategorycode);
+        editor.apply();
+
+
         tvname=findViewById(R.id.tvNameofproduct);
         rvList=findViewById(R.id.recyclerView);
 
@@ -85,10 +91,8 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if (response.getInt("status") == 0) {
-                                // Parse the product data
+                            if (response.getInt("status") == 0) { // Check status = 0
                                 JSONArray productsArray = response.getJSONArray("products");
-                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
 
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
@@ -99,7 +103,8 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
                                     String karat = productObj.getString("karat");
 
                                     // Fetch the image URL (assuming the first image is related to the product)
-                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
+                                    JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
+                                    String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Create a Product object and add it to the list
                                     pojogetProduct.add(new PojoGoldProduct(productId,productName,weight,karat,imageUrl));
@@ -111,7 +116,7 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
                                 rvList.setAdapter(adpterGiftingProduct);
                             }
                         } catch (Exception e) {
-                            Log.e("Error", "Error parsing data: " + e.getMessage());
+                            Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
                         }
                     }
                 },

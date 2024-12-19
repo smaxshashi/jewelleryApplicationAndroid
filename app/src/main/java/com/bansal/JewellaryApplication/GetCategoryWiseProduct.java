@@ -67,7 +67,7 @@ public class GetCategoryWiseProduct extends AppCompatActivity {
         categorycode=getIntent().getStringExtra("CategoryCode");
         preferences= PreferenceManager.getDefaultSharedPreferences(GetCategoryWiseProduct.this);
         editor=preferences.edit();
-        editor.putString("Othercategorycode",categoryname);editor.apply();
+        editor.putString("Othercategorycode",categorycode);editor.apply();
 
      rvList=findViewById(R.id.rvcategoryproduct);
      tvcategory=findViewById(R.id.tvcategory);

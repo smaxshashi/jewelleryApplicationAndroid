@@ -37,6 +37,8 @@ public class MyProfileFragment extends Fragment {
     String name,number;
     Button addemail;
     String UserId;
+    TextView tvlogin;
+
 
 
     @Override
@@ -57,26 +59,11 @@ public class MyProfileFragment extends Fragment {
         tvnumber=view.findViewById(R.id.tvmobileNumber);
         tvusername=view.findViewById(R.id.tvuserName);
         addemail = view.findViewById(R.id.addEmailButton);
-        ImageView logoutIcon = view.findViewById(R.id.logoutIcon);
+        tvlogin = view.findViewById(R.id.tvlogin);
 
-        logoutIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Clear login state from SharedPreferences
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isLoggedIn", false); // Mark user as logged out
-                editor.apply();
 
-                // Navigate back to LoginActivity
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
-                startActivity(intent);
 
-                // Optionally, show a toast message
-                Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         addemail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +90,46 @@ public class MyProfileFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Retrieve UserId from SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+        String UserId = sharedPreferences.getString("UserId", null);
+
+        if (UserId == null) {
+            // User is not logged in - Show "Login" option
+            String log = "Login";
+            tvlogin.setText(log);
+            tvlogin.invalidate();
+            tvlogin.setOnClickListener(v -> {
+                // Navigate to LoginActivity
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+            });
+        } else {
+            // User is logged in - Show "Logout" option
+            String log2 = "Logout";
+            tvlogin.setText(log2);
+            tvlogin.invalidate();
+            tvlogin.setOnClickListener(v -> {
+                // Clear login state from SharedPreferences
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.remove("UserId"); // Remove UserId to log out
+                editor.apply();
+
+                // Navigate back to LoginActivity
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
+                startActivity(intent);
+
+                // Optionally, show a toast message
+                Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
+            });
+        }
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

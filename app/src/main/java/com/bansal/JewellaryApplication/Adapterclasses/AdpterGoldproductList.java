@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.GoldFulldetails;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGiftingproduct;
 import com.bansal.JewellaryApplication.pojoclasses.PojoGoldProduct;
@@ -49,6 +51,15 @@ public class AdpterGoldproductList extends RecyclerView.Adapter<AdpterGoldproduc
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels
                 .into(holder.ivimage);
+
+        holder.cvcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity, GoldFulldetails.class);
+                i.putExtra("productid",obj.getProductId());
+                activity.startActivity(i);
+            }
+        });
 
     }
 

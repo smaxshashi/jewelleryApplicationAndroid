@@ -51,6 +51,14 @@ public class OtthercategoryListProductActivity extends AppCompatActivity {
         strsubcategorycode=getIntent().getStringExtra("subcategorycode");
         preferences= PreferenceManager.getDefaultSharedPreferences(OtthercategoryListProductActivity.this);
         strcategorycode=preferences.getString("Othercategorycode","");
+        SharedPreferences preferences1=PreferenceManager.getDefaultSharedPreferences(OtthercategoryListProductActivity.this);
+        SharedPreferences.Editor editor1=preferences1.edit();
+        editor1.putString("othersubcode",strsubcategorycode);
+        editor1.apply();
+
+
+
+
         tvname=findViewById(R.id.tvcategory);
         rvlidt=findViewById(R.id.rcvlistdimamond);
         tvname.setText(strName);
@@ -68,10 +76,9 @@ public class OtthercategoryListProductActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if (response.getInt("status") == 0) {
-                                // Parse the product data
-                                JSONArray productsArray = response.getJSONArray("products");
-                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
+
+                                if (response.getInt("status") == 0) { // Check status = 0
+                                    JSONArray productsArray = response.getJSONArray("products");
 
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
@@ -82,7 +89,8 @@ public class OtthercategoryListProductActivity extends AppCompatActivity {
                                     String karat = productObj.getString("karat");
 
                                     // Fetch the image URL (assuming the first image is related to the product)
-                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
+                                    JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
+                                    String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Create a Product object and add it to the list
                                     pojoOtehrcategoryList.add(new PojoOtehrcategory(productId,productName,weight,karat,imageUrl));

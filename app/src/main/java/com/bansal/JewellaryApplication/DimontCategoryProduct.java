@@ -62,6 +62,13 @@ public class DimontCategoryProduct extends AppCompatActivity {
         strcategorycode=preferences.getString("Dimondtcategorycode","");
         strGendercode=preferences.getString("diamondgendercode","");
 
+        SharedPreferences preferences1= PreferenceManager.getDefaultSharedPreferences(DimontCategoryProduct.this);
+        SharedPreferences.Editor editor=preferences1.edit();
+        editor.putString("subcategorycodedi",strsubcategorycode);
+        editor.apply();
+
+
+
         tvname = findViewById(R.id.tvcategory);
         rvlidt = findViewById(R.id.rcvlistdimamond);
         tvname.setText(strName);
@@ -81,10 +88,8 @@ public class DimontCategoryProduct extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            if (response.getInt("status") == 0) {
-                                // Parse the product data
+                            if (response.getInt("status") == 0) { // Check status = 0
                                 JSONArray productsArray = response.getJSONArray("products");
-                                JSONArray imageUrlsArray = response.getJSONArray("imageUrl");
 
                                 for (int i = 0; i < productsArray.length(); i++) {
                                     JSONObject productObj = productsArray.getJSONObject(i);
@@ -95,7 +100,9 @@ public class DimontCategoryProduct extends AppCompatActivity {
                                     String karat = productObj.getString("karat");
 
                                     // Fetch the image URL (assuming the first image is related to the product)
-                                    String imageUrl = imageUrlsArray.getJSONObject(i).getString("imageUrl");
+                                    // Fetch the image URL (assuming the first image is related to the product)
+                                    JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
+                                    String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Create a Product object and add it to the list
                                     pojoDiamondSubProducts.add(new PojoDiamondProductSubcategorylist(productId,productName,weight,karat,imageUrl));
