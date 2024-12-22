@@ -32,6 +32,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.HttpCookie;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -45,7 +46,7 @@ import okhttp3.Response;
 public class MyProfileFragment extends Fragment {
 
     private ImageButton imageButton;
-    private ImageView imageView;
+    private CircleImageView imageView;
     private static final int PICK_IMAGE_REQUEST = 1;
 
     TextView tvusername,tvnumber;
@@ -71,10 +72,10 @@ public class MyProfileFragment extends Fragment {
         // Initialize the views
         imageView = view.findViewById(R.id.profileImage);
         imageButton = view.findViewById(R.id.editPhotoButton);
-        tvnumber=view.findViewById(R.id.tvmobileNumber);
+
         tvusername=view.findViewById(R.id.tvuserName);
         addemail = view.findViewById(R.id.addEmailButton);
-        tvlogin = view.findViewById(R.id.tvlogin);
+
 
 
 
@@ -91,7 +92,7 @@ public class MyProfileFragment extends Fragment {
         });
 
         tvusername.setText(name);
-        tvnumber.setText(number);
+
 
         // Set click listener for the ImageButton
         // Assuming you store login state and UserId in SharedPreferences
@@ -108,41 +109,6 @@ public class MyProfileFragment extends Fragment {
 
 
         return view;
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // Retrieve UserId from SharedPreferences
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
-        String UserId = sharedPreferences.getString("UserId", null);
-
-        if (UserId == null) {
-            // User is not logged in - Show "Login" option
-            tvlogin.setText("Login");
-            tvlogin.setOnClickListener(v -> {
-                // Navigate to LoginActivity
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            });
-        } else {
-            // User is logged in - Show "Logout" option
-            tvlogin.setText("Logout");
-            tvlogin.setOnClickListener(v -> {
-                // Clear login state from SharedPreferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("UserId"); // Remove UserId to log out
-                editor.apply();
-
-                // Navigate back to LoginActivity
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
-                startActivity(intent);
-
-                // Show a toast message
-                Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
-            });
-        }
     }
 
 

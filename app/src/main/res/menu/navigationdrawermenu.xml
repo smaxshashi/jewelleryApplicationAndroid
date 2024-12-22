@@ -49,4 +49,13 @@
     <item
         android:id="@+id/profil"
         android:title="Profile" />
+    <item
+        android:id="@+id/Market"
+        android:title="Market Price" />
+    <item
+        android:id="@+id/Login"
+        android:title="Log in" />
+    <item
+        android:id="@+id/Logout"
+        android:title="Log out" />
 </menu>
