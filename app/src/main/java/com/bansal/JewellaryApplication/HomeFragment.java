@@ -47,6 +47,7 @@ import com.bansal.JewellaryApplication.Adapterclasses.AdpterGetPrice;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterGifting;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterOccusion;
 import com.bansal.JewellaryApplication.Adapterclasses.AdpterSoulmate;
+import com.bansal.JewellaryApplication.Adapterclasses.AdpterUpperList;
 import com.bansal.JewellaryApplication.Adapterclasses.ImageSliderAdapter;
 import com.bansal.JewellaryApplication.Adapterclasses.Testinomilaadpter;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGetallcategory;
@@ -54,6 +55,7 @@ import com.bansal.JewellaryApplication.pojoclasses.POJOGifting;
 import com.bansal.JewellaryApplication.pojoclasses.POJOOccusion;
 import com.bansal.JewellaryApplication.pojoclasses.POJOSokumate;
 import com.bansal.JewellaryApplication.pojoclasses.POJOgetPrice;
+import com.bansal.JewellaryApplication.pojoclasses.PojoUpperClass;
 import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.AnimationTypes;
@@ -88,6 +90,8 @@ Button btnreadmore;
 Button btnreadmore2;
 CardView cvvd1,cvvd2;
 TextView tvemail;
+List<PojoUpperClass> pojoUpperClasses;
+AdpterUpperList adpterUpperList;
 
 
 
@@ -120,6 +124,7 @@ ImageView ivWhatsapp;
     private Handler autoScrollHandler;
     private Runnable autoScrollRunnable;
     private int currentPage = 0;
+    RecyclerView rvupperlist;
 //    private HorizontalScrollView horizontalScrollView;
 //    private LinearLayout linearLayoutItems;
 //    private TabLayout tabLayout;
@@ -138,7 +143,6 @@ ImageView ivWhatsapp;
 
 
         rvlistofcategory = view.findViewById(R.id.rvUserHomeFragmentcategorylist);
-        rvMakrketpricelist = view.findViewById(R.id.rvUserHomeFragmentListmaket);
         ivinstgarm = view.findViewById(R.id.ivinstgarm);
         ivfacebook = view.findViewById(R.id.ivFacebookk);
         ivyoutube = view.findViewById(R.id.ivYoutube);
@@ -176,6 +180,15 @@ ImageView ivWhatsapp;
         cvvd1=view.findViewById(R.id.cvinfcall);
         cvvd2=view.findViewById(R.id.cvcall);
         tvemail=view.findViewById(R.id.tvemail);
+        rvupperlist = view.findViewById(R.id.rvHomefargemtUpperList);
+        if (rvupperlist == null) {
+            Log.e("Debug", "RecyclerView is null after findViewById. Check the layout file.");
+        } else {
+            Log.d("Debug", "RecyclerView initialized successfully.");
+            rvupperlist.setLayoutManager(new GridLayoutManager(requireActivity(), 1, GridLayoutManager.HORIZONTAL, false));
+        }
+
+        pojoUpperClasses=new ArrayList<>();
 
 
 
@@ -533,7 +546,7 @@ ImageView ivWhatsapp;
 
 
 
-        rvMakrketpricelist.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
+       // rvMakrketpricelist.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
 
 
        // rvsolematelist.setLayoutManager(new GridLayoutManager(getActivity(), 2));
@@ -558,7 +571,7 @@ ImageView ivWhatsapp;
 
 
         GetCategoryofProduct();
-        fetchPrices();
+        //fetchPrices();
 //        fetchGiftingData();
         fetchBannerImages();
         fetchoccuction();
@@ -566,6 +579,7 @@ ImageView ivWhatsapp;
 
        // fetchdatatest();
        fetchTestimonial();
+       fetUpperlist();
 
 
 
@@ -573,7 +587,47 @@ ImageView ivWhatsapp;
 
     }
 
+    private void fetUpperlist() {
+        String url = "https://api.gehnamall.com/api/lightCategories?wholeseller=bansal";
 
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            Log.d("API_RESPONSE", response.toString());
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject categoryObj = response.getJSONObject(i);
+                                String categoryName = categoryObj.getString("categoryName");
+                                String categoryCode = categoryObj.getString("categoryCode");
+                                String categoryImage = categoryObj.getString("exfield1");
+
+
+
+                                pojoUpperClasses.add(new PojoUpperClass(categoryName,categoryCode,categoryImage));
+                            }
+                            adpterUpperList = new AdpterUpperList(pojoUpperClasses,getActivity());
+                            rvupperlist.setAdapter(adpterUpperList);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        requestQueue.add(jsonArrayRequest);
+    }
 
 
 //    private void setupIndicator(RecyclerView recyclerView, TabLayout tabLayout, int itemCount) {
@@ -683,69 +737,69 @@ ImageView ivWhatsapp;
 //        requestQueue.add(jsonArrayRequest);
 //    }
 
-    private void fetchPrices() {
-        String url = "https://api.gehnamall.com/api/prices";
-        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity()); // Initialize the request queue
-
-        pojOgetPrices = new ArrayList<>(); // Initialize the list that will hold your data
-
-        // Set the RecyclerView LayoutManager to a vertical LinearLayoutManager
-        rvMakrketpricelist.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
-
-        // JSON Array request to fetch the data
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET, // HTTP GET request
-                url, // The URL of your API
-                null, // No request body
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            pojOgetPrices.clear(); // Clear previous data to prevent duplication
-
-                            // Iterate through each element in the response array
-                            for (int i = 0; i < response.length(); i++) {
-                                JSONObject categoryObj = response.getJSONObject(i); // Get each element as a JSONObject
-                                Log.d("API categoryObj", categoryObj.toString()); // Log the object for debugging
-
-                                // Get the metalName
-                                String strMetalName = categoryObj.optString("metalName", "Unknown");
-
-                                // Get the price values by using the keys "18K:", "14K:", "24K:", "22K:"
-                                String str18K = categoryObj.optString("18K:", "0.0");
-                                String str14K = categoryObj.optString("14K:", "0.0");
-                                String str24K = categoryObj.optString("24K:", "0.0");
-                                String str22K = categoryObj.optString("22K:", "0.0");
-
-                                // Add the parsed data into your list
-                                pojOgetPrices.add(new POJOgetPrice(str24K, str22K, str18K, str14K, strMetalName));
-                            }
-
-                            // Update the adapter with the new list of prices
-
-                                adpterGetPrice = new AdpterGetPrice(pojOgetPrices, requireActivity());
-                                rvMakrketpricelist.setAdapter(adpterGetPrice); // Set the RecyclerView adapter
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(requireActivity(), "Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(requireActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-        );
-
-        // Add the request to the queue
-        requestQueue.add(jsonArrayRequest);
-    }
-
-
+//    private void fetchPrices() {
+//        String url = "https://api.gehnamall.com/api/prices";
+//        RequestQueue requestQueue = Volley.newRequestQueue(requireActivity()); // Initialize the request queue
+//
+//        pojOgetPrices = new ArrayList<>(); // Initialize the list that will hold your data
+//
+//        // Set the RecyclerView LayoutManager to a vertical LinearLayoutManager
+//        rvMakrketpricelist.setLayoutManager(new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false));
+//
+//        // JSON Array request to fetch the data
+//        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+//                Request.Method.GET, // HTTP GET request
+//                url, // The URL of your API
+//                null, // No request body
+//                new Response.Listener<JSONArray>() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//                        try {
+//                            pojOgetPrices.clear(); // Clear previous data to prevent duplication
+//
+//                            // Iterate through each element in the response array
+//                            for (int i = 0; i < response.length(); i++) {
+//                                JSONObject categoryObj = response.getJSONObject(i); // Get each element as a JSONObject
+//                                Log.d("API categoryObj", categoryObj.toString()); // Log the object for debugging
+//
+//                                // Get the metalName
+//                                String strMetalName = categoryObj.optString("metalName", "Unknown");
+//
+//                                // Get the price values by using the keys "18K:", "14K:", "24K:", "22K:"
+//                                String str18K = categoryObj.optString("18K:", "0.0");
+//                                String str14K = categoryObj.optString("14K:", "0.0");
+//                                String str24K = categoryObj.optString("24K:", "0.0");
+//                                String str22K = categoryObj.optString("22K:", "0.0");
+//
+//                                // Add the parsed data into your list
+//                                pojOgetPrices.add(new POJOgetPrice(str24K, str22K, str18K, str14K, strMetalName));
+//                            }
+//
+//                            // Update the adapter with the new list of prices
+//
+//                                adpterGetPrice = new AdpterGetPrice(pojOgetPrices, requireActivity());
+//                                rvMakrketpricelist.setAdapter(adpterGetPrice); // Set the RecyclerView adapter
+//
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            Toast.makeText(requireActivity(), "Parsing Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(requireActivity(), "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        );
+//
+//        // Add the request to the queue
+//        requestQueue.add(jsonArrayRequest);
+//    }
+//
+//
 
 
 
@@ -1053,6 +1107,8 @@ ImageView ivWhatsapp;
                 test.setCurrentItem(nextItem, true);
                 handler.postDelayed(autoScrollRunnable, 6000);
             }
+
+
         };
         handler.postDelayed(autoScrollRunnable, 6000);
     }
@@ -1065,6 +1121,32 @@ ImageView ivWhatsapp;
             handler.removeCallbacks(autoScrollRunnable);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

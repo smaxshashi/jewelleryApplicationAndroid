@@ -11,9 +11,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +28,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.HttpCookie;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MyProfileFragment extends Fragment {
@@ -79,14 +94,18 @@ public class MyProfileFragment extends Fragment {
         tvnumber.setText(number);
 
         // Set click listener for the ImageButton
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open gallery
+        // Assuming you store login state and UserId in SharedPreferences
+        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+        String UserId = sharedPreferences.getString("UserId", null);
+
+        imageButton.setOnClickListener(v -> {
+
+                // Open gallery if logged in
                 Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, PICK_IMAGE_REQUEST);
-            }
+
         });
+
 
         return view;
     }
@@ -100,9 +119,7 @@ public class MyProfileFragment extends Fragment {
 
         if (UserId == null) {
             // User is not logged in - Show "Login" option
-            String log = "Login";
-            tvlogin.setText(log);
-            tvlogin.invalidate();
+            tvlogin.setText("Login");
             tvlogin.setOnClickListener(v -> {
                 // Navigate to LoginActivity
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
@@ -110,9 +127,7 @@ public class MyProfileFragment extends Fragment {
             });
         } else {
             // User is logged in - Show "Logout" option
-            String log2 = "Logout";
-            tvlogin.setText(log2);
-            tvlogin.invalidate();
+            tvlogin.setText("Logout");
             tvlogin.setOnClickListener(v -> {
                 // Clear login state from SharedPreferences
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -124,7 +139,7 @@ public class MyProfileFragment extends Fragment {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear back stack
                 startActivity(intent);
 
-                // Optionally, show a toast message
+                // Show a toast message
                 Toast.makeText(getActivity(), "Logged out successfully", Toast.LENGTH_SHORT).show();
             });
         }
@@ -132,20 +147,72 @@ public class MyProfileFragment extends Fragment {
 
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
-            Uri selectedImageUri = data.getData();
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
 
             try {
-                // Display the selected image in the ImageView
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), selectedImageUri);
-                imageView.setImageBitmap(bitmap);
+                // Load selected image as Bitmap
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+
+                // Upload image to server
+                uploadImage(bitmap, UserId);
+
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(), "Failed to load image", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Failed to load image", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+    private void uploadImage(Bitmap bitmap, String userId) {
+        // Convert bitmap to byte array
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
+        byte[] imageData = byteArrayOutputStream.toByteArray();
+
+        // Create multipart request body
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("images", "profile_image.webp",
+                        RequestBody.create(imageData, MediaType.parse("image/webp")))
+                .build();
+
+        // Make POST request
+        new OkHttpClient().newCall(new Request.Builder()
+                .url("https://api.gehnamall.com/auth/update/" + userId)
+                .post(requestBody)
+                .build()
+        ).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                // Run on UI thread
+
+                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+                    // Create a Handler to post the Toast on UI thread
+                    new Handler(Looper.getMainLooper()).post(() ->
+                            Toast.makeText(getActivity(), "Profile image updated successfully", Toast.LENGTH_SHORT).show()
+                    );
+                } else {
+                    // Create a Handler to post the Toast on UI thread
+                    new Handler(Looper.getMainLooper()).post(() ->
+                            Toast.makeText(getActivity(), "Failed to update profile image", Toast.LENGTH_SHORT).show()
+                    );
+                }
+            }
+
+        });
+    }
+
+
+    // Helper method to show toast on UI thread
+
+
 }
