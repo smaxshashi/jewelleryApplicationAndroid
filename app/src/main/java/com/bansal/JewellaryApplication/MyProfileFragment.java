@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.HttpCookie;
 
+import cz.msebera.android.httpclient.Header;
 import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -54,6 +68,7 @@ public class MyProfileFragment extends Fragment {
     Button addemail;
     String UserId;
     TextView tvlogin;
+    TextView tvemailvalue,tvbirthdate,tvspouceaddress,tvaddress,tvpincode;
 
 
 
@@ -75,7 +90,7 @@ public class MyProfileFragment extends Fragment {
 
         tvusername=view.findViewById(R.id.tvuserName);
         addemail = view.findViewById(R.id.addEmailButton);
-
+        tvemailvalue=view.findViewById(R.id.emailValue);
 
 
 
@@ -90,8 +105,6 @@ public class MyProfileFragment extends Fragment {
 
             }
         });
-
-        tvusername.setText(name);
 
 
         // Set click listener for the ImageButton
@@ -108,8 +121,73 @@ public class MyProfileFragment extends Fragment {
         });
 
 
+        fetchData(UserId);
+
+
         return view;
     }
+
+    private void fetchData(String userId) {
+        // Create the AsyncHttpClient instance
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        // Construct the URL dynamically using userId
+        String url = "https://api.gehnamall.com/auth/getUserDetail/1";
+
+        RequestHandle requestHandle = client.get(url, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                try {
+                    String name = response.optString("name", "Default Name");
+                    String email = response.optString("email","@.com");
+                    String imageUrl = response.optString("image", "");
+
+                    if (tvusername != null) {
+                        tvusername.setText(name);
+                    }
+
+                    if (tvemailvalue != null) {
+                        tvemailvalue.setText(email);
+                    }
+
+                    if (imageView != null) {
+                        Glide.with(requireContext())
+                                .load(imageUrl)
+                                .error(R.drawable.baseline_person_24)
+                                .into(imageView);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Error parsing response", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                super.onFailure(statusCode, headers, throwable, errorResponse);
+                try {
+                    // Log error details
+                    Log.e("API_ERROR", "Status Code: " + statusCode, throwable);
+
+                    // Handle error response
+                    String errorMessage = (errorResponse != null)
+                            ? errorResponse.optString("message", "Unknown error occurred.")
+                            : "Unexpected error occurred.";
+
+                    Toast.makeText(getActivity(), "Error: " + errorMessage, Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Error handling failure response.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+    }
+
+
+
 
 
     @Override

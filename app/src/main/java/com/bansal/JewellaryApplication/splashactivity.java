@@ -3,10 +3,13 @@ package com.bansal.JewellaryApplication;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +27,15 @@ public class splashactivity extends AppCompatActivity {
         setContentView(R.layout.splashactivity);
         getWindow().setNavigationBarColor(ContextCompat.getColor(splashactivity.this,R.color.white));
         getWindow().setStatusBarColor(ContextCompat.getColor(splashactivity.this,R.color.white));
+        VideoView videoView = findViewById(R.id.splashVideoView);
+        Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.bansal);
+        videoView.setVideoURI(videoUri);
+        videoView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        videoView.start();
 
-        ivAppLogo = findViewById(R.id.ivSplashScreenAppLogo);
 
-        animateSplashScreen();
+
+
 
 
         Handler handler = new Handler();
@@ -53,21 +61,6 @@ public class splashactivity extends AppCompatActivity {
 
 
 
-
-    }
-    private void animateSplashScreen() {
-        // Logo Zoom-in animation
-        ObjectAnimator logoAnimator = ObjectAnimator.ofFloat(ivAppLogo, "scaleX", 0f, 1f);
-        logoAnimator.setDuration(1000);
-        logoAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        logoAnimator.start();
-
-        ObjectAnimator logoAnimatorY = ObjectAnimator.ofFloat(ivAppLogo, "scaleY", 0f, 1f);
-        logoAnimatorY.setDuration(1000);
-        logoAnimatorY.setInterpolator(new AccelerateDecelerateInterpolator());
-        logoAnimatorY.start();
-
-        // App Name Fade-in animation
 
     }
 }
