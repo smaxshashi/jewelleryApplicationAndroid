@@ -25,40 +25,40 @@ public class splashactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashactivity);
-        getWindow().setNavigationBarColor(ContextCompat.getColor(splashactivity.this,R.color.white));
-        getWindow().setStatusBarColor(ContextCompat.getColor(splashactivity.this,R.color.white));
+
         VideoView videoView = findViewById(R.id.splashVideoView);
+
+        // Set the URI for the video
         Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.bansal);
         videoView.setVideoURI(videoUri);
-        videoView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
-        videoView.start();
 
+        // Make the video full screen
+        videoView.setZOrderOnTop(true); // Ensures the video starts without a black screen
+        videoView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+        // Set up a listener to start the video as soon as it is prepared
+        videoView.setOnPreparedListener(mp -> {
+            mp.setLooping(false); // Optional: Set to true if you want the video to loop
+            videoView.start();    // Start video playback once ready
+        });
 
-
-
-
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
-                boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-                if (isLoggedIn) {
-                    // User is already logged in, navigate to HomeActivity
-                    Intent intent = new Intent(splashactivity.this, HomeActivity.class);
-                    startActivity(intent);
-                } else {
-                    // User is not logged in, navigate to LoginActivity
-                    Intent intent = new Intent(splashactivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-
-                finish();
-
+        // Navigate to the next activity after the video duration
+        new Handler().postDelayed(() -> {
+            SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+            boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+            Intent intent;
+            if (isLoggedIn) {
+                intent = new Intent(splashactivity.this, HomeActivity.class);
+            } else {
+                intent = new Intent(splashactivity.this, LoginActivity.class);
             }
-        },6000);
-
+            startActivity(intent);
+            finish();
+        }, 6000); // Adjust delay based on the video duration
 
 
 
