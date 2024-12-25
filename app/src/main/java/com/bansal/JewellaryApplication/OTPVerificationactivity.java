@@ -92,13 +92,12 @@ public class OTPVerificationactivity extends AppCompatActivity {
                             // Save user details in SharedPreferences
                             SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
                             SharedPreferences.Editor editor = sharedPreferences.edit();
-                            editor.putString("userId", userId);
-                            editor.putString("name", name);
-                            editor.putString("mobileNumber", mobileNumber);
-                            editor.putBoolean("isLoggedIn",true);
+                            editor.putString("userId", userId);  // Check userId is not null
+                            editor.putString("name", name);      // Check name is not null
+                            editor.putString("mobileNumber", mobileNumber); // Check mobileNumber is not null
+                            editor.putBoolean("isLoggedIn", true);
                             editor.apply();
-                            startActivity(intent);
-                            finish();
+
                         } else {
                             Toast.makeText(OTPVerificationactivity.this, "Invalid OTP. Please try again.", Toast.LENGTH_SHORT).show();
                         }

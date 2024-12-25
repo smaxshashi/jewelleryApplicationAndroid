@@ -57,15 +57,13 @@
         android:paddingBottom="8dp"/>
 
     <EditText
-        android:id="@+id/etBirthDate"
+        android:id="@+id/editTextDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="DD-MM-YYYY"
-        android:inputType="date"
-        android:focusable="false"
+        android:hint="Select Date"
+        android:inputType="none"
         android:background="@drawable/marronbackline"
         android:padding="12dp"/>
-
     <!-- Address Section -->
     <TextView
         android:id="@+id/tvAddressLabel"
@@ -82,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your address"
-        android:inputType="textPostalAddress"
+        android:inputType="text"
         android:background="@drawable/marronbackline"
         android:padding="12dp"/>
 

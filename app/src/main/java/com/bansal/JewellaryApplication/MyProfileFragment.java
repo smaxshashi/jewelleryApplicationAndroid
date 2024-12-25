@@ -71,6 +71,7 @@ public class MyProfileFragment extends Fragment {
     TextView tvlogin;
     TextView tvemailvalue,tvbirthdate,tvspouceaddress,tvaddress,tvpincode;
     Button logout;
+    String ImpuserId;
 
 
 
@@ -81,11 +82,12 @@ public class MyProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_myprofil, container, false);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
-       name=sharedPreferences.getString("name","Unknow");
-       number=sharedPreferences.getString("mobileNumber","Unknow");
+        String name = sharedPreferences.getString("name", "Unknown");
+        String number = sharedPreferences.getString("mobileNumber", "Unknown");
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
-        UserId=sharedPreferences.getString("userId","");
+         ImpuserId = sharedPreferences.getString("userId", "");
 
+        Log.d("SharedPreferences", "name: " + name + ", number: " + number + ", userId: " + ImpuserId + ", isLoggedIn: " + isLoggedIn);
         // Initialize the views
         imageView = view.findViewById(R.id.profileImage);
         imageButton = view.findViewById(R.id.editPhotoButton);
@@ -131,7 +133,7 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),AddUserDetails.class);
-                i.putExtra("userid",UserId);
+                i.putExtra("userid",ImpuserId);
                 startActivity(i);
 
             }
@@ -152,7 +154,7 @@ public class MyProfileFragment extends Fragment {
         });
 
 
-        fetchData(UserId);
+        fetchData(ImpuserId);
 
 
         return view;
@@ -165,7 +167,7 @@ public class MyProfileFragment extends Fragment {
 
 
         // Construct the URL dynamically using userId
-        String url = "https://api.gehnamall.com/auth/getUserDetail/"+userId;
+        String url = "https://api.gehnamall.com/auth/getUserDetail/"+ImpuserId;
 
         RequestHandle requestHandle = client.get(url, new JsonHttpResponseHandler() {
             @Override
@@ -257,46 +259,42 @@ String spodate= response.optString("spouseDob","null");
     }
 
     private void uploadImage(Bitmap bitmap, String userId) {
-        // Convert bitmap to byte array
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.WEBP, 80, byteArrayOutputStream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         byte[] imageData = byteArrayOutputStream.toByteArray();
 
-        // Create multipart request body
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("images", "profile_image.webp",
-                        RequestBody.create(imageData, MediaType.parse("image/webp")))
+                .addFormDataPart("profileImage", "profile_image.jpg",
+                        RequestBody.create(imageData, MediaType.parse("image/jpeg")))
                 .build();
 
-        // Make POST request
-        new OkHttpClient().newCall(new Request.Builder()
-                .url("https://api.gehnamall.com/auth/update/" + userId)
-                .post(requestBody)
-                .build()
-        ).enqueue(new Callback() {
+        String url = "https://api.gehnamall.com/auth/updateUser/"+ImpuserId;
+
+        Request request = new Request.Builder()
+                .url(url)
+                .put(requestBody)
+                .build();
+
+        new OkHttpClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                // Run on UI thread
-
-                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show();
+                Log.e("UploadError", "Failed to upload image", e);
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(getActivity(), "Failed to upload image", Toast.LENGTH_SHORT).show()
+                );
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    // Create a Handler to post the Toast on UI thread
-                    new Handler(Looper.getMainLooper()).post(() ->
-                            Toast.makeText(getActivity(), "Profile image updated successfully", Toast.LENGTH_SHORT).show()
-                    );
-                } else {
-                    // Create a Handler to post the Toast on UI thread
-                    new Handler(Looper.getMainLooper()).post(() ->
-                            Toast.makeText(getActivity(), "Failed to update profile image", Toast.LENGTH_SHORT).show()
-                    );
-                }
+            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                String message = response.isSuccessful() ?
+                        "Profile image updated successfully" :
+                        "Failed to update profile image: " + response.code();
+                Log.d("UploadResponse", "Response: " + response.code() + " - " + response.message());
+                new Handler(Looper.getMainLooper()).post(() ->
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show()
+                );
             }
-
         });
     }
 
