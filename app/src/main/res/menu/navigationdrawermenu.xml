@@ -51,7 +51,7 @@
         android:title="Profile" />
     <item
         android:id="@+id/Market"
-        android:title="Market Price" />
+        android:title="Gold Rate" />
     <item
         android:id="@+id/Login"
         android:title="Log in" />

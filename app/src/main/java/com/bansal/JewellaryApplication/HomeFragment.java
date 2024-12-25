@@ -1,16 +1,20 @@
 package com.bansal.JewellaryApplication;
 
 import static android.app.PendingIntent.getActivity;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -583,8 +587,45 @@ ImageView ivWhatsapp;
 
 
 
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
+            boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+            Intent intent;
+            if (isLoggedIn) {
+
+            } else {
+                showLoginAlertDialog();
+
+            }
+
+
+
+
+
         return view;
 
+    }
+
+    private void showLoginAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Login Required");
+        builder.setMessage("Login to unlock more features.");
+
+        // Login button
+        builder.setPositiveButton("Login", (dialog, which) -> {
+            // Navigate to the login activity
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        });
+
+        // Cancel button
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            // Dismiss the dialog
+            dialog.dismiss();
+        });
+
+        builder.setCancelable(true); // Allow dismissing the dialog by tapping outside
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private void fetUpperlist() {
