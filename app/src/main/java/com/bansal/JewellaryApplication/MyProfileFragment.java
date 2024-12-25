@@ -44,6 +44,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.HttpCookie;
+import java.util.Optional;
 
 import cz.msebera.android.httpclient.Header;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -176,6 +177,8 @@ public class MyProfileFragment extends Fragment {
                     String imageUrl = response.optString("image", "null");
                     String address = response.optString("address", "null");
 String dateofbirth = response.optString("dateOfBirth", "null");
+String pincode=response.optString("pincode","000000");
+String spodate= response.optString("spouseDob","null");
 
                     if (tvusername != null) {
                         tvusername.setText(name);
@@ -187,6 +190,10 @@ String dateofbirth = response.optString("dateOfBirth", "null");
                         tvaddress.setText(address);
                     } if (tvbirthdate != null) {
                         tvbirthdate.setText(dateofbirth);
+                    } if (tvspouceaddress != null) {
+                        tvspouceaddress.setText(spodate);
+                    } if (tvpincode != null) {
+                        tvpincode.setText(pincode);
                     }
 
                     if (imageView != null) {

@@ -1399,7 +1399,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1167/1094 lijt wali building,Ground floor,3rd floor,4th floor,Kuchu Mahajani chandni chowk Delhi-110006"
+                    android:text="1167/1094, lift wali building, Ground floor, 3rd floor, 4th floor, Kucha Mahajani, Chandni Chowk, Delhi-110006"
                     android:textSize="14sp"
                     android:layout_marginBottom="16dp" />
 
