@@ -107,7 +107,7 @@ if (item.getItemId()==R.id.gold){
     startActivity(i);
 }else  if (item.getItemId()==R.id.goldcoinbars) {
     Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
-    code="4006";
+    code="4007";
     i.putExtra("CategoryCode",code);
     i.putExtra("categoryname","GOLD COINS AND BAR");
     startActivity(i);
@@ -128,36 +128,18 @@ else  if (item.getItemId()==R.id.lossediamond) {
 }
 else  if (item.getItemId()==R.id.jadau) {
     Intent i = new Intent(HomeActivity.this,GetCategoryWiseProduct.class);
-    code="4009";
+    code="4004";
     i.putExtra("CategoryCode",code);
     i.putExtra("categoryname","Jadau");
     startActivity(i);
 }
-else if(item.getItemId()==R.id.Login){
-    Intent i = new Intent(HomeActivity.this,LoginActivity.class);
-    startActivity(i);
-
-}else if(item.getItemId()==R.id.Market){
+else if(item.getItemId()==R.id.Market){
     Intent i = new Intent(HomeActivity.this,MarketPrice.class);
     startActivity(i);
 
-}else if(item.getItemId()==R.id.Logout){
-    new AlertDialog.Builder(HomeActivity.this)
-            .setTitle("Logout")
-            .setMessage("Are you sure you want to log out?")
-            .setPositiveButton("Yes", (dialog, which) -> {
-                // Clear SharedPreferences
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();  // Save changes
-
-                // Navigate to LoginActivity
-                Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
-                startActivity(intent);
-                finish(); // Finish current activity
-            })
-            .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
-            .show();
+}else if(item.getItemId()==R.id.aboutus){
+    Intent i = new Intent(HomeActivity.this,AboutUs.class);
+    startActivity(i);
 
 }
         if (item.getItemId() == R.id.hoome) {
@@ -200,4 +182,6 @@ else if(item.getItemId()==R.id.Login){
             finishAffinity(); // Close all activities and exit the app
         }
     }
+
+
 }

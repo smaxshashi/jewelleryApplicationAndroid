@@ -69,6 +69,7 @@ public class MyProfileFragment extends Fragment {
     String UserId;
     TextView tvlogin;
     TextView tvemailvalue,tvbirthdate,tvspouceaddress,tvaddress,tvpincode;
+    Button logout;
 
 
 
@@ -91,6 +92,35 @@ public class MyProfileFragment extends Fragment {
         tvusername=view.findViewById(R.id.tvuserName);
         addemail = view.findViewById(R.id.addEmailButton);
         tvemailvalue=view.findViewById(R.id.emailValue);
+        tvbirthdate=view.findViewById(R.id.dobValue);
+        tvpincode=view.findViewById(R.id.pincodeValue);
+        tvspouceaddress=view.findViewById(R.id.spouseDobValue);
+        tvaddress=view.findViewById(R.id.addressValue);
+        logout=view.findViewById(R.id.logoutButton);
+
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Logout")
+                        .setMessage("Are you sure you want to log out?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            // Clear SharedPreferences
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.clear();
+                            editor.apply();  // Save changes
+
+                            // Navigate to LoginActivity
+                            Intent intent = new Intent(getActivity(),LoginActivity.class);
+                            startActivity(intent);
+                            // Finish current activity
+                        })
+                        .setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss())
+                        .show();
+
+            }
+        });
 
 
 
@@ -130,9 +160,11 @@ public class MyProfileFragment extends Fragment {
     private void fetchData(String userId) {
         // Create the AsyncHttpClient instance
         AsyncHttpClient client = new AsyncHttpClient();
+        Log.d("FETCH_DATA", "Fetching data for userId: " + userId);
+
 
         // Construct the URL dynamically using userId
-        String url = "https://api.gehnamall.com/auth/getUserDetail/1";
+        String url = "https://api.gehnamall.com/auth/getUserDetail/"+userId;
 
         RequestHandle requestHandle = client.get(url, new JsonHttpResponseHandler() {
             @Override
@@ -141,7 +173,9 @@ public class MyProfileFragment extends Fragment {
                 try {
                     String name = response.optString("name", "Default Name");
                     String email = response.optString("email","@.com");
-                    String imageUrl = response.optString("image", "");
+                    String imageUrl = response.optString("image", "null");
+                    String address = response.optString("address", "null");
+String dateofbirth = response.optString("dateOfBirth", "null");
 
                     if (tvusername != null) {
                         tvusername.setText(name);
@@ -149,6 +183,10 @@ public class MyProfileFragment extends Fragment {
 
                     if (tvemailvalue != null) {
                         tvemailvalue.setText(email);
+                    }  if (tvaddress != null) {
+                        tvaddress.setText(address);
+                    } if (tvbirthdate != null) {
+                        tvbirthdate.setText(dateofbirth);
                     }
 
                     if (imageView != null) {
@@ -159,8 +197,8 @@ public class MyProfileFragment extends Fragment {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "Error parsing response", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(getActivity(), "Please Log In", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -173,8 +211,8 @@ public class MyProfileFragment extends Fragment {
 
                     // Handle error response
                     String errorMessage = (errorResponse != null)
-                            ? errorResponse.optString("message", "Unknown error occurred.")
-                            : "Unexpected error occurred.";
+                            ? errorResponse.optString("message", "Network Unable to fetch.")
+                            : "Network Unable to fetch.";
 
                     Toast.makeText(getActivity(), "Error: " + errorMessage, Toast.LENGTH_LONG).show();
                 } catch (Exception e) {

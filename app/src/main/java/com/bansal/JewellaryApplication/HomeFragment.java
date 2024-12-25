@@ -3,6 +3,8 @@ package com.bansal.JewellaryApplication;
 import static android.app.PendingIntent.getActivity;
 import static android.content.Context.MODE_PRIVATE;
 
+import static androidx.core.app.ActivityCompat.finishAffinity;
+
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -160,7 +162,7 @@ ImageView ivWhatsapp;
         rvoccusion=view.findViewById(R.id.rvHomefargemtshopbyoccusion);
        // rvsolematelist=view.findViewById(R.id.rvSolemetlist);
         pojoSokumates = new ArrayList<>();
-        imageSlider = view.findViewById(R.id.imagesliderwelcome);
+//        imageSlider = view.findViewById(R.id.imagesliderwelcome);
         ivsta=view.findViewById(R.id.isPromisiMgae);
         cvShoplocation=view.findViewById(R.id.cvShopLocation);
         btnrateus=view.findViewById(R.id.btnHomeFragmentrateus);
@@ -179,8 +181,8 @@ ImageView ivWhatsapp;
         cvhus=view.findViewById(R.id.cvhus);
         tvdirector=view.findViewById(R.id.directorsVision);
         btnreadmore=view.findViewById(R.id.readMoreButton);
-        tvcompany=view.findViewById(R.id.aboutCompany);
-        btnreadmore2=view.findViewById(R.id.readMoreButton2);
+//        tvcompany=view.findViewById(R.id.aboutCompany);
+//        btnreadmore2=view.findViewById(R.id.readMoreButton2);
         cvvd1=view.findViewById(R.id.cvinfcall);
         cvvd2=view.findViewById(R.id.cvcall);
         tvemail=view.findViewById(R.id.tvemail);
@@ -277,25 +279,25 @@ ImageView ivWhatsapp;
                 isExpanded = !isExpanded;
             }
         });
-        btnreadmore2.setOnClickListener(new View.OnClickListener() {
-            private boolean isExpanded = false;
-
-            @Override
-            public void onClick(View v) {
-                if (isExpanded) {
-                    // Collapse to 5 lines
-                    tvcompany.setMaxLines(5);
-                    tvcompany.setEllipsize(TextUtils.TruncateAt.END);
-                    btnreadmore2.setText("Read More");
-                } else {
-                    // Expand to full text
-                    tvcompany.setMaxLines(Integer.MAX_VALUE);
-                    tvcompany.setEllipsize(null);
-                    btnreadmore2.setText("Read Less");
-                }
-                isExpanded = !isExpanded;
-            }
-        });
+//        btnreadmore2.setOnClickListener(new View.OnClickListener() {
+//            private boolean isExpanded = false;
+//
+//            @Override
+//            public void onClick(View v) {
+//                if (isExpanded) {
+//                    // Collapse to 5 lines
+//                    tvcompany.setMaxLines(5);
+//                    tvcompany.setEllipsize(TextUtils.TruncateAt.END);
+//                    btnreadmore2.setText("Read More");
+//                } else {
+//                    // Expand to full text
+//                    tvcompany.setMaxLines(Integer.MAX_VALUE);
+//                    tvcompany.setEllipsize(null);
+//                    btnreadmore2.setText("Read Less");
+//                }
+//                isExpanded = !isExpanded;
+//            }
+//        });
         // Initialize views
 //        horizontalScrollView = view.findViewById(R.id.horizontalScrollView);
 //        linearLayoutItems = view.findViewById(R.id.linearLayoutItems);
@@ -518,15 +520,15 @@ ImageView ivWhatsapp;
 
 
 
-        ArrayList<SlideModel> slideModelArrayList = new ArrayList<>();
-        slideModelArrayList.add(new SlideModel(R.drawable.img1,ScaleTypes.CENTER_INSIDE));
-        slideModelArrayList.add(new SlideModel(R.drawable.img3, ScaleTypes.CENTER_INSIDE));
-        slideModelArrayList.add(new SlideModel(R.drawable.img5, ScaleTypes.CENTER_INSIDE));
-        slideModelArrayList.add(new SlideModel(R.drawable.img6, ScaleTypes.CENTER_INSIDE));
-        slideModelArrayList.add(new SlideModel(R.drawable.img7, ScaleTypes.CENTER_INSIDE));
-        slideModelArrayList.add(new SlideModel(R.drawable.img8, ScaleTypes.CENTER_INSIDE));
-        imageSlider.setImageList(slideModelArrayList);
-        imageSlider.setSlideAnimation(AnimationTypes.ZOOM_IN);
+//        ArrayList<SlideModel> slideModelArrayList = new ArrayList<>();
+//        slideModelArrayList.add(new SlideModel(R.drawable.img1,ScaleTypes.CENTER_INSIDE));
+//        slideModelArrayList.add(new SlideModel(R.drawable.img3, ScaleTypes.CENTER_INSIDE));
+//        slideModelArrayList.add(new SlideModel(R.drawable.img5, ScaleTypes.CENTER_INSIDE));
+//        slideModelArrayList.add(new SlideModel(R.drawable.img6, ScaleTypes.CENTER_INSIDE));
+//        slideModelArrayList.add(new SlideModel(R.drawable.img7, ScaleTypes.CENTER_INSIDE));
+//        slideModelArrayList.add(new SlideModel(R.drawable.img8, ScaleTypes.CENTER_INSIDE));
+//        imageSlider.setImageList(slideModelArrayList);
+//        imageSlider.setSlideAnimation(AnimationTypes.ZOOM_IN);
 
 
 
@@ -1162,8 +1164,6 @@ ImageView ivWhatsapp;
             handler.removeCallbacks(autoScrollRunnable);
         }
     }
-
-
 
 
 

@@ -157,6 +157,13 @@ public class LoginActivity extends AppCompatActivity {
         queue.add(request);
     }
 
+    public void onBackPressed() {
+        // Close the app when the back button is pressed
+        super.onBackPressed();
+        finishAffinity(); // Closes all activities in the task stack
+    }
+
+
 
 
 

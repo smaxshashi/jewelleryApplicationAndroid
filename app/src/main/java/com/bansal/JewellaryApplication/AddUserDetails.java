@@ -23,7 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AddUserDetails extends AppCompatActivity {
-     EditText etEmail;
+     EditText etEmail,etbirthdate,etaddress,etpincode;
      Spinner spinnerGender;
      String selectedGender = "";
     Button btnUpdateDetails;
@@ -38,6 +38,9 @@ public class AddUserDetails extends AppCompatActivity {
         getWindow().setNavigationBarColor(ContextCompat.getColor(AddUserDetails.this,R.color.white));
         UserId=getIntent().getStringExtra("userid");
         etEmail = findViewById(R.id.etEmail);
+        etbirthdate = findViewById(R.id.etBirthDate);
+        etaddress = findViewById(R.id.etAddress);
+        etpincode = findViewById(R.id.etPinCode);
         spinnerGender = findViewById(R.id.spinnerGender);
         btnUpdateDetails = findViewById(R.id.btnUpdateDetails);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
@@ -46,11 +49,26 @@ public class AddUserDetails extends AppCompatActivity {
         spinnerGender.setAdapter(adapter);
         btnUpdateDetails.setOnClickListener(v -> {
             String email = etEmail.getText().toString().trim();
+            String address = etaddress.getText().toString().trim();
+            String dateofbirth = etbirthdate.getText().toString().trim();
+            String pincode = etpincode.getText().toString().trim();
             String gender = spinnerGender.getSelectedItem().toString();
 
             // Validate inputs
             if (email.isEmpty()) {
                 Toast.makeText(AddUserDetails.this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+if (address.isEmpty()) {
+                Toast.makeText(AddUserDetails.this, "Address cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+if (dateofbirth.isEmpty()) {
+                Toast.makeText(AddUserDetails.this, "Date of Birth cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
+if (pincode.isEmpty()) {
+                Toast.makeText(AddUserDetails.this, "Pincode cannot be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -60,19 +78,22 @@ public class AddUserDetails extends AppCompatActivity {
             }
 
             // If validation passes, call API method
-            updateUserDetails(email, gender);
+            updateUserDetails(email, gender,dateofbirth,address,pincode);
         });
 
 
     }
 
-    private void updateUserDetails(String email, String gender) {
+    private void updateUserDetails(String email, String gender,String dateofbirth,String address,String pincode) {
         String url = "https://api.gehnamall.com/auth/update/"+UserId;
 
         JSONObject userDetails = new JSONObject();
         try {
             userDetails.put("email", email);
             userDetails.put("gender", gender);
+            userDetails.put("dateOfBirth",dateofbirth);
+            userDetails.put("address", address);
+//            userDetails.put("gender", pincode);
         } catch (JSONException e) {
             e.printStackTrace();
             return;

@@ -44,6 +44,70 @@
         android:spinnerMode="dropdown"
         android:background="@drawable/marronbackline"
         android:padding="12dp" />
+
+    <!-- Birth Date Section -->
+    <TextView
+        android:id="@+id/tvBirthDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Birth Date"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etBirthDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="DD-MM-YYYY"
+        android:inputType="date"
+        android:focusable="false"
+        android:background="@drawable/marronbackline"
+        android:padding="12dp"/>
+
+    <!-- Address Section -->
+    <TextView
+        android:id="@+id/tvAddressLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter your address"
+        android:inputType="textPostalAddress"
+        android:background="@drawable/marronbackline"
+        android:padding="12dp"/>
+
+    <!-- Pin Code Section -->
+    <TextView
+        android:id="@+id/tvPinCodeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pin Code"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="8dp"/>
+
+    <!-- Update Button -->
+    <EditText
+        android:id="@+id/etPinCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/marronbackline"
+        android:hint="Enter your pin code"
+        android:inputType="number"
+        android:maxLength="6"
+        android:padding="12dp" />
+
     <Button
         android:id="@+id/btnUpdateDetails"
         android:layout_width="match_parent"

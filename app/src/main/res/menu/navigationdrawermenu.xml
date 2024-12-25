@@ -53,9 +53,7 @@
         android:id="@+id/Market"
         android:title="Gold Rate" />
     <item
-        android:id="@+id/Login"
-        android:title="Log in" />
-    <item
-        android:id="@+id/Logout"
-        android:title="Log out" />
+        android:id="@+id/aboutus"
+        android:title="About Us" />
+
 </menu>
