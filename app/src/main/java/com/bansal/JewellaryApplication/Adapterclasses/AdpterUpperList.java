@@ -1,6 +1,7 @@
 package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.ListProduct;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.PojoUpperClass;
 import com.bumptech.glide.Glide;
@@ -42,6 +44,15 @@ public class AdpterUpperList extends RecyclerView.Adapter<AdpterUpperList.ViewHo
                 .skipMemoryCache(true)
                 .error(R.drawable.noimage)
                 .into(holder.cvimage);
+        holder.cvimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(activity, ListProduct.class);
+                i.putExtra("categorycode",obj.getCategory());
+                i.putExtra("name",obj.getName());
+                activity.startActivity(i);
+            }
+        });
 
     }
 

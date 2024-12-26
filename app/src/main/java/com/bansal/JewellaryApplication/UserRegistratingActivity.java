@@ -94,6 +94,8 @@ public class UserRegistratingActivity extends AppCompatActivity {
                             if (status == -1) {
                                 // User exists
                                 Toast.makeText(UserRegistratingActivity.this, "User already exists!", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(UserRegistratingActivity.this,LoginActivity.class);
+                                startActivity(i);
                             } else {
                                 // Navigate to OTP page
                                 Intent intent = new Intent(UserRegistratingActivity.this, OTPVerificationactivity.class);

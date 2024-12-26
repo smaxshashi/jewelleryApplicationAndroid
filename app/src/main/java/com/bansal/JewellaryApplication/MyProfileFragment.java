@@ -273,7 +273,7 @@ String spodate= response.optString("spouseDob","null");
 
         Request request = new Request.Builder()
                 .url(url)
-                .put(requestBody)
+                .post(requestBody)
                 .build();
 
         new OkHttpClient().newCall(request).enqueue(new Callback() {

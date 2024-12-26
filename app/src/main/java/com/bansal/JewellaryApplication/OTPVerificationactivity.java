@@ -97,6 +97,7 @@ public class OTPVerificationactivity extends AppCompatActivity {
                             editor.putString("mobileNumber", mobileNumber); // Check mobileNumber is not null
                             editor.putBoolean("isLoggedIn", true);
                             editor.apply();
+                            startActivity(intent);
 
                         } else {
                             Toast.makeText(OTPVerificationactivity.this, "Invalid OTP. Please try again.", Toast.LENGTH_SHORT).show();
