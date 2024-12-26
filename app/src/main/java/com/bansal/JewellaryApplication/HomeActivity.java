@@ -141,6 +141,10 @@ else if(item.getItemId()==R.id.Market){
     Intent i = new Intent(HomeActivity.this,AboutUs.class);
     startActivity(i);
 
+}else if(item.getItemId()==R.id.termasandcondition){
+    Intent i = new Intent(HomeActivity.this,Termasandcondition.class);
+    startActivity(i);
+
 }
         if (item.getItemId() == R.id.hoome) {
             getSupportFragmentManager().beginTransaction().replace(R.id.flUserHomeFrameLayout, homeFragment).commit();

@@ -112,8 +112,22 @@
                 android:text="Sign Up"
                 android:textColor="@color/white"
                 android:id="@+id/acbtnRegistrationActivitySignUP"
-                android:layout_marginBottom="16sp"
+
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By registering, you agree to our Terms and Conditions and Privacy Policy. Please read them carefully before proceeding."
+                android:textAlignment="center"
+                android:layout_marginTop="10sp"
+                android:textSize="11sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:layout_below="@id/acbtnRegistrationActivitySignUP"
+                android:layout_marginBottom="16sp"
+
+                />
+
 
 
         </RelativeLayout>

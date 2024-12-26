@@ -17,6 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -24,10 +25,13 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
-    public class AddUserDetails extends AppCompatActivity {
+public class AddUserDetails extends AppCompatActivity {
         EditText etEmail, etbirthdate, etaddress, etpincode;
         Spinner spinnerGender;
         String selectedGender = "";
@@ -85,6 +89,12 @@ import java.util.Calendar;
                     String pincode = etpincode.getText().toString().trim();
                     String gender = spinnerGender.getSelectedItem().toString();
 
+                    Log.d("USER_INPUT", "Email: " + email);
+                    Log.d("USER_INPUT", "Address: " + address);
+                    Log.d("USER_INPUT", "Date of Birth: " + dateofbirth);
+                    Log.d("USER_INPUT", "Pincode: " + pincode);
+                    Log.d("USER_INPUT", "Gender: " + gender);
+
                     // Validate inputs
                     if (email.isEmpty()) {
                         Toast.makeText(AddUserDetails.this, "Email cannot be empty", Toast.LENGTH_SHORT).show();
@@ -109,69 +119,70 @@ import java.util.Calendar;
                     }
 
                     // If validation passes, call API method
-                    updateUserDetails(email, gender, dateofbirth, address, pincode);
+                    updateUserDetails(email, gender, address, pincode,dateofbirth);
                 });
             }
 
-        private void updateUserDetails(String email, String gender, String dateOfBirth, String address, String pincode) {
-            String url = "https://api.gehnamall.com/auth/updateUser/17";  // Assuming the correct endpoint
+    private void updateUserDetails(String email, String gender, String address, String pincode,String dateofbirth) {
+        String url = "https://api.gehnamall.com/auth/updateUser/"+impuserid;
 
-            JSONObject userDetails = new JSONObject();
-            try {
-                userDetails.put("email", email);
-                userDetails.put("gender", gender);
-                userDetails.put("dateOfBirth", dateOfBirth);  // Ensure date is formatted correctly
-                userDetails.put("address", address);
-                userDetails.put("pincode", pincode);
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return;
-            }
+        // Prepare form data
+        Map<String, String> userDetails = new HashMap<>();
+        userDetails.put("email", email);
+        userDetails.put("gender", gender);
+        userDetails.put("address", address);
+        userDetails.put("pincode", pincode);
+        userDetails.put("dateOfBirth",dateofbirth);
 
-            JsonObjectRequest request = new JsonObjectRequest(
-                    Request.Method.PUT,
-                    url,
-                    userDetails,
-                    response -> {
-                        Log.d("API_RESPONSE", "Response: " + response.toString());
-                        String updatedEmail = response.optString("email", "Not available");
-                        String updatedToken = response.optString("token", "Not available");
+        // Log the data being sent
+        Log.d("API_REQUEST", "Request Data: " + userDetails.toString());
 
-                        Log.d("Updated Email", updatedEmail);
-                        Log.d("Updated Token", updatedToken);
+        // Create a multipart request
+        MultipartRequest request = new MultipartRequest(
+                Request.Method.POST,
+                url,
+                userDetails,
+                response -> {
+                    Log.d("API_RESPONSE", "Response: " + response);
 
-                        if (updatedEmail.equals("null")) {
-                            updatedEmail = "Not available"; // Handle null case appropriately
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        String message = jsonResponse.optString("message", "No message");
+                        int status = jsonResponse.optInt("status", -1);
+
+                        if (status == 0) {
+                            Log.d("API_SUCCESS", message);
+                        } else {
+                            Log.e("API_FAILURE", "Update failed: " + message);
                         }
-                        if (updatedToken.equals("null")) {
-                            updatedToken = "Not available"; // Handle null case appropriately
-                        }
-
-                        // Update UI with retrieved data
-                        Log.d("Updated Email", updatedEmail);
-                        Log.d("Updated Token", updatedToken);
-
-                        // Check for specific fields
-                        String updatedAddress = response.optString("address", "Not available");
-                        String updatedPincode = response.optString("pincode", "Not available");
-                        String updatedDateOfBirth = response.optString("dateOfBirth", "Not available");
-
-                        Log.d("Updated Address", updatedAddress);
-                        Log.d("Updated Pincode", updatedPincode);
-                        Log.d("Updated Date of Birth", updatedDateOfBirth);
-                    },
-                    error -> {
-                        if (error.networkResponse != null) {
-                            Log.e("API_ERROR", "HTTP Status Code: " + error.networkResponse.statusCode);
-                            String errorMessage = new String(error.networkResponse.data);
-                            Log.e("API_ERROR", "Error: " + errorMessage);
-                        }
-                        Log.e("API_ERROR", "Error: " + error.toString());
-                        Toast.makeText(this, "Failed to update user details", Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Log.e("API_ERROR", "Invalid response: " + e.getMessage());
                     }
-            );
+                },
+                error -> {
+                    if (error.networkResponse != null) {
+                        String errorMessage = new String(error.networkResponse.data);
+                        try {
+                            JSONObject errorJson = new JSONObject(errorMessage);
+                            String serverError = errorJson.optString("error", "Unknown error");
+                            Log.e("API_ERROR", "Server Error: " + serverError);
+                        } catch (JSONException e) {
+                            Log.e("API_ERROR", "Invalid error response: " + errorMessage);
+                        }
+                    }
+                    Toast.makeText(this, "Failed to update user details", Toast.LENGTH_SHORT).show();
+                }
+        );
 
-            Volley.newRequestQueue(this).add(request);
-        }
+        // Set a retry policy
+        request.setRetryPolicy(new DefaultRetryPolicy(
+                10000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
 
+        // Add request to the queue
+        Volley.newRequestQueue(this).add(request);
     }
+
+}
