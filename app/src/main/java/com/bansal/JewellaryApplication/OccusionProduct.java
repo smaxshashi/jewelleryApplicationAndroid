@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -51,6 +52,8 @@ public class OccusionProduct extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(OccusionProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(OccusionProduct.this, R.color.white));
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
 
 

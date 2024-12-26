@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -23,6 +24,7 @@ public class ListProduct extends AppCompatActivity {
         setContentView(R.layout.activity_list_product);
         getWindow().setNavigationBarColor(ContextCompat.getColor(ListProduct.this,R.color.white));
         getWindow().setStatusBarColor(ContextCompat.getColor(ListProduct.this,R.color.maroon));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         categorycode=getIntent().getStringExtra("categorycode");
         name=getIntent().getStringExtra("name");

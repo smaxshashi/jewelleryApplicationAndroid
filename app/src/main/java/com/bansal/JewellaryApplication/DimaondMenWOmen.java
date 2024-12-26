@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -25,6 +26,7 @@ public class DimaondMenWOmen extends AppCompatActivity {
         setContentView(R.layout.activity_dimaond_men_women);
         getWindow().setStatusBarColor(ContextCompat.getColor(DimaondMenWOmen.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(DimaondMenWOmen.this, R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         categorycode=getIntent().getStringExtra("CategoryCode");
 

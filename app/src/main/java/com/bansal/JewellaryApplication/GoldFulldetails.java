@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -61,6 +62,7 @@ public class GoldFulldetails extends AppCompatActivity {
         setContentView(R.layout.activity_gold_fulldetails);
         getWindow().setNavigationBarColor(ContextCompat.getColor(GoldFulldetails.this,R.color.white));
         getWindow().setStatusBarColor(ContextCompat.getColor(GoldFulldetails.this,R.color.maroon));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         preferences= PreferenceManager.getDefaultSharedPreferences(GoldFulldetails.this);
         strcategorycode=preferences.getString("Goldcategorycode","");

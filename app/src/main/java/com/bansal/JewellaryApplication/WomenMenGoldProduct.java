@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,8 @@ public class WomenMenGoldProduct extends AppCompatActivity {
         // Set status bar and navigation bar colors
         getWindow().setStatusBarColor(ContextCompat.getColor(WomenMenGoldProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(WomenMenGoldProduct.this, R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
         preferences= PreferenceManager.getDefaultSharedPreferences(WomenMenGoldProduct.this);
         editor=preferences.edit();

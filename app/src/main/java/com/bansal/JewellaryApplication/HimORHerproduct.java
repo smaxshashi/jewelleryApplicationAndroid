@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -52,6 +53,7 @@ public class HimORHerproduct extends AppCompatActivity {
         setContentView(R.layout.activity_him_orherproduct);
         getWindow().setStatusBarColor(ContextCompat.getColor(HimORHerproduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(HimORHerproduct.this, R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         
         gender=getIntent().getStringExtra("gender");
         preferences= PreferenceManager.getDefaultSharedPreferences(HimORHerproduct.this);

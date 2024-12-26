@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -57,6 +58,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
         setContentView(R.layout.activity_himorher_full_productdettail);
         getWindow().setNavigationBarColor(ContextCompat.getColor(HimorherFullProductdettail.this,R.color.white));
         getWindow().setStatusBarColor(ContextCompat.getColor(HimorherFullProductdettail.this,R.color.maroon));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
         soulmet=getIntent().getStringExtra("soulmet");

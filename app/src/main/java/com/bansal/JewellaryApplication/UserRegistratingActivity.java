@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -46,6 +47,8 @@ public class UserRegistratingActivity extends AppCompatActivity {
         getWindow().setNavigationBarColor(ContextCompat.getColor(
                 UserRegistratingActivity.this,R.color.maroon));
         getWindow().setStatusBarColor(ContextCompat.getColor(UserRegistratingActivity.this,R.color.maroon));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
         etName = findViewById(R.id.etRegistrationActivityName);
         etMobileno = findViewById(R.id.etRegistrationActivityMobileNo);

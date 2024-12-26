@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -49,6 +50,7 @@ public class DiamondProductLIst extends AppCompatActivity {
         setContentView(R.layout.activity_diamond_product_list);
         getWindow().setStatusBarColor(ContextCompat.getColor(DiamondProductLIst.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(DiamondProductLIst.this, R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         preferences= PreferenceManager.getDefaultSharedPreferences(DiamondProductLIst.this);
         editor=preferences.edit();

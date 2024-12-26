@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -56,6 +57,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         setContentView(R.layout.activity_occusionfullproductdetails);
         getWindow().setNavigationBarColor(ContextCompat.getColor(Occusionfullproductdetails.this,R.color.white));
         getWindow().setStatusBarColor(ContextCompat.getColor(Occusionfullproductdetails.this,R.color.maroon));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         productId=getIntent().getStringExtra("productID");
         preferences = getSharedPreferences("Gifting", MODE_PRIVATE);

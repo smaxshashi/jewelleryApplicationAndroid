@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -59,6 +60,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
         setContentView(R.layout.activity_gifting_fulll_details);
         getWindow().setNavigationBarColor(ContextCompat.getColor(GiftingFulllDetails.this,R.color.white));
         getWindow().setStatusBarColor(ContextCompat.getColor(GiftingFulllDetails.this,R.color.maroon));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 //        productId=getIntent().getStringExtra("ProductId");
         preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);

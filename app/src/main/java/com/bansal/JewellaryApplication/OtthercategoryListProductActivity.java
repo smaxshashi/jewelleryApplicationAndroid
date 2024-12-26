@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -45,6 +46,8 @@ public class OtthercategoryListProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_otthercategory_list_product);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         getWindow().setStatusBarColor(ContextCompat.getColor(OtthercategoryListProductActivity.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(OtthercategoryListProductActivity.this, R.color.white));
         strName=getIntent().getStringExtra("subcategory");

@@ -6,6 +6,7 @@ import android.webkit.WebView;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.contextaware.ContextAware;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,6 +29,7 @@ public class AboutUs extends AppCompatActivity {
         setContentView(R.layout.activity_about_us);
         getWindow().setStatusBarColor(ContextCompat.getColor(AboutUs.this,R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(AboutUs.this,R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         imageslider = findViewById(R.id.imagesliderwelcome);
         ArrayList<SlideModel> slideModelArrayList = new ArrayList<>();

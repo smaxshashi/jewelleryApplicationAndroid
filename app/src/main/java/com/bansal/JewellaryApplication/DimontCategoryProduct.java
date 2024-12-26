@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -51,6 +52,7 @@ public class DimontCategoryProduct extends AppCompatActivity {
         setContentView(R.layout.activity_dimont_category_product);
         getWindow().setStatusBarColor(ContextCompat.getColor(DimontCategoryProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(DimontCategoryProduct.this, R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
 

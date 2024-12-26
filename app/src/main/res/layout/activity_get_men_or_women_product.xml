@@ -23,12 +23,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@drawable/marronbackline">
+            >
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/imgmen"
-                android:scaleType="fitXY" />
+                android:src="@drawable/menimgip"
+                android:scaleType="centerInside" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -69,7 +69,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/imgwomen"
+                android:src="@drawable/womenimahgip"
                 android:scaleType="fitXY" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

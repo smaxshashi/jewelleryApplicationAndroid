@@ -14,6 +14,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -80,6 +81,7 @@ public class MyProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_myprofil, container, false);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserDetails", MODE_PRIVATE);
         String name = sharedPreferences.getString("name", "Unknown");
@@ -216,17 +218,17 @@ String spodate= response.optString("spouseDob","null");
                 super.onFailure(statusCode, headers, throwable, errorResponse);
                 try {
                     // Log error details
-                    Log.e("API_ERROR", "Status Code: " + statusCode, throwable);
+                    Toast.makeText(getActivity(), "Please login", Toast.LENGTH_SHORT).show();
 
                     // Handle error response
                     String errorMessage = (errorResponse != null)
                             ? errorResponse.optString("message", "Network Unable to fetch.")
                             : "Network Unable to fetch.";
 
-                    Toast.makeText(getActivity(), "Error: " + errorMessage, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Please login", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(), "Error handling failure response.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please login", Toast.LENGTH_SHORT).show();
                 }
 
             }

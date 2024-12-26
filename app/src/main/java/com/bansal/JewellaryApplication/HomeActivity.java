@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         getWindow().setStatusBarColor(ContextCompat.getColor(HomeActivity.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(HomeActivity.this, R.color.white));
          sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         // Setup Toolbar (Optional)
         Toolbar toolbar = findViewById(R.id.toolbar);

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -64,6 +65,8 @@ public class OtherFulldetails extends AppCompatActivity {
         strcategorycode=preferences.getString("Othercategorycode","");
         SharedPreferences preferences1=PreferenceManager.getDefaultSharedPreferences(OtherFulldetails.this);
         strsubcategorycode=preferences1.getString("othersubcode","");
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 
         productId=getIntent().getStringExtra("productid");
         SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);

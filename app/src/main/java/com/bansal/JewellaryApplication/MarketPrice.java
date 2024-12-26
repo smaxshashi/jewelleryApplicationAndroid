@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -39,6 +40,7 @@ AdpterGetPrice adpterGetPrice;
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_market_price);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         getWindow().setStatusBarColor(ContextCompat.getColor(MarketPrice.this,R.color.yo));getWindow().setNavigationBarColor(ContextCompat.getColor(MarketPrice.this,R.color.yo));
 
         rvlist=findViewById(R.id.rvUserHomeFragmentListmaket);

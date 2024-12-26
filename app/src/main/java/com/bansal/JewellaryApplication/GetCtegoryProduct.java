@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -51,6 +52,7 @@ public class GetCtegoryProduct extends AppCompatActivity {
         setContentView(R.layout.activity_get_ctegory_product);
         getWindow().setStatusBarColor(ContextCompat.getColor(GetCtegoryProduct.this, R.color.maroon));
         getWindow().setNavigationBarColor(ContextCompat.getColor(GetCtegoryProduct.this, R.color.white));
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         categorycode=getIntent().getStringExtra("categorycode");
         gendercode=getIntent().getStringExtra("gendercode");
