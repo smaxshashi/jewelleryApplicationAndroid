@@ -100,6 +100,9 @@ public class AddUserDetails extends AppCompatActivity {
                 });
 
                 btnUpdateDetails.setOnClickListener(v -> {
+
+
+
                     String email = etEmail.getText().toString().trim();
                     String address = etaddress.getText().toString().trim();
                     String dateofbirth = etbirthdate.getText().toString().trim();  String spouceateofbirth = etbirthdate.getText().toString().trim();
@@ -176,9 +179,11 @@ public class AddUserDetails extends AppCompatActivity {
                             Intent i = new Intent(AddUserDetails.this,HomeActivity.class);
                             startActivity(i);
                         } else {
+                            Toast.makeText(AddUserDetails.this, "Enter Data Properly", Toast.LENGTH_SHORT).show();
                             Log.e("API_FAILURE", "Update failed: " + message);
                         }
                     } catch (JSONException e) {
+                        Toast.makeText(AddUserDetails.this, "Enter Data Properly", Toast.LENGTH_SHORT).show();
                         Log.e("API_ERROR", "Invalid response: " + e.getMessage());
                     }
                 },
@@ -189,8 +194,10 @@ public class AddUserDetails extends AppCompatActivity {
                             JSONObject errorJson = new JSONObject(errorMessage);
                             String serverError = errorJson.optString("error", "Unknown error");
                             Log.e("API_ERROR", "Server Error: " + serverError);
+                            Toast.makeText(AddUserDetails.this, "Enter Data Properly", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             Log.e("API_ERROR", "Invalid error response: " + errorMessage);
+                            Toast.makeText(AddUserDetails.this, "Enter Data Properly", Toast.LENGTH_SHORT).show();
                         }
                     }
                     Toast.makeText(this, "Failed to update user details", Toast.LENGTH_SHORT).show();
