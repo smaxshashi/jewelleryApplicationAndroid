@@ -42,7 +42,7 @@ public class AdpterDiamondSubcategoryProduct extends RecyclerView.Adapter<Adpter
     public void onBindViewHolder(@NonNull AdpterDiamondSubcategoryProduct.ViewHolder holder, int position) {
         PojoDiamondProductSubcategorylist obj=pojoDiamondProductSubcategorylists.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDescription());
         holder.tvweight.setText(obj.getWeight());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)

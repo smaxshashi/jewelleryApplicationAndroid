@@ -41,7 +41,7 @@ public class AdpterGoldproductList extends RecyclerView.Adapter<AdpterGoldproduc
     public void onBindViewHolder(@NonNull AdpterGoldproductList.ViewHolder holder, int position) {
         PojoGoldProduct obj=pojoGoldProducts.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDescription());
         holder.tvweight.setText(obj.getWeight());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)

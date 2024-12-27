@@ -44,7 +44,7 @@ public class AdpterOtehrCategory extends RecyclerView.Adapter<AdpterOtehrCategor
     public void onBindViewHolder(@NonNull AdpterOtehrCategory.ViewHolder holder, int position) {
         PojoOtehrcategory obj=pojoOtehrcategoryList.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDescription());
         holder.tvweight.setText(obj.getWeight());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)

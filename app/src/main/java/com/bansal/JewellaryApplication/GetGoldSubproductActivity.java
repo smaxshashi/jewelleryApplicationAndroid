@@ -103,13 +103,14 @@ public class GetGoldSubproductActivity extends AppCompatActivity {
                                     String productName = productObj.getString("productName");
                                     String weight = productObj.getString("weight");
                                     String karat = productObj.getString("karat");
+                                    String description = productObj.getString("description");
 
                                     // Fetch the image URL (assuming the first image is related to the product)
                                     JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
                                     String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Create a Product object and add it to the list
-                                    pojogetProduct.add(new PojoGoldProduct(productId,productName,weight,karat,imageUrl));
+                                    pojogetProduct.add(new PojoGoldProduct(productId,productName,weight,karat,imageUrl,description));
                                 }
 
                                 // Set the adapter

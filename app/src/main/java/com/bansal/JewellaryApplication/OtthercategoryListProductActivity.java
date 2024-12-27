@@ -89,14 +89,14 @@ public class OtthercategoryListProductActivity extends AppCompatActivity {
                                     String productId = productObj.getString("productId");
                                     String productName = productObj.getString("productName");
                                     String weight = productObj.getString("weight");
-                                    String karat = productObj.getString("karat");
+                                    String karat = productObj.getString("karat"); String description = productObj.getString("description");
 
                                     // Fetch the image URL (assuming the first image is related to the product)
                                     JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
                                     String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Create a Product object and add it to the list
-                                    pojoOtehrcategoryList.add(new PojoOtehrcategory(productId,productName,weight,karat,imageUrl));
+                                    pojoOtehrcategoryList.add(new PojoOtehrcategory(productId,productName,weight,karat,imageUrl,description));
                                 }
 
                                 // Set the adapter
