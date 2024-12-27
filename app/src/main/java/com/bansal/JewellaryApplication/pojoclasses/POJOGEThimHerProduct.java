@@ -6,15 +6,24 @@ public class POJOGEThimHerProduct {
     String productName;
     String weight;
     String karat;
-    String imageUrl,soulmet;
+    String imageUrl,soulmet,description;
 
-    public POJOGEThimHerProduct(String productId, String productName, String weight, String karat, String imageUrl,String soulmet) {
+    public POJOGEThimHerProduct(String productId, String productName, String weight, String karat, String imageUrl,String soulmet,String description) {
         this.productId = productId;
         this.productName = productName;
         this.weight = weight;
         this.karat = karat;
         this.imageUrl = imageUrl;
         this.soulmet=soulmet;
+        this.description=description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getSoulmet() {

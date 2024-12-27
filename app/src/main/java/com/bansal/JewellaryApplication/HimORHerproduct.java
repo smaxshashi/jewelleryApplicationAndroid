@@ -89,7 +89,7 @@ public class HimORHerproduct extends AppCompatActivity {
                                     String productId = productObj.optString("productId", "N/A");
                                     String productName = productObj.optString("productName", "N/A");
                                     String weight = productObj.optString("weight", "N/A");
-                                    String karat = productObj.optString("karat", "N/A");
+                                    String karat = productObj.optString("karat", "N/A");   String description = productObj.optString("description", "N/A");
                                     String soilmet = productObj.getString("soulmate");
 
                                     // Extract imageUrls (assume first image for display)
@@ -97,7 +97,7 @@ public class HimORHerproduct extends AppCompatActivity {
                                     String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Add product to the list
-                                    pojogeThimHerProducts.add(new POJOGEThimHerProduct(productId,productName,weight,karat,imageUrl,soilmet));
+                                    pojogeThimHerProducts.add(new POJOGEThimHerProduct(productId,productName,weight,karat,imageUrl,soilmet,description));
 
                                 }
 

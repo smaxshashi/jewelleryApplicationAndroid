@@ -43,7 +43,7 @@ public class ADPTEROCCUSIONWISEPRODUCT extends RecyclerView.Adapter<ADPTEROCCUSI
 
         POJOOCCUSIONWISEPRODUCT obj=pojooccusionwiseproducts.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDescription());
         holder.tvweight.setText(obj.getWeight());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)

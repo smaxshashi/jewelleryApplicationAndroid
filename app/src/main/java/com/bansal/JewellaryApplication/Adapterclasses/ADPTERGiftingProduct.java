@@ -44,8 +44,9 @@ public class ADPTERGiftingProduct extends RecyclerView.Adapter<ADPTERGiftingProd
     public void onBindViewHolder(@NonNull ADPTERGiftingProduct.ViewHolder holder, int position) {
         POJOGiftingproduct obj=pojoGiftingproducts.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDis());
         holder.tvweight.setText(obj.getWeight());
+        holder.tvkaret.setText(obj.getKarat());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)
                 .load(obj.getImageUrl())

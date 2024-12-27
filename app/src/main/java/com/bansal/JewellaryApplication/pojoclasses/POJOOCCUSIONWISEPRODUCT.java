@@ -5,16 +5,24 @@ public class POJOOCCUSIONWISEPRODUCT {
     String productName;
     String weight;
     String karat;
-    String imageUrl;
+    String imageUrl,description;
 
-    public POJOOCCUSIONWISEPRODUCT(String productId, String productName, String weight, String karat, String imageUrl) {
+    public POJOOCCUSIONWISEPRODUCT(String productId, String productName, String weight, String karat, String imageUrl,String description) {
         this.productId = productId;
         this.productName = productName;
         this.weight = weight;
         this.karat = karat;
         this.imageUrl = imageUrl;
+        this.description=description;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getProductId() {
         return productId;

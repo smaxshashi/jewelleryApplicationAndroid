@@ -6,13 +6,23 @@ public class POJOGiftingproduct {
     String weight;
     String karat;
     String imageUrl;
+    String dis;
 
-    public POJOGiftingproduct(String productId, String productName, String weight, String karat, String imageUrl) {
+    public POJOGiftingproduct(String productId, String productName, String weight, String karat, String imageUrl,String dis) {
         this.productId = productId;
         this.productName = productName;
         this.weight = weight;
         this.karat = karat;
         this.imageUrl = imageUrl;
+        this.dis=dis;
+    }
+
+    public String getDis() {
+        return dis;
+    }
+
+    public void setDis(String dis) {
+        this.dis = dis;
     }
 
     public String getProductId() {

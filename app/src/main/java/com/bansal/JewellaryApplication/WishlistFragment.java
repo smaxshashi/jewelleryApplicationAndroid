@@ -80,13 +80,14 @@ public class WishlistFragment extends Fragment {
                                 String productName = productObj.optString("productName", "N/A");
                                 String weight = productObj.optString("weight", "N/A");
                                 String karat = productObj.optString("karat", "N/A");
+                                String description = productObj.optString("description", "N/A");
 
                                 // Extract image URLs (assume first image for display)
                                 JSONArray imageUrlArray = productObj.getJSONArray("imageUrls");
                                 String imageUrl = imageUrlArray.length() > 0 ? imageUrlArray.getString(0) : "";
 
                                 // Add product to list
-                                cartItems.add(new PojoAddtowishlist(productId, productName, weight, karat, imageUrl));
+                                cartItems.add(new PojoAddtowishlist(productId, productName, weight, karat, imageUrl,description));
                             }
 
                             // Pass the list to RecyclerView Adapter

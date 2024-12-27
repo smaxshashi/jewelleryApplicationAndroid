@@ -88,6 +88,7 @@ public class OccusionProduct extends AppCompatActivity {
                                     String productName = productObj.optString("productName", "N/A");
                                     String weight = productObj.optString("weight", "N/A");
                                     String karat = productObj.optString("karat", "N/A");
+                                    String description = productObj.optString("description", "N/A");
                                     String soilmet = productObj.getString("soulmate");
 
                                     // Extract imageUrls (assume first image for display)
@@ -95,7 +96,7 @@ public class OccusionProduct extends AppCompatActivity {
                                     String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Add product to the list
-                                    pojooccusionwiseproducts.add(new POJOOCCUSIONWISEPRODUCT(productId,productName,weight,karat,imageUrl));
+                                    pojooccusionwiseproducts.add(new POJOOCCUSIONWISEPRODUCT(productId,productName,weight,karat,imageUrl,description));
                                 }
 
                                 // Set the adapter

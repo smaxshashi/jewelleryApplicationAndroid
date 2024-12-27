@@ -42,7 +42,7 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.ViewHo
     public void onBindViewHolder(@NonNull WishlistAdapter.ViewHolder holder, int position) {
         PojoAddtowishlist obj=wishlist.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDescription());
         holder.tvweight.setText(obj.getWeight());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(context)

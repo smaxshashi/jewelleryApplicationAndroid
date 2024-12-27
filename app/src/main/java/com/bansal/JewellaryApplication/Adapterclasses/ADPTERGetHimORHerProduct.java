@@ -41,7 +41,7 @@ public class ADPTERGetHimORHerProduct extends RecyclerView.Adapter<ADPTERGetHimO
     public void onBindViewHolder(@NonNull ADPTERGetHimORHerProduct.ViewHolder holder, int position) {
         POJOGEThimHerProduct obj=pojogeThimHerProducts.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getProductName());
+        holder.tvprice.setText(obj.getDescription());
         holder.tvweight.setText(obj.getWeight());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)

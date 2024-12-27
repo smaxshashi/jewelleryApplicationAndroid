@@ -94,13 +94,14 @@ public class GiftingProduct extends AppCompatActivity {
                                     String productName = productObj.optString("productName", "N/A");
                                     String weight = productObj.optString("weight", "N/A");
                                     String karat = productObj.optString("karat", "N/A");
+                                    String discriptin = productObj.optString("description", "N/A");
 
                                     // Extract imageUrls (assume first image for display)
                                     JSONArray imageUrlsArray = productObj.getJSONArray("imageUrls");
                                     String imageUrl = imageUrlsArray.length() > 0 ? imageUrlsArray.getString(0) : "";
 
                                     // Add product to the list
-                                    pojoGiftingproducts.add(new POJOGiftingproduct(productId, productName, weight, karat, imageUrl));
+                                    pojoGiftingproducts.add(new POJOGiftingproduct(productId, productName, weight, karat, imageUrl,discriptin));
                                 }
 
                                 // Set up the RecyclerView adapter
