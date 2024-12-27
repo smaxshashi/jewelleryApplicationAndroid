@@ -46,9 +46,8 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGiftingList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvGiftingList"
-        android:layout_margin="16sp"
-        />
+        android:layout_margin="16sp" />
 </LinearLayout>

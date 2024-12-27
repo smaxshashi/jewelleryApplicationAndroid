@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/imagepic"
-            android:layout_marginTop="-16dp"
+            android:layout_marginTop="-30dp"
             />
 
 
@@ -147,6 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_530sdp"
             android:id="@+id/rvUserHomeFragmentcategorylist"
+            android:layout_marginTop="-30dp"
 
 
             />
@@ -156,6 +157,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
+            android:layout_marginTop="-40dp"
             android:padding="@dimen/_10sdp">
 
             <!-- Left Line -->
