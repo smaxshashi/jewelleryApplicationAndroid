@@ -1,6 +1,8 @@
 package com.bansal.JewellaryApplication;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -51,6 +53,10 @@ public class ListProduct extends AppCompatActivity {
 
         categorycode=getIntent().getStringExtra("categorycode");
         name=getIntent().getStringExtra("name");
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ListProduct.this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("Lightcategorycode",categorycode);
+        editor.apply();
 
 
         tvname=findViewById(R.id.tvlightname);rvlist=findViewById(R.id.rvGiftingList);
@@ -65,7 +71,7 @@ public class ListProduct extends AppCompatActivity {
     }
 
     private void fetchproduct() {
-        String url=api;
+        String url="https://api.gehnamall.com/api/getProducts?categoryCode="+categorycode+"&lightWeight=light";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

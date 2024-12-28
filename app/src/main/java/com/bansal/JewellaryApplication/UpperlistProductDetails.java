@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,7 @@ public class UpperlistProductDetails extends AppCompatActivity {
     String occusion,UserId;
     TextView tvDis;
     TabLayout tabLayout;
+    String categorycode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,9 @@ public class UpperlistProductDetails extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
         UserId=sharedPreferences.getString("userId","");
+
+        SharedPreferences preferences1= PreferenceManager.getDefaultSharedPreferences(UpperlistProductDetails.this);
+        categorycode=preferences1.getString("Lightcategorycode","");
 
         viewPager = findViewById(R.id.viewPager);
         tvProductName = findViewById(R.id.tvProductName);
@@ -161,8 +166,7 @@ public class UpperlistProductDetails extends AppCompatActivity {
     }
 
     private void fetchProductDetails(String productId) {
-        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting=sister";
-
+        String url="https://api.gehnamall.com/api/getProducts?categoryCode="+categorycode+"&lightWeight=light";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

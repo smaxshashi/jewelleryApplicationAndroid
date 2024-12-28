@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class OTPVerificationactivity extends AppCompatActivity {
     String number;
     EditText etotp1,etotp2,etotp3,etotp4;
     String otp;
+    TextView resendotp;
 
 
     @Override
@@ -52,6 +55,21 @@ public class OTPVerificationactivity extends AppCompatActivity {
         etotp1=findViewById(R.id.etOTPverificationotp1);
         etotp2=findViewById(R.id.etOTPverificationotp2);
         etotp3=findViewById(R.id.etOTPverificationotp3);
+        resendotp=findViewById(R.id.tvOTPverificationResendOtp);
+
+
+        resendotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (etotp1.getText().toString().isEmpty() || etotp2.getText().toString().isEmpty() || etotp3.getText().toString().isEmpty()){
+                    Toast.makeText(OTPVerificationactivity.this,"enter proper otp",Toast.LENGTH_SHORT).show();
+                }
+                otp=etotp1.getText().toString()+etotp2.getText().toString()+etotp3.getText().toString();
+
+                getVerify();
+
+            }
+        });
 
 
 
@@ -67,6 +85,51 @@ public class OTPVerificationactivity extends AppCompatActivity {
 
                 getVerify();
 
+
+            }
+        });
+
+        InputOtp();
+
+    }
+
+    private void InputOtp() {
+        etotp1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().isEmpty()){
+                    etotp2.requestFocus();
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        }); etotp2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().isEmpty()){
+                    etotp3.requestFocus();
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
