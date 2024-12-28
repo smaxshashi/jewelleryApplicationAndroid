@@ -76,7 +76,7 @@ public class GiftingProduct extends AppCompatActivity {
     }
 
     private void fetchproduct() {
-        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting="+gift;
+        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&gifting="+gift;
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

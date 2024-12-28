@@ -3,6 +3,7 @@ package com.bansal.JewellaryApplication;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -61,12 +62,25 @@ public class OTPVerificationactivity extends AppCompatActivity {
         resendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (etotp1.getText().toString().isEmpty() || etotp2.getText().toString().isEmpty() || etotp3.getText().toString().isEmpty()){
-                    Toast.makeText(OTPVerificationactivity.this,"enter proper otp",Toast.LENGTH_SHORT).show();
-                }
-                otp=etotp1.getText().toString()+etotp2.getText().toString()+etotp3.getText().toString();
+                resendotp.setEnabled(false); // Disable the button
+                Toast.makeText(OTPVerificationactivity.this, "Wait for 5 minutes before requesting OTP again.", Toast.LENGTH_SHORT).show();
 
-                getVerify();
+                // Start countdown timer for 5 minutes
+                new CountDownTimer(300000, 1000) { // 5 minutes, tick every second
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        long minutes = millisUntilFinished / 60000;
+                        long seconds = (millisUntilFinished % 60000) / 1000;
+                        resendotp.setText("Retry in " + minutes + "m " + seconds + "s");
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        resendotp.setEnabled(true); // Re-enable the button
+                        resendotp.setText("Resend OTP");
+                        getVerify(); // Function to resend OTP
+                    }
+                }.start();
 
             }
         });
