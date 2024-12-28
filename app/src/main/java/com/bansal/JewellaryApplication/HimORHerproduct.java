@@ -72,7 +72,7 @@ public class HimORHerproduct extends AppCompatActivity {
     }
 
     private void fetchProduct() {
-        String url = API_URL +gender+"&wholeseller=test";
+        String url = API_URL +gender+"&wholeseller=BANSAL";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

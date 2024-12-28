@@ -633,7 +633,7 @@ ImageView ivWhatsapp;
     }
 
     private void fetUpperlist() {
-        String url = "https://api.gehnamall.com/api/lightCategories?wholeseller=bansal";
+        String url = "https://api.gehnamall.com/api/lightCategories?wholeseller=BANSAL";
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 

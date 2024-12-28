@@ -71,7 +71,7 @@ public class ListProduct extends AppCompatActivity {
     }
 
     private void fetchproduct() {
-        String url="https://api.gehnamall.com/api/getProducts?categoryCode="+categorycode+"&lightWeight=light";
+        String url="https://api.gehnamall.com/api/getProducts?categoryCode="+categorycode+"&lightWeight=light&wholeseller=Bansal";
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

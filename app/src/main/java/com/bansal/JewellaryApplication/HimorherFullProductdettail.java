@@ -169,7 +169,7 @@ public class HimorherFullProductdettail extends AppCompatActivity {
 
 
     private void fetchProductDetails(String productId) {
-        String url = "https://api.gehnamall.com/api/getProducts?soulmate="+soulmet+"&wholeseller=test";
+        String url = "https://api.gehnamall.com/api/getProducts?soulmate="+soulmet+"&wholeseller=BANSAL";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

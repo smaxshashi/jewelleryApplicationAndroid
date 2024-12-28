@@ -178,7 +178,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
 
 
     private void Fetchdata(String productId) {
-        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting=birthday";
+        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&gifting=birthday";
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,

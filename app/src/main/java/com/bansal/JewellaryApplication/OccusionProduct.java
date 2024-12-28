@@ -70,7 +70,7 @@ public class OccusionProduct extends AppCompatActivity {
     }
 
     private void fetchproduct(String occuion) {
-        String url = API_URL + occuion+"&wholeseller=Test";
+        String url = API_URL + occuion+"&wholeseller=BANSAL";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

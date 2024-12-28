@@ -170,7 +170,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
 
 
     private void fetchProductDetails(String productId) {
-         String url = "https://api.gehnamall.com/api/getProducts?gifting="+occusion+"&wholeseller=test";
+         String url = "https://api.gehnamall.com/api/getProducts?gifting="+occusion+"&wholeseller=BANSAL";
 
          RequestQueue requestQueue = Volley.newRequestQueue(this);
          JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,

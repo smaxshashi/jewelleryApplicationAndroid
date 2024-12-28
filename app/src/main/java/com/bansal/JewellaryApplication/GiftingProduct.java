@@ -42,7 +42,7 @@ public class GiftingProduct extends AppCompatActivity {
     TextView tvgift;
     RecyclerView rvList;
     String gift;
-    private static final String API_URL = "https://api.gehnamall.com/api/getProducts?wholeseller=test&gifting=";
+    private static final String API_URL = "https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&gifting=";
     List<POJOGiftingproduct> pojoGiftingproducts;
     ADPTERGiftingProduct adpterGiftingProduct;
     SharedPreferences preferences;

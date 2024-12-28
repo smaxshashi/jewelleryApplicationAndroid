@@ -166,7 +166,7 @@ public class UpperlistProductDetails extends AppCompatActivity {
     }
 
     private void fetchProductDetails(String productId) {
-        String url="https://api.gehnamall.com/api/getProducts?categoryCode="+categorycode+"&lightWeight=light";
+        String url="https://api.gehnamall.com/api/getProducts?categoryCode="+categorycode+"&lightWeight=light&wholeseller=Bansal";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
