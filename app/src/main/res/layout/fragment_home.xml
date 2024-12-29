@@ -1027,74 +1027,74 @@
             android:backgroundTint="@color/maroon"
             android:layout_marginTop="8dp" />
 
-<!--        <LinearLayout-->
-<!--            xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:layout_marginTop="16sp"-->
-<!--            android:padding="10dp">-->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16sp"
+            android:padding="10dp">
 
-<!--            &lt;!&ndash; Left Line &ndash;&gt;-->
-<!--            <View-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="#B4B2B2" />-->
+            <!-- Left Line -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#B4B2B2" />
 
-<!--            &lt;!&ndash; Text in the Middle &ndash;&gt;-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="About Company"-->
-<!--                android:textSize="22sp"-->
-<!--                android:fontFamily="serif"-->
-<!--                android:textStyle="bold"-->
-<!--                android:textColor="@color/maroon"-->
-<!--                android:paddingStart="8dp"-->
-<!--                android:paddingEnd="8dp" />-->
+            <!-- Text in the Middle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About Company"
+                android:textSize="22sp"
+                android:fontFamily="serif"
+                android:textStyle="bold"
+                android:textColor="@color/maroon"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
 
-<!--            &lt;!&ndash; Right Line &ndash;&gt;-->
-<!--            <View-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:layout_weight="1"-->
-<!--                android:background="#B4B2B2" />-->
+            <!-- Right Line -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#B4B2B2" />
 
-<!--        </LinearLayout>-->
+        </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/aboutCompany"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:padding="16dp"-->
-<!--            android:text="Welcome to Bansal and Sons Jewellers\n\nA legacy of trust, quality, and excellence\n\nBansal and Sons Jewellers has been a trustworthy name in the world of jewellery since many years. Our family-owned business was founded by Mr. Rakesh Bansal.\n\nOur mission at Bansal and Sons Jewellers, we are committed to:\n\n1. Creating trending jewellery designs that exceed our customers' expectations.\n2. Providing exceptional customer service that builds trust and loyalty.\n3. Our aim is to make Bansal and Sons Jewellers a nationwide and then a worldwide jewellery store.\n\nAwards by Celebrity:\n\nWe are proud to receive national and international awards, a testament to our commitment to excellence."-->
-<!--            android:textSize="16sp"-->
-<!--            android:textColor="#000000"-->
-<!--            android:ellipsize="end"-->
-<!--            android:maxLines="5"-->
-<!--            android:lineSpacingExtra="4dp"-->
-<!--            android:fontFamily="sans-serif" />-->
-<!--        <Button-->
-<!--            android:id="@+id/readMoreButton2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Read More"-->
-<!--            android:textSize="14sp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:backgroundTint="@color/maroon"-->
-<!--            android:layout_marginTop="8dp" />-->
+        <TextView
+            android:id="@+id/tvaboutCompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Welcome to Bansal and Sons Jewellers\n\nA legacy of trust, quality, and excellence\n\nBansal and Sons Jewellers has been a trustworthy name in the world of jewellery since many years. Our family-owned business was founded by Mr. Rakesh Bansal.\n\nOur mission at Bansal and Sons Jewellers, we are committed to:\n\n1. Creating trending jewellery designs that exceed our customers' expectations.\n2. Providing exceptional customer service that builds trust and loyalty.\n3. Our aim is to make Bansal and Sons Jewellers a nationwide and then a worldwide jewellery store.\n\nAwards by Celebrity:\n\nWe are proud to receive national and international awards, a testament to our commitment to excellence."
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:lineSpacingExtra="4dp"
+            android:fontFamily="sans-serif" />
+        <Button
+            android:id="@+id/btnreadmore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read More"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/maroon"
+            android:layout_marginTop="8dp" />
 
-<!--        <com.denzcoskun.imageslider.ImageSlider-->
-<!--            android:id="@+id/imagesliderwelcome"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="350dp"-->
-<!--            app:iss_auto_cycle="true"-->
-<!--            app:iss_delay="2000"-->
-<!--            app:iss_period="2000"-->
-<!--            app:iss_no_dots="true"-->
-<!--            />-->
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/imageslideraboutcompany"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="2000"
+            app:iss_period="2000"
+            app:iss_no_dots="true"
+            />
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

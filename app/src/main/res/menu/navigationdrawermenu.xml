@@ -52,9 +52,9 @@
     <item
         android:id="@+id/Market"
         android:title="Gold Rate" />
-    <item
-        android:id="@+id/aboutus"
-        android:title="About Us" />
+<!--    <item-->
+<!--        android:id="@+id/aboutus"-->
+<!--        android:title="About Us" />-->
     <item
         android:id="@+id/termasandcondition"
         android:title="@string/termas" />
