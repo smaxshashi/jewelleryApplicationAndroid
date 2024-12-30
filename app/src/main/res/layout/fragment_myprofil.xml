@@ -1,251 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="#F7F7F7">
+    android:background="#F7F7F7"
+    android:fillViewport="true">
 
-    <!-- Profile Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/profileCard"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_marginBottom="@dimen/_300sdp"
+        android:padding="16dp">
 
-        <LinearLayout
+        <!-- Profile Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_margin="8dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Profile Image -->
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profileImage"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/baseline_person_24"
-                    android:layout_centerHorizontal="true" />
-
-                <ImageButton
-                    android:id="@+id/editPhotoButton"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/baseline_edit_24"
-                    android:background="@android:color/transparent"
-                    app:tint="#2196F3"
-                    android:layout_alignBottom="@id/profileImage"
-                    android:layout_alignRight="@id/profileImage"
-                    android:contentDescription="Edit Photo" />
-            </RelativeLayout>
-
-            <!-- User Name -->
-            <TextView
-                android:id="@+id/tvuserName"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="User Name"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#333333"
-                android:layout_marginTop="12dp" />
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <!-- Welcome Message -->
-            <TextView
-                android:id="@+id/tvWelcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Welcome to Bansal Jewellers Pvt Ltd"
-                android:textSize="16sp"
-                android:textColor="#800000"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+                <!-- Profile Image -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <!-- Details Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/detailsCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintTop_toBottomOf="@id/profileCard">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/baseline_person_24"
+                        android:layout_centerHorizontal="true" />
 
-        <LinearLayout
+                    <ImageButton
+                        android:id="@+id/editPhotoButton"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/baseline_edit_24"
+                        android:background="@android:color/transparent"
+                        app:tint="#2196F3"
+                        android:layout_alignBottom="@id/profileImage"
+                        android:layout_alignRight="@id/profileImage"
+                        android:contentDescription="Edit Photo" />
+                </RelativeLayout>
+
+                <!-- User Name -->
+                <TextView
+                    android:id="@+id/tvuserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="User Name"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginTop="12dp" />
+
+                <!-- Welcome Message -->
+                <TextView
+                    android:id="@+id/tvWelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Welcome to Bansal Jewellers Pvt Ltd"
+                    android:textSize="16sp"
+                    android:textColor="#800000"
+                    android:layout_marginTop="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Details Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/detailsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:layout_margin="8dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintTop_toBottomOf="@id/profileCard">
 
-            <!-- Email -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <TextView
-                    android:id="@+id/emailLabel"
-                    android:layout_width="0dp"
+                <!-- Email -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Email:"
-                    android:textSize="16sp"
-                    android:textColor="#333333" />
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
 
-                <TextView
-                    android:id="@+id/emailValue"
-                    android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/emailLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Email:"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/emailValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="null"
+                        android:textSize="16sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <!-- DOB -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="null"
-                    android:textSize="16sp"
-                    android:textColor="#666666" />
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/dobLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="DOB:"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/dobValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="null"
+                        android:textSize="16sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <!-- Spouse DOB -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/spouseDobLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Spouse DOB:"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/spouseDobValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="null"
+                        android:textSize="16sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <!-- Address -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/addressLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Address:"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/addressValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="null"
+                        android:textSize="16sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
+
+                <!-- Pincode -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/pincodeLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Pincode:"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/pincodeValue"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="null"
+                        android:textSize="16sp"
+                        android:textColor="#666666" />
+                </LinearLayout>
             </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-            <!-- DOB -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
+        <!-- Add Email Button -->
+        <Button
+            android:id="@+id/addEmailButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#800"
+            android:text="Edit Details"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsCard" />
 
-                <TextView
-                    android:id="@+id/dobLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="DOB:"
-                    android:textSize="16sp"
-                    android:textColor="#333333" />
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:backgroundTint="#EBBCBC"
+            android:textColor="@color/maroon"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginBottom="300dp"
+            app:layout_constraintTop_toBottomOf="@id/addEmailButton" />
 
-                <TextView
-                    android:id="@+id/dobValue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="null"
-                    android:textSize="16sp"
-                    android:textColor="#666666" />
-            </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
-            <!-- Spouse DOB -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:id="@+id/spouseDobLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Spouse DOB:"
-                    android:textSize="16sp"
-                    android:textColor="#333333" />
-
-                <TextView
-                    android:id="@+id/spouseDobValue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="null"
-                    android:textSize="16sp"
-                    android:textColor="#666666" />
-            </LinearLayout>
-
-            <!-- Address -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:id="@+id/addressLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Address:"
-                    android:textSize="16sp"
-                    android:textColor="#333333" />
-
-                <TextView
-                    android:id="@+id/addressValue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="null"
-                    android:textSize="16sp"
-                    android:textColor="#666666" />
-            </LinearLayout>
-
-            <!-- Pincode -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    android:id="@+id/pincodeLabel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Pincode:"
-                    android:textSize="16sp"
-                    android:textColor="#333333" />
-
-                <TextView
-                    android:id="@+id/pincodeValue"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="null"
-                    android:textSize="16sp"
-                    android:textColor="#666666" />
-            </LinearLayout>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Add Email Button -->
-
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/addEmailButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#800"
-        android:text="Edit Details"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detailsCard" />
-
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:backgroundTint="#EBBCBC"
-        android:textColor="@color/maroon"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/addEmailButton" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
