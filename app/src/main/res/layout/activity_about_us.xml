@@ -2,52 +2,117 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <!-- Heading Section -->
         <TextView
-            android:id="@+id/tvAboutUsHeading"
-            android:layout_width="match_parent"
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome to Bansal and Sons Jewellers"
+            android:text="Privacy Policy"
             android:textSize="24sp"
-            android:layout_marginBottom="16dp"
-            android:textColor="@color/maroon"
-            android:gravity="center"
-            android:fontFamily="serif"
-            android:layout_marginTop="50dp"/>
-
-        <!-- Description Section -->
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/imagesliderwelcome"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            app:iss_auto_cycle="true"
-            app:iss_delay="2000"
-            app:iss_no_dots="true"
-            app:iss_period="2000" />
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:paddingBottom="16dp" />
 
         <TextView
-            android:id="@+id/tvAboutUsDescription"
+            android:id="@+id/effective_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Effective Date: 06/10/2024"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="16dp" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A legacy of trust, quality, and excellence\n\nBansal and Sons Jewellers has been a trustworthy name in the world of jewellery since many years. Our family-owned business was founded by Mr. Rakesh Bansal.\n\nOur mission at Bansal and Sons Jewellers, we are committed to:\n\n1. Creating trending jewellery designs that exceed our customers' expectations.\n2. Providing exceptional customer service that builds trust and loyalty.\n3. Our aim is to make Bansal and Sons Jewellers a nationwide and then a worldwide jewellery store.\n\nAwards by Celebrity:\n\nWe are proud to receive national and international awards, a testament to our commitment to excellence."
+            android:text="At GehnaMall, we take your privacy seriously and are committed to protecting the personal information that you provide to us. This Privacy Policy outlines how we collect, use, and safeguard your data when using our app."
             android:textSize="16sp"
-            android:textColor="#000000"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="@dimen/_300sdp"
-            android:padding="8dp" />
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Information We Collect"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We collect the following personal information when you create an account or use our app:"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Name\n• Address\n• Contact Number\n• Email Address"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingLeft="16dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="In addition, we require access to your device’s camera and photo gallery to allow you to:"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="• Click or upload photos directly from the camera.\n• Upload photos from your gallery to keep your inventory list updated."
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingLeft="16dp"
+            android:paddingBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. How We Use Your Information"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <!-- Repeat similar structure for the rest of the sections -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="8. Contact Us"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If you have any questions or concerns about this Privacy Policy or how we handle your data, please contact us at:"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: contact@gehnamall.com\nContact: 9891066286"
+            android:textSize="16sp"
+            android:lineSpacingExtra="4dp"
+            android:paddingLeft="16dp"
+            android:layout_marginBottom="@dimen/_100sdp"/>
 
     </LinearLayout>
-
 </ScrollView>
-

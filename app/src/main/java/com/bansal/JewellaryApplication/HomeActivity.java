@@ -139,10 +139,10 @@ else if(item.getItemId()==R.id.Market) {
     Intent i = new Intent(HomeActivity.this, MarketPrice.class);
     startActivity(i);
 
-//}else if(item.getItemId()==R.id.aboutus){
-//    Intent i = new Intent(HomeActivity.this,AboutUs.class);
-//    startActivity(i);
-//
+}else if(item.getItemId()==R.id.PrivacyPolicy){
+    Intent i = new Intent(HomeActivity.this,AboutUs.class);
+    startActivity(i);
+
 }else if(item.getItemId()==R.id.termasandcondition){
     Intent i = new Intent(HomeActivity.this,Termasandcondition.class);
     startActivity(i);
