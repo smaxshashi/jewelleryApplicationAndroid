@@ -108,7 +108,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email: contact@gehnamall.com\nContact: 9891066286"
+            android:text="Email:gehna.mall1@gmail.com\nContact: 9871965757"
             android:textSize="16sp"
             android:lineSpacingExtra="4dp"
             android:paddingLeft="16dp"
