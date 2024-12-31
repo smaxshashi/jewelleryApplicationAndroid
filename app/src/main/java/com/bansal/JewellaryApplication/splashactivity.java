@@ -25,14 +25,13 @@ public class splashactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashactivity);
-
         VideoView videoView = findViewById(R.id.splashVideoView);
 
-        // Set the URI for the video
+// Set the URI for the video
         Uri videoUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.bansal);
         videoView.setVideoURI(videoUri);
 
-        // Make the video full screen
+// Make the video full screen
         videoView.setZOrderOnTop(true); // Ensures the video starts without a black screen
         videoView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -40,9 +39,10 @@ public class splashactivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        // Set up a listener to start the video as soon as it is prepared
+// Set up a listener to start the video as soon as it is prepared
         videoView.setOnPreparedListener(mp -> {
             mp.setLooping(false); // Optional: Set to true if you want the video to loop
+            videoView.seekTo(0);  // Ensure the video starts from the beginning
             videoView.start();    // Start video playback once ready
         });
 
