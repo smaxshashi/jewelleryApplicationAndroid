@@ -34,7 +34,9 @@ public class AdpterDiamondSlider extends RecyclerView.Adapter<AdpterDiamondSlide
         String imageUrl = imageUrls.get(position);
         Glide.with(context)
                 .load(imageUrl)
+                .onlyRetrieveFromCache(true) // Load only from cache; skip network
                 .into(holder.imageView);
+
 
     }
 

@@ -41,7 +41,7 @@ public class AdpterUpperList extends RecyclerView.Adapter<AdpterUpperList.ViewHo
         holder.tvname.setText(obj.getName());
         Glide.with(activity)
                 .load(obj.getImage())
-                .skipMemoryCache(true)
+               .onlyRetrieveFromCache(true) 
                 .error(R.drawable.noimage)
                 .into(holder.cvimage);
         holder.cvimage.setOnClickListener(new View.OnClickListener() {

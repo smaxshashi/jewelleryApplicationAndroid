@@ -35,6 +35,7 @@ public class AdpterSliderSoulmet extends RecyclerView.Adapter<AdpterSliderSoulme
         String imageUrl = imageUrls.get(position);
         Glide.with(context)
                 .load(imageUrl)
+                .onlyRetrieveFromCache(true) // Load only from cache; skip network
                 .into(holder.imageView);
 
     }

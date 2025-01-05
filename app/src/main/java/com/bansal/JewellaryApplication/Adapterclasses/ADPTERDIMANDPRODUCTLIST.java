@@ -45,7 +45,7 @@ public class ADPTERDIMANDPRODUCTLIST extends RecyclerView.Adapter<ADPTERDIMANDPR
         holder.nameTextView.setText(item.getName());
         Glide.with(context)
                 .load(item.getImage())
-                .skipMemoryCache(true)
+               .onlyRetrieveFromCache(true) 
                 .error(R.drawable.noimage)
                 .into(holder.circleImageView);
 

@@ -44,7 +44,7 @@ public class AdpterOccusion extends RecyclerView.Adapter<AdpterOccusion.ViewHold
 
         Glide.with(activity)
                 .load(obj.getImage())
-                .skipMemoryCache(true)
+               .onlyRetrieveFromCache(true) 
                 .error(R.drawable.noimage)
                 .into(holder.ivimage);
 

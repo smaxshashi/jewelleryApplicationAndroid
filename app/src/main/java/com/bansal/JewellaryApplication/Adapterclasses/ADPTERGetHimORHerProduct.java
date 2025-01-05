@@ -46,7 +46,7 @@ public class ADPTERGetHimORHerProduct extends RecyclerView.Adapter<ADPTERGetHimO
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)
                 .load(obj.getImageUrl())
-                .skipMemoryCache(true)
+               .onlyRetrieveFromCache(true) 
                 .error(R.drawable.noimage)
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels

@@ -33,6 +33,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         String imageUrl = imageUrls.get(position);
         Glide.with(holder.itemView.getContext()).load(imageUrl)
                 .centerInside()
+                .onlyRetrieveFromCache(true) // Load only from cache; skip network
                 .into(holder.imageView);
     }
 

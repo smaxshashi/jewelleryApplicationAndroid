@@ -46,7 +46,7 @@ public class AdpterCategoryGoldSublist extends RecyclerView.Adapter<AdpterCatego
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)
                 .load(obj.getImageUrl())
-                .skipMemoryCache(true)
+                .onlyRetrieveFromCache(true) // Load only from cache; skip network
                 .error(R.drawable.noimage)
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels
