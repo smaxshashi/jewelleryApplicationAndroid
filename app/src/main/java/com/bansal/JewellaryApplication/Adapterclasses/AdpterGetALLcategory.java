@@ -50,8 +50,8 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
         holder.tvcategoryname.setText(obj.getCategoryname());
         Glide.with(activity)
                 .load(obj.getCategoryImage())
-                .onlyRetrieveFromCache(true) // Load only from cache; skip network
-               .onlyRetrieveFromCache(true) 
+              .skipMemoryCache(true)  // Skip memory cache // Load only from cache; skip network
+             .skipMemoryCache(true)  // Skip memory cache 
                 .error(R.drawable.noimage)
                 .into(holder.ivimage);
 

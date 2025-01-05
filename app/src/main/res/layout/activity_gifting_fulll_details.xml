@@ -99,24 +99,24 @@
                 android:id="@+id/tvWeightValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:text="3"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@id/tvWeightLabel"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
-                android:layout_marginStart="4dp" />
-            <TextView
+                app:layout_constraintStart_toEndOf="@id/tvWeightLabel" />
 
+            <TextView
+                android:id="@+id/tvWeightUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="gm"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#000000"
-                app:layout_constraintStart_toEndOf="@id/tvMakingChargeValue"
-                app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
-                android:layout_marginStart="-43dp" />
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWeightValue"
+                app:layout_constraintStart_toEndOf="@id/tvWeightValue" />
 
             <!-- MakingCharge Label -->
             <TextView

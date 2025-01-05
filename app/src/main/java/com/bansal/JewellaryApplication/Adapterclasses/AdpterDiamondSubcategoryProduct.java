@@ -47,7 +47,7 @@ public class AdpterDiamondSubcategoryProduct extends RecyclerView.Adapter<Adpter
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)
                 .load(obj.getImageUrl())
-                .onlyRetrieveFromCache(true) // Load only from cache; skip network
+              .skipMemoryCache(true)  // Skip memory cache // Load only from cache; skip network
                 .error(R.drawable.noimage)
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels

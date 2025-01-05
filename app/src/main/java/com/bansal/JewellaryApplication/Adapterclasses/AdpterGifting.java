@@ -50,7 +50,7 @@ public class AdpterGifting extends RecyclerView.Adapter<AdpterGifting.ViewHolder
         Glide.with(activity)
                 .load(gifting.getExfield1()) // Load image URL from POJO
                 .override(200, 200)  // Resize images
-               .onlyRetrieveFromCache(true) 
+             .skipMemoryCache(true)  // Skip memory cache 
                 .error(R.drawable.noimage) // Error image if loading fails
                 .into(holder.giftingImage);
 

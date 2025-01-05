@@ -44,7 +44,7 @@ public class ADPTERGOLDMENDATA extends RecyclerView.Adapter<ADPTERGOLDMENDATA.Vi
         holder.nameTextView.setText(item.getName());
         Glide.with(context)
                 .load(item.getImage())
-               .onlyRetrieveFromCache(true) 
+             .skipMemoryCache(true)  // Skip memory cache 
                 .error(R.drawable.noimage)
                 .into(holder.cvimage);
         holder.cardView.setOnClickListener(new View.OnClickListener() {

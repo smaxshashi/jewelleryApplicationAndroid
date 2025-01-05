@@ -35,7 +35,7 @@ public class Testinomilaadpter extends RecyclerView.Adapter<Testinomilaadpter.Im
         Glide.with(context)
                 .load(imageUrls.get(position))
                 .centerInside() // The image URL
-                .onlyRetrieveFromCache(true) // Load only from cache; skip network
+              .skipMemoryCache(true)  // Skip memory cache // Load only from cache; skip network
                 .override(800, 800) // Resize to 800x600 pixels
                 .into(holder.imageView);
 

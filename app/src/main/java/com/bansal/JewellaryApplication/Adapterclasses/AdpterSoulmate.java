@@ -38,7 +38,7 @@ Activity activity;
         holder.tvname.setText(obj.getName());
         Glide.with(activity)
                 .load(obj.getImage())
-               .onlyRetrieveFromCache(true) 
+             .skipMemoryCache(true)  // Skip memory cache 
                 .error(R.drawable.noimage)
                 .centerInside()
                 .centerCrop()

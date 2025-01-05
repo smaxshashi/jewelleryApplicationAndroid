@@ -44,7 +44,7 @@ public class ADPterSubcategory extends RecyclerView.Adapter<ADPterSubcategory.Vi
 
         Glide.with(context)
                 .load(obj.getImage())
-               .onlyRetrieveFromCache(true) 
+             .skipMemoryCache(true)  // Skip memory cache 
                 .error(R.drawable.noimage)
                 .into(holder.cvImage);
 
