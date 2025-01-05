@@ -26,7 +26,8 @@ public class splashactivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashactivity);
-
+        getWindow().setStatusBarColor(ContextCompat.getColor(splashactivity.this,R.color.white));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(splashactivity.this,R.color.white));
         VideoView videoView = findViewById(R.id.splashVideoView);
 
         // Set the URI for the video

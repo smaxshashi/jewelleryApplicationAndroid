@@ -46,6 +46,7 @@ public class wishlistfullproductdetails extends AppCompatActivity {
     TabLayout tabLayout;
     String productid,UserId;
     String fetchproductid;
+    TextView tvdis;
 
 
     @Override
@@ -72,7 +73,8 @@ productid=getIntent().getStringExtra("productid");
         tvwashtage=findViewById(R.id.tvMakingChargeValue);
         tvCompanyName = findViewById(R.id.tvCompanyName);
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
-        ivwhtasapp=findViewById(R.id.llWhatsapp);
+        ivwhtasapp=findViewById(R.id.llWhatsapp);tvdis=findViewById(R.id.tvdis);
+
 
         tabLayout = findViewById(R.id.tabLayout);
         llCall = findViewById(R.id.llCall);
@@ -185,11 +187,13 @@ productid=getIntent().getStringExtra("productid");
                             String karat = selectedProduct.optString("karat", "N/A");
                             String weight = selectedProduct.optString("weight", "N/A");
                             String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
+                            String Discription = selectedProduct.optString("description", "0"); // Default value
 
                             tvProductName.setText(productName);
                             tvKaratValue.setText(karat);
                             tvWeightValue.setText(weight);
                             tvwashtage.setText(makingCharge);
+                            tvdis.setText(Discription);
 
                             // Extract and set image URLs
                             List<String> imageUrls = new ArrayList<>();

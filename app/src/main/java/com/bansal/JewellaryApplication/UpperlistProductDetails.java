@@ -199,11 +199,13 @@ public class UpperlistProductDetails extends AppCompatActivity {
                             String karat = selectedProduct.optString("karat", "N/A");
                             String weight = selectedProduct.optString("weight", "N/A");
                             String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
+                            String Discription = selectedProduct.optString("description", "0"); // Default value
 
                             tvProductName.setText(productName);
                             tvKaratValue.setText(karat);
                             tvWeightValue.setText(weight);
                             tvwashtage.setText(makingCharge);
+                            tvDis.setText(Discription);
 
                             Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
                                     ", Karat: " + karat);

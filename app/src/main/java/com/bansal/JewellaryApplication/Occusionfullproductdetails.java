@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +51,7 @@ public class Occusionfullproductdetails extends AppCompatActivity {
     String occusion,UserId;
     TextView tvDis;
     TabLayout tabLayout;
+    TextView tvdiscription;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +61,10 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(Occusionfullproductdetails.this,R.color.maroon));
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        productId=getIntent().getStringExtra("productID");
-        preferences = getSharedPreferences("Gifting", MODE_PRIVATE);
+//        productId=getIntent().getStringExtra("productID");
+        SharedPreferences preferences1= PreferenceManager.getDefaultSharedPreferences(Occusionfullproductdetails.this);
+        productId=preferences1.getString("occusionid","");
+        preferences = getSharedPreferences("occusion", MODE_PRIVATE);
         occusion=preferences.getString("Occusion","");
         SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
@@ -78,6 +82,8 @@ public class Occusionfullproductdetails extends AppCompatActivity {
         tvDis=findViewById(R.id.tvdis);
         tabLayout = findViewById(R.id.tabLayout);
         llCall = findViewById(R.id.llCall);
+        tvProductName.setText(occusion);
+        tvdiscription=findViewById(R.id.tvdis);
 
 
         llCall.setOnClickListener(new View.OnClickListener() {
@@ -170,74 +176,92 @@ public class Occusionfullproductdetails extends AppCompatActivity {
 
 
     private void fetchProductDetails(String productId) {
-         String url = "https://api.gehnamall.com/api/getProducts?gifting="+occusion+"&wholeseller=BANSAL";
+        String url = "https://api.gehnamall.com/api/getProducts?occasion=" + occusion + "&wholeseller=BANSAL";
 
-         RequestQueue requestQueue = Volley.newRequestQueue(this);
-         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                 response -> {
-                     try {
-                         Log.d("API_RESPONSE", response.toString());
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        Log.d("API_RESPONSE", "Response: " + response.toString());
 
-                         // Check if 'products' array exists
-                         if (!response.has("products")) {
-                             Toast.makeText(this, "Invalid response format", Toast.LENGTH_SHORT).show();
-                             return;
-                         }
+                        // Validate the response structure
+                        if (!response.has("products")) {
+                            Log.e("API_RESPONSE", "'products' key not found in response");
+                            Toast.makeText(this, "Invalid response format", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                         JSONArray productsArray = response.getJSONArray("products");
-                         JSONArray imageUrlArray = null;
+                        JSONArray productsArray = response.getJSONArray("products");
+                        if (productsArray.length() == 0) {
+                            Log.e("API_RESPONSE", "Products array is empty");
+                            Toast.makeText(this, "No products available", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                         // Assuming there's a single product in the response
-                         JSONObject selectedProduct = null;
+                        JSONArray imageUrlArray = null;
+                        JSONObject selectedProduct = null;
 
-                         for (int i = 0; i < productsArray.length(); i++) {
-                             JSONObject product = productsArray.getJSONObject(i);
-                             if (product.optInt("productId", -1) == Integer.parseInt(productId)) {
-                                 selectedProduct = product;
-                                 imageUrlArray = selectedProduct.getJSONArray("imageUrls");
-                                 break;
-                             }
-                         }
+                        // Iterate through the products array to find the desired product
+                        for (int i = 0; i < productsArray.length(); i++) {
+                            JSONObject product = productsArray.getJSONObject(i);
 
-                         if (selectedProduct != null) {
-                             String productName = selectedProduct.optString("productName", "N/A");
-                             String karat = selectedProduct.optString("karat", "N/A");
-                             String weight = selectedProduct.optString("weight", "N/A");
-                             String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
+                            // Log the product ID being checked
+                            int currentProductId = product.optInt("productId", -1);
+                            Log.d("DEBUG_PRODUCTS", "Checking productId: " + currentProductId);
 
-                             tvProductName.setText(productName);
-                             tvKaratValue.setText(karat);
-                             tvWeightValue.setText(weight);
-                             tvwashtage.setText(makingCharge);
+                            if (currentProductId == Integer.parseInt(productId)) {
+                                selectedProduct = product;
+                                imageUrlArray = selectedProduct.optJSONArray("imageUrls");
+                                break;
+                            }
+                        }
 
-                             Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
-                                     ", Karat: " + karat);
+                        if (selectedProduct != null) {
+                            // Extract product details
+                            String productName = selectedProduct.optString("productName", "N/A");
+                            String karat = selectedProduct.optString("karat", "N/A");
+                            String weight = selectedProduct.optString("weight", "N/A");
+                            String makingCharge = selectedProduct.optString("wastage", "0"); // Default value
+                            String Discription = selectedProduct.optString("description", "0"); // Default value
 
-                             // Extract and set image URLs
-                             List<String> imageUrls = new ArrayList<>();
-                             for (int i = 0; i < imageUrlArray.length(); i++) {
-                                 String imageUrl = imageUrlArray.getString(i);
-                                 imageUrls.add(imageUrl);
-                             }
 
-                             setupImageSlider(imageUrls);
-                         } else {
-                             Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
-                         }
+                            tvProductName.setText(productName);
+                            tvKaratValue.setText(karat);
+                            tvWeightValue.setText(weight);
+                            tvwashtage.setText(makingCharge);
+                            tvdiscription.setText(Discription);
 
-                     } catch (JSONException e) {
-                         e.printStackTrace();
-                         Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
-                         Toast.makeText(this, "Error parsing product data", Toast.LENGTH_SHORT).show();
-                     }
-                 },
-                 error -> {
-                     Log.e("API_ERROR", error.toString());
-                     Toast.makeText(this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
-                 }
-         );
 
-         requestQueue.add(jsonObjectRequest);
+                            Log.d("PRODUCT_DEBUG", "Product Found - Name: " + productName +
+                                    ", Weight: " + weight + ", Karat: " + karat);
+
+                            // Extract and set image URLs
+                            List<String> imageUrls = new ArrayList<>();
+                            if (imageUrlArray != null) {
+                                for (int i = 0; i < imageUrlArray.length(); i++) {
+                                    String imageUrl = imageUrlArray.getString(i);
+                                    imageUrls.add(imageUrl);
+                                }
+                            }
+
+                            setupImageSlider(imageUrls);
+                        } else {
+                            Log.e("DEBUG_PRODUCTS", "Product not found for productId: " + productId);
+                            Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error parsing product data", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    Log.e("API_ERROR", "Network Error: " + error.toString());
+                    Toast.makeText(this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        requestQueue.add(jsonObjectRequest);
     }
 
 

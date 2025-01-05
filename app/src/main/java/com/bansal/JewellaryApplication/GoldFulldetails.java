@@ -89,7 +89,6 @@ public class GoldFulldetails extends AppCompatActivity {
         btnAddToWishlist = findViewById(R.id.btnAddToCart);
         ivWhatsapp=findViewById(R.id.llWhatsapp);
         tvdis=findViewById(R.id.tvdis);
-        tvdis.setText(soulmet);
         tabLayout = findViewById(R.id.tabLayout);
         llCall = findViewById(R.id.llCall);
         llCall.setOnClickListener(new View.OnClickListener() {
@@ -182,12 +181,14 @@ public class GoldFulldetails extends AppCompatActivity {
                             String productName = selectedProduct.optString("productName", "N/A");
                             String karat = selectedProduct.optString("karat", "N/A");
                             String weight = selectedProduct.optString("weight", "N/A");
-                            String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
+                            String makingCharge = selectedProduct.optString("wastage", "0");
+                            String Discription = selectedProduct.optString("description", "0"); // Default value// Default to "0" or a fallback value
 
                             tvProductName.setText(productName);
                             tvKaratValue.setText(karat);
                             tvWeightValue.setText(weight);
                             tvwashtage.setText(makingCharge);
+                            tvdis.setText(Discription);
 
                             Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
                                     ", Karat: " + karat);

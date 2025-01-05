@@ -59,11 +59,9 @@ public class ADPTERGiftingProduct extends RecyclerView.Adapter<ADPTERGiftingProd
         holder.cvcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences=activity.getSharedPreferences("Gifting", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=preferences.edit();
+
                 Intent i = new Intent(activity, GiftingFulllDetails.class);
-                editor.putString("ProductId",obj.getProductId());
-                editor.apply();
+                i.putExtra("giftingproductid",obj.getProductId());
                 activity.startActivity(i);            }
         });
 

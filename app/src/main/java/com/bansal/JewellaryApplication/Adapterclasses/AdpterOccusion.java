@@ -51,7 +51,7 @@ public class AdpterOccusion extends RecyclerView.Adapter<AdpterOccusion.ViewHold
         holder.ivimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences=activity.getSharedPreferences("Gifting", Context.MODE_PRIVATE);
+                SharedPreferences preferences=activity.getSharedPreferences("occusion", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor=preferences.edit();
                 Intent i = new Intent(activity, OccusionProduct.class);
                 editor.putString("Occusion",obj.getName());

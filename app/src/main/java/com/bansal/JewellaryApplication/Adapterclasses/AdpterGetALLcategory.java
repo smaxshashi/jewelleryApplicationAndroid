@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bansal.JewellaryApplication.DimaondMenWOmen;
+import com.bansal.JewellaryApplication.GetCategoryProductSubnot;
 import com.bansal.JewellaryApplication.GetCategoryWiseProduct;
 import com.bansal.JewellaryApplication.GetMenOrWomenProduct;
 import com.bansal.JewellaryApplication.R;
@@ -75,9 +76,12 @@ public class AdpterGetALLcategory extends RecyclerView.Adapter<AdpterGetALLcateg
                     intent = new Intent(activity, DimaondMenWOmen.class);
 
                 } else if (categoryCode.equals("4003") || categoryCode.equals("4004") ||
-                        categoryCode.equals("4005") || categoryCode.equals("4006") ||  categoryCode.equals("4007")
-                ||  categoryCode.equals("4008") ||  categoryCode.equals("4009")) {
+                        categoryCode.equals("4005") || categoryCode.equals("4006")) {
                     intent = new Intent(activity, GetCategoryWiseProduct.class);
+
+               }else if (categoryCode.equals("4007")
+                ||  categoryCode.equals("4008") ||  categoryCode.equals("4009")) {
+                    intent = new Intent(activity, GetCategoryProductSubnot.class);
 
                } else {
                     // Handle any other unexpected codes

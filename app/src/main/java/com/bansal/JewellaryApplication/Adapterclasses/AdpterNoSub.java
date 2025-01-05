@@ -2,8 +2,6 @@ package com.bansal.JewellaryApplication.Adapterclasses;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,39 +12,38 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bansal.JewellaryApplication.Occusionfullproductdetails;
+import com.bansal.JewellaryApplication.GiftingFulllDetails;
 import com.bansal.JewellaryApplication.R;
-import com.bansal.JewellaryApplication.pojoclasses.POJOOCCUSIONWISEPRODUCT;
+import com.bansal.JewellaryApplication.pojoclasses.POJOGETNOSUB;
+import com.bansal.JewellaryApplication.pojoclasses.POJOGiftingproduct;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-public class ADPTEROCCUSIONWISEPRODUCT extends RecyclerView.Adapter<ADPTEROCCUSIONWISEPRODUCT.VIEWHOLDER> {
-    List<POJOOCCUSIONWISEPRODUCT> pojooccusionwiseproducts;
+public class AdpterNoSub extends RecyclerView.Adapter<AdpterNoSub.ViewHolder> {
+    List<POJOGETNOSUB> pojogetnosubs;
     Activity activity;
 
-    public ADPTEROCCUSIONWISEPRODUCT(List<POJOOCCUSIONWISEPRODUCT> pojooccusionwiseproducts, Activity activity) {
-        this.pojooccusionwiseproducts = pojooccusionwiseproducts;
+    public AdpterNoSub(List<POJOGETNOSUB> pojogetnosubs, Activity activity) {
+        this.pojogetnosubs = pojogetnosubs;
         this.activity = activity;
     }
 
     @NonNull
     @Override
-    public ADPTEROCCUSIONWISEPRODUCT.VIEWHOLDER onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdpterNoSub.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(R.layout.deginforshowingproduct,parent,false);
-        return new VIEWHOLDER(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ADPTEROCCUSIONWISEPRODUCT.VIEWHOLDER holder, int position) {
-
-        POJOOCCUSIONWISEPRODUCT obj=pojooccusionwiseproducts.get(position);
+    public void onBindViewHolder(@NonNull AdpterNoSub.ViewHolder holder, int position) {
+        POJOGETNOSUB obj=pojogetnosubs.get(position);
         holder.tvname.setText(obj.getProductName());
-        holder.tvprice.setText(obj.getDescription());
+        holder.tvprice.setText(obj.getDis());
         holder.tvweight.setText(obj.getWeight());
+        holder.tvkaret.setText(obj.getKarat());
         holder.tvkaret.setText(obj.getKarat());
         Glide.with(activity)
                 .load(obj.getImageUrl())
@@ -55,34 +52,30 @@ public class ADPTEROCCUSIONWISEPRODUCT extends RecyclerView.Adapter<ADPTEROCCUSI
                 .downsample(DownsampleStrategy.CENTER_INSIDE) // Scale down image to fit within specified bounds
                 .override(800, 800) // Resize the image to 800x800 pixels
                 .into(holder.ivimage);
+
         holder.cvcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(activity);
-                SharedPreferences.Editor editor = preferences.edit();
 
-                Intent i=new Intent(activity, Occusionfullproductdetails.class);
-                i.putExtra("productID",obj.getProductId());
-                editor.putString("occusionid",obj.getProductId());
-                editor.apply();
-                activity.startActivity(i);
-            }
+                Intent i = new Intent(activity, GiftingFulllDetails.class);
+                i.putExtra("giftingproductid",obj.getProductId());
+                activity.startActivity(i);            }
         });
+
 
     }
 
     @Override
     public int getItemCount() {
-        return pojooccusionwiseproducts.size();
+        return pojogetnosubs.size();
     }
 
-    public class VIEWHOLDER extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivimage;
         TextView tvname,tvprice,tvweight,tvkaret;
         CardView cvcard;
-        public VIEWHOLDER(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             ivimage=itemView.findViewById(R.id.rvUserFragmentCategoryProductImge);
             tvname=itemView.findViewById(R.id.rvUserFragmentCategoryProductName);
             tvprice=itemView.findViewById(R.id.rvUserFragmentCategoryProductPrice);

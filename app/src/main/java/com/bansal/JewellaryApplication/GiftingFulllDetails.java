@@ -47,11 +47,11 @@ public class GiftingFulllDetails extends AppCompatActivity {
     ViewPager2 viewPager;
     TextView tvProductName, tvKaratValue, tvWeightValue, tvCompanyName,tvwashtage;
     Button btnAddToWishlist;
-    String productId,gifting;
+    String gifting;
     SharedPreferences preferences;
     LinearLayout ivwhtasapp,llCall;
      TabLayout tabLayout;
-     String productid,UserId;
+     String impproductid,UserId,productId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +62,10 @@ public class GiftingFulllDetails extends AppCompatActivity {
         getWindow().setStatusBarColor(ContextCompat.getColor(GiftingFulllDetails.this,R.color.maroon));
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-//        productId=getIntent().getStringExtra("ProductId");
+        productId=getIntent().getStringExtra("giftingproductid");
         preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
        // gifting=preferences.getString("Gifting","");
-        SharedPreferences preferences2=getSharedPreferences("Gifting", Context.MODE_PRIVATE);
-        productId=preferences2.getString("ProductId","");
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
@@ -86,6 +85,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
         ivwhtasapp=findViewById(R.id.llWhatsapp);
         tabLayout = findViewById(R.id.tabLayout);
         llCall = findViewById(R.id.llCall);
+        tvProductName.setText(impproductid);
         llCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,7 +178,13 @@ public class GiftingFulllDetails extends AppCompatActivity {
 
 
     private void Fetchdata(String productId) {
-        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&gifting=birthday";
+        if (productId == null || productId.isEmpty()) {
+            Log.e("Validation Error", "Product ID is null or empty");
+            Toast.makeText(this, "Invalid Product ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String url = "https://api.gehnamall.com/api/getProducts?wholeseller=BANSAL&gifting=" + gifting;
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -186,23 +192,20 @@ public class GiftingFulllDetails extends AppCompatActivity {
                     try {
                         Log.d("API_RESPONSE", response.toString());
 
-                        // Check if 'products' array exists
-                        if (!response.has("products")) {
-                            Toast.makeText(this, "Invalid response format", Toast.LENGTH_SHORT).show();
+                        if (!response.has("products") || response.isNull("products")) {
+                            Toast.makeText(this, "No products available", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         JSONArray productsArray = response.getJSONArray("products");
                         JSONArray imageUrlArray = null;
-
-                        // Assuming there's a single product in the response
                         JSONObject selectedProduct = null;
 
                         for (int i = 0; i < productsArray.length(); i++) {
                             JSONObject product = productsArray.getJSONObject(i);
                             if (product.optInt("productId", -1) == Integer.parseInt(productId)) {
                                 selectedProduct = product;
-                                imageUrlArray = selectedProduct.getJSONArray("imageUrls");
+                                imageUrlArray = selectedProduct.optJSONArray("imageUrls");
                                 break;
                             }
                         }
@@ -211,7 +214,7 @@ public class GiftingFulllDetails extends AppCompatActivity {
                             String productName = selectedProduct.optString("productName", "N/A");
                             String karat = selectedProduct.optString("karat", "N/A");
                             String weight = selectedProduct.optString("weight", "N/A");
-                            String makingCharge = selectedProduct.optString("wastage", "0"); // Default to "0" or a fallback value
+                            String makingCharge = selectedProduct.optString("wastage", "0");
 
                             tvProductName.setText(productName);
                             tvKaratValue.setText(karat);
@@ -221,32 +224,34 @@ public class GiftingFulllDetails extends AppCompatActivity {
                             Log.d("PRODUCT_DEBUG", "Name: " + productName + ", Weight: " + weight +
                                     ", Karat: " + karat);
 
-                            // Extract and set image URLs
-                            List<String> imageUrls = new ArrayList<>();
-                            for (int i = 0; i < imageUrlArray.length(); i++) {
-                                String imageUrl = imageUrlArray.getString(i);
-                                imageUrls.add(imageUrl);
+                            if (imageUrlArray != null) {
+                                List<String> imageUrls = new ArrayList<>();
+                                for (int i = 0; i < imageUrlArray.length(); i++) {
+                                    String imageUrl = imageUrlArray.getString(i);
+                                    imageUrls.add(imageUrl);
+                                }
+                                setupImageSlider(imageUrls);
+                            } else {
+                                Toast.makeText(this, "No images available for this product", Toast.LENGTH_SHORT).show();
                             }
-
-                            setupImageSlider(imageUrls);
                         } else {
                             Toast.makeText(this, "Product not found", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e) {
-                        e.printStackTrace();
                         Log.e("JSON_ERROR", "Error parsing JSON: " + e.getMessage());
                         Toast.makeText(this, "Error parsing product data", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
-                    Log.e("API_ERROR", error.toString());
+                    Log.e("API_ERROR", "Error: " + error.toString());
                     Toast.makeText(this, "Failed to fetch product details", Toast.LENGTH_SHORT).show();
                 }
         );
 
         requestQueue.add(jsonObjectRequest);
     }
+
 
     private void setupImageSlider(List<String> imageUrls) {
         GiftingSlider adapter = new GiftingSlider(GiftingFulllDetails.this, imageUrls);
