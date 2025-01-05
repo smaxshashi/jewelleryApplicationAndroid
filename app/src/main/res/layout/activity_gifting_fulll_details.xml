@@ -116,7 +116,7 @@
                 android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@id/tvMakingChargeValue"
                 app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
-                android:layout_marginStart="-40dp" />
+                android:layout_marginStart="-52dp" />
 
             <!-- MakingCharge Label -->
             <TextView
