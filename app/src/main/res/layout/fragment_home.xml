@@ -9,23 +9,40 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rvHomefargemtUpperList"
             android:layout_marginTop="16sp"
+            android:layout_marginBottom="@dimen/_12sdp"
             />
-
+        <androidx.cardview.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="0dp"
+            android:layout_margin="0dp">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_200sdp"
-                android:clipChildren="false"
+                android:layout_height="match_parent"
                 android:clipToPadding="false"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                />
+                android:clipChildren="false"
+                android:scaleType="fitXY" />
+        </androidx.cardview.widget.CardView>
+
+<!--            <androidx.viewpager2.widget.ViewPager2-->
+<!--                android:id="@+id/viewPager"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_200sdp"-->
+<!--                android:clipChildren="false"-->
+<!--                android:clipToPadding="false"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                />-->
 
 
 
@@ -75,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/imagepic"
-            android:layout_marginTop="-45dp"
+            android:layout_marginTop="-36dp"
             />
 
 
