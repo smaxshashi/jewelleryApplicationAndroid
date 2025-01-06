@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bansal.JewellaryApplication.CategoryProduct;
 import com.bansal.JewellaryApplication.GiftingFulllDetails;
 import com.bansal.JewellaryApplication.R;
 import com.bansal.JewellaryApplication.pojoclasses.POJOGETNOSUB;
@@ -57,7 +58,7 @@ public class AdpterNoSub extends RecyclerView.Adapter<AdpterNoSub.ViewHolder> {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(activity, GiftingFulllDetails.class);
+                Intent i = new Intent(activity, CategoryProduct.class);
                 i.putExtra("giftingproductid",obj.getProductId());
                 activity.startActivity(i);            }
         });

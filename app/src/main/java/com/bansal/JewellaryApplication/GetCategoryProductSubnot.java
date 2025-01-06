@@ -58,6 +58,10 @@ public class GetCategoryProductSubnot extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         strCategoryId=getIntent().getStringExtra("CategoryCode");
         strCategoryname=getIntent().getStringExtra("categoryname");
+        SharedPreferences preferences1= PreferenceManager.getDefaultSharedPreferences(GetCategoryProductSubnot.this);
+        SharedPreferences.Editor editor1=preferences1.edit();
+        editor1.putString("NoCategory",strCategoryId);
+        editor1.apply();
 
         tvgift=findViewById(R.id.tvgift);
         rvList=findViewById(R.id.rvGiftingList);

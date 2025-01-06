@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Image Slider -->
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_220sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_30sdp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/viewPager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_5sdp" />
+
+
+        <!-- Product Name -->
+        <TextView
+            android:id="@+id/tvProductName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginTop="5dp" />
+
+        <!-- Karat and Weight -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvProductName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/contain1"
+            android:layout_marginTop="8dp">
+
+            <!-- Karat Label -->
+            <TextView
+                android:id="@+id/tvKaratLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Karat:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Karat Value -->
+            <TextView
+                android:id="@+id/tvKaratValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@id/tvKaratLabel"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvKaratLabel"
+                android:layout_marginStart="4dp" />
+
+            <!-- Weight Label -->
+            <TextView
+                android:id="@+id/tvWeightLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvKaratLabel"
+                android:layout_marginTop="8dp" />
+
+            <!-- Weight Value -->
+            <TextView
+                android:id="@+id/tvWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="3"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWeightLabel"
+                app:layout_constraintStart_toEndOf="@id/tvWeightLabel" />
+
+            <TextView
+                android:id="@+id/tvWeightUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gm"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvWeightValue"
+                app:layout_constraintStart_toEndOf="@id/tvWeightValue" />
+
+            <!-- MakingCharge Label -->
+            <TextView
+                android:id="@+id/tvMakingChargeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MakingCharge:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvWeightLabel"
+                android:layout_marginTop="8dp" />
+
+            <!-- MakingCharge Value -->
+            <TextView
+                android:id="@+id/tvMakingChargeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@id/tvMakingChargeLabel"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMakingChargeLabel"
+                android:layout_marginStart="4dp" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="%"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@id/tvMakingChargeValue"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvMakingChargeLabel"
+                android:layout_marginStart="@dimen/_1sdp"
+                />
+
+            <TextView
+                android:id="@+id/tvDiscriptionlable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discription:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel"
+                android:layout_marginTop="8dp" />
+
+            <!-- MakingCharge Value -->
+            <TextView
+                android:id="@+id/tvdis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                app:layout_constraintStart_toEndOf="@id/tvDiscriptionlable"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvDiscriptionlable"
+                android:layout_marginStart="4dp" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDiscriptionlable"
+                app:layout_constraintStart_toEndOf="@id/llWhatsapp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/btnshape"
+                android:id="@+id/llWhatsapp"
+                >
+                <ImageView
+                    android:id="@+id/ivwhatappp"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvMakingChargeLabel"
+                    android:src="@drawable/whhatapp"
+                    />
+
+                <!-- MakingCharge Value -->
+                <TextView
+                    android:id="@+id/tvwhatss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Click WhatsApp to ask!"
+                    android:textColor="#04BB0C"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toEndOf="@id/llWhatsapp"
+                    app:layout_constraintTop_toBottomOf="@id/tvMakingChargeValue" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/btnshape"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                app:layout_constraintBottom_toBottomOf="@id/llWhatsapp"
+
+                app:layout_constraintStart_toEndOf="@id/llWhatsapp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <ImageView
+                    android:id="@+id/ivCall"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:contentDescription="Call Icon"
+                    android:src="@drawable/ic_call" />
+
+                <TextView
+                    android:id="@+id/tvCall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Click to Call!"
+                    android:textColor="#4CAF50"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Company Name -->
+        <TextView
+            android:id="@+id/tvCompanyName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:drawableLeft="@drawable/baseline_verified_24"
+            android:drawablePadding="@dimen/_4sdp"
+            android:textColor="@android:color/black"
+            app:layout_constraintTop_toBottomOf="@id/contain1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add to Wishlist"
+            android:backgroundTint="@color/maroon"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tvCompanyName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
