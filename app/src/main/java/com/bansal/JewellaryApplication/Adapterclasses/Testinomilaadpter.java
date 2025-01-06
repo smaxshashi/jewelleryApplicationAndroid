@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bansal.JewellaryApplication.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.List;
 
@@ -34,9 +35,11 @@ public class Testinomilaadpter extends RecyclerView.Adapter<Testinomilaadpter.Im
     public void onBindViewHolder(@NonNull Testinomilaadpter.ImageViewHolder holder, int position) {
         Glide.with(context)
                 .load(imageUrls.get(position))
+                .error(R.drawable.noimage) // Set an error image in case loading fails
                 .centerInside() // The image URL
               .skipMemoryCache(true)  // Skip memory cache // Load only from cache; skip network
                 .override(800, 800) // Resize to 800x600 pixels
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache the image for better performance
                 .into(holder.imageView);
 
     }

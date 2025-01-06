@@ -976,15 +976,24 @@
                 android:background="#B4B2B2" />
 
         </LinearLayout>
+        <androidx.cardview.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="12dp"
+            android:layout_margin="12dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:clipChildren="false"
+                android:scaleType="fitCenter" />
+        </androidx.cardview.widget.CardView>
 
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager2"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_200sdp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            />
 
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"

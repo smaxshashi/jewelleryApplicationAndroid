@@ -5,6 +5,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import static androidx.core.app.ActivityCompat.finishAffinity;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -1097,24 +1098,35 @@ ImageView ivWhatsapp;
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
+                    Log.d("API Response", response.toString()); // Log full response
                     testimonialImageUrls.clear();
 
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject bannerObject = response.getJSONObject(i);
                             String imageUrl = bannerObject.getString("imageUrl");
-                            Log.d("API Response", "Image URL: " + imageUrl);
+                            Log.d("Image URL", "Fetched: " + imageUrl); // Log each URL
                             testimonialImageUrls.add(imageUrl);
                         } catch (JSONException e) {
                             Log.e("JSON Error", "Error parsing JSON response", e);
                         }
                     }
 
-                    Log.d("Testimonial Image URLs", "List size: " + testimonialImageUrls.size());
+                    Log.d("Image List Size", "Size: " + testimonialImageUrls.size()); // Log list size
+
                     if (!testimonialImageUrls.isEmpty()) {
+                        // Preload images
+                        for (String url1 : testimonialImageUrls) {
+                            Glide.with(getActivity())
+                                    .load(url1)
+                                    .preload();
+
+                        }
+
                         setupImageSlider2();
                     } else {
                         Log.w("API Warning", "No images found.");
+                        Toast.makeText(getActivity(), "No testimonials available.", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
@@ -1124,10 +1136,12 @@ ImageView ivWhatsapp;
                     } else {
                         Log.e("Volley Error", "Error: " + error.getMessage());
                     }
+
+                    Toast.makeText(getActivity(), "Failed to load testimonials.", Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public RetryPolicy getRetryPolicy() {
-                return new DefaultRetryPolicy(5000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                return new DefaultRetryPolicy(3000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
             }
         };
 
@@ -1137,25 +1151,26 @@ ImageView ivWhatsapp;
     private void setupImageSlider2() {
         Testinomilaadpter adapter = new Testinomilaadpter(getActivity(), testimonialImageUrls);
         test.setAdapter(adapter);
+        adapter.notifyDataSetChanged(); // Notify the adapter of data changes
 
+        Log.d("Adapter", "Adapter set to ViewPager with " + testimonialImageUrls.size() + " items."); // Log adapter binding
         autoScrollViewPager2();
     }
 
     private void autoScrollViewPager2() {
-      Handler  handler = new Handler();
+        Handler handler = new Handler();
         autoScrollRunnable = () -> {
             if (test != null && testimonialImageUrls != null && !testimonialImageUrls.isEmpty()) {
                 int nextItem = test.getCurrentItem() + 1;
                 if (nextItem >= testimonialImageUrls.size()) {
                     nextItem = 0;
                 }
+                Log.d("AutoScroll", "Current item: " + test.getCurrentItem() + ", Next item: " + nextItem); // Log auto-scroll
                 test.setCurrentItem(nextItem, true);
-                handler.postDelayed(autoScrollRunnable, 6000);
+                handler.postDelayed(autoScrollRunnable, 1000);
             }
-
-
         };
-        handler.postDelayed(autoScrollRunnable, 6000);
+        handler.postDelayed(autoScrollRunnable, 1000);
     }
 
     @Override
