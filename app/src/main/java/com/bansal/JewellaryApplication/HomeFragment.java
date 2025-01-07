@@ -1093,43 +1093,59 @@ ImageView ivWhatsapp;
 
 
     private void fetchTestimonial() {
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        if (!isAdded()) {
+            Log.e("HomeFragment", "Fragment not attached, skipping fetchTestimonial");
+            return;
+        }
+
+        RequestQueue queue = Volley.newRequestQueue(requireActivity()); // Use requireActivity safely
         String url = "https://api.gehnamall.com/api/testimonial";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 response -> {
-                    Log.d("API Response", response.toString()); // Log full response
+                    if (!isAdded()) {
+                        Log.w("HomeFragment", "Fragment not attached, skipping Glide operations");
+                        return;
+                    }
+
+                    Log.d("API Response", response.toString());
                     testimonialImageUrls.clear();
 
                     for (int i = 0; i < response.length(); i++) {
                         try {
                             JSONObject bannerObject = response.getJSONObject(i);
                             String imageUrl = bannerObject.getString("imageUrl");
-                            Log.d("Image URL", "Fetched: " + imageUrl); // Log each URL
+                            Log.d("Image URL", "Fetched: " + imageUrl);
                             testimonialImageUrls.add(imageUrl);
                         } catch (JSONException e) {
                             Log.e("JSON Error", "Error parsing JSON response", e);
                         }
                     }
 
-                    Log.d("Image List Size", "Size: " + testimonialImageUrls.size()); // Log list size
+                    Log.d("Image List Size", "Size: " + testimonialImageUrls.size());
 
                     if (!testimonialImageUrls.isEmpty()) {
                         // Preload images
                         for (String url1 : testimonialImageUrls) {
-                            Glide.with(getActivity())
-                                    .load(url1)
-                                    .preload();
-
+                            if (isAdded()) { // Check if Fragment is still added
+                                Glide.with(requireActivity())
+                                        .load(url1)
+                                        .preload();
+                            }
                         }
 
                         setupImageSlider2();
                     } else {
                         Log.w("API Warning", "No images found.");
-                        Toast.makeText(getActivity(), "No testimonials available.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), "No testimonials available.", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
+                    if (!isAdded()) {
+                        Log.w("HomeFragment", "Fragment not attached, skipping error handling");
+                        return;
+                    }
+
                     if (error.networkResponse != null && error.networkResponse.data != null) {
                         String errorMessage = new String(error.networkResponse.data);
                         Log.e("Volley Error", "Error fetching data: " + error.networkResponse.statusCode + " " + errorMessage);
@@ -1137,7 +1153,7 @@ ImageView ivWhatsapp;
                         Log.e("Volley Error", "Error: " + error.getMessage());
                     }
 
-                    Toast.makeText(getActivity(), "Failed to load testimonials.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), "Failed to load testimonials.", Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public RetryPolicy getRetryPolicy() {
