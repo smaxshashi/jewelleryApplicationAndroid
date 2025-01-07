@@ -43,7 +43,17 @@
             android:layout_weight="1"
             android:background="#B4B2B2" />
 
-    </LinearLayout>
+    </LinearLayout>\
+    <TextView
+        android:id="@+id/noProductsTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product not available"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="#FF0000"
+        android:layout_gravity="center_horizontal"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
