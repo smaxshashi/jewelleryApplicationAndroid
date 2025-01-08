@@ -77,7 +77,7 @@ public class UpperlistProductDetails extends AppCompatActivity {
         llCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDialer("+9191982031621"); // Replace with your phone number
+                openDialer("+9179820316211"); // Replace with your phone number
             }
         });
 
@@ -86,7 +86,7 @@ public class UpperlistProductDetails extends AppCompatActivity {
         ivWhtasappp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String phoneNumber = "79820316211"; // Use country code without "+" prefix
                 String message = "Hello, I have a question regarding the product from your app.";
 
                 try {

@@ -194,7 +194,7 @@ ImageView ivWhatsapp;
         cvvd1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String phoneNumber = "79820316211"; // Use country code without "+" prefix
                 String message = "Hello, I have a question regarding the product from your app.";
 
                 try {
@@ -219,7 +219,7 @@ ImageView ivWhatsapp;
         cvvd2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String phoneNumber = "79820316211"; // Use country code without "+" prefix
                 String message = "Hello, I have a question regarding the product from your app.";
 
                 try {
@@ -408,7 +408,7 @@ ImageView ivWhatsapp;
         ivWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNumber = "91982031621"; // Use country code without "+" prefix
+                String phoneNumber = "79820316211"; // Use country code without "+" prefix
                 String message = "Hello, I have a question regarding the product from your app.";
 
                 try {

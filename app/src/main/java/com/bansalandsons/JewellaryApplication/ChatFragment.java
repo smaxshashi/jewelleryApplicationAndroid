@@ -27,7 +27,7 @@ public class ChatFragment extends Fragment {
         btnWhatsapp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String phoneNumber = "+919717223601"; // Indian phone number format
+                String phoneNumber = "+917982031621"; // Indian phone number format
                 String message = "Hello, I have a question regarding the product from our app.";
 
 
